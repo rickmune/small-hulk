@@ -6,14 +6,22 @@ using System.Threading.Tasks;
 using Smallhulk.Core.Domain;
 using Smallhulk.Core.Repository;
 using Smallhulk.Core.Util;
+using Smallhulk.Data.EF;
 
 namespace Smallhulk.Data.Repository
 {
     public class UserRepository : IUserRepository
     {
+        private SafAppDbContext _context;
+
+        public UserRepository(SafAppDbContext context)
+        {
+            _context = context;
+        }
+
         public ValidationResultInfo Validate(User itemToValidate)
         {
-            throw new NotImplementedException();
+            return itemToValidate.BasicValidation();
         }
 
         public void Save(User entity)

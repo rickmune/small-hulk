@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 
 namespace Smallhulk.Core.Domain
 {
-   public class BaseEntity
+    public class Country:BaseEntity
     {
-       [Required]
-       public Guid Id { get; set; }
+
         [Required]
-       public DateTime CreatedOn { get; set; }
-       public DateTime UpdatedOn { get; set; }
+        public string Code { get; set; }
+
         [Required]
-       public bool IsActive { get; set; }
+        public string ZipCode { get; set; }
+
+        [Required]
+        public string Name { get; set; }
 
     }
 }
