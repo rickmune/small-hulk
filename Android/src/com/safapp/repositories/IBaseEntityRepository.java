@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public interface IBaseEntityRepository<T> {
 
-	public UUID save(T t) throws Exception;
+	public int save(T t) throws Exception;
 	
 	public List<T> getAll() throws Exception;
 	
@@ -13,5 +13,7 @@ public interface IBaseEntityRepository<T> {
 	
 	public int delete() throws Exception;
 	
-	public int deleteById() throws Exception;
+	public int deleteById(UUID Id) throws Exception;
+	
+	public void setDataClass();
 }

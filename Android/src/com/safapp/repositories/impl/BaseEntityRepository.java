@@ -5,37 +5,38 @@ import java.util.UUID;
 
 import com.safapp.entities.BaseEntity;
 import com.safapp.repositories.IBaseEntityRepository;
+import com.safapp.utils.CloudDataHolder;
+import com.safapp.utils.database.IDataBaseManager;
+import com.safapp.utils.enums.CloudConstants;
 
-public class BaseEntityRepository<T extends BaseEntity> implements IBaseEntityRepository<T> {
+public abstract class BaseEntityRepository<T extends BaseEntity> implements IBaseEntityRepository<T> {
 
+	IDataBaseManager dataBaseManager = (IDataBaseManager)CloudDataHolder.getObject(CloudConstants.DATABASEMANAGER.value);
+	Class<T> dataClass;
+	
 	@Override
-	public UUID save(T t) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public int save(T t) throws Exception {
+		return dataBaseManager.save(t, dataClass);
 	}
 
 	@Override
 	public List<T> getAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dataBaseManager.getAll(dataClass);
 	}
 
 	@Override
 	public T getById(UUID id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return dataBaseManager.getById(id, dataClass);
 	}
 
 	@Override
 	public int delete() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return dataBaseManager.deleteAll(dataClass);
 	}
 
 	@Override
-	public int deleteById() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteById(UUID Id) throws Exception {
+		return dataBaseManager.deleteById(Id, dataClass);
 	}
-
+	
 }
