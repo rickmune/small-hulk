@@ -2,4 +2,10 @@
 
     <string name="app_name">AndroidClient</string>
 
+    <string name="jst_a_pic">A picture</string>
+    <string name="user_login">Login</string>
+    <string name="username">User Name</string>
+    <string name="loginpassword">Password</string>
+    <string name="btn_login">Log</string>
+    <string name="app_version">Your app v 1.0.0</string>
 </resources>

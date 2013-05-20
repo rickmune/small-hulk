@@ -1,0 +1,14 @@
+<resources>
+    <color name="coalblack">#000000</color>
+    <color name="genBorder">#ff55c6f1</color>
+    <color name="okGradStart">#fff3d3</color>
+    <color name="yellow1">#F9E60E</color>
+    <color name="yellow2">#F9F89D</color>
+	<color name="grey05">#ACA899</color>
+	<color name="orange4">#F7BE45</color>
+    <color name="orange5">#F7D896</color>
+	<color name="normalGradEnd">#e6e6e6</color>
+	<color name="normalGradStart">#ffffff</color>
+	<color name="normalGradBorder">#dddddd</color>
+	
+</resources>

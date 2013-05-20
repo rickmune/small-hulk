@@ -10,11 +10,53 @@ package com.safapp.androidclient;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int coalblack=0x7f040000;
+        public static final int genBorder=0x7f040001;
+        public static final int grey05=0x7f040005;
+        public static final int normalGradBorder=0x7f04000a;
+        public static final int normalGradEnd=0x7f040008;
+        public static final int normalGradStart=0x7f040009;
+        public static final int okGradStart=0x7f040002;
+        public static final int orange4=0x7f040006;
+        public static final int orange5=0x7f040007;
+        public static final int yellow1=0x7f040003;
+        public static final int yellow2=0x7f040004;
+    }
+    public static final class dimen {
+        public static final int button_height=0x7f050001;
+        public static final int button_width=0x7f050000;
+    }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int button_background_grad_other=0x7f020000;
+        public static final int edittext_background=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int login_background=0x7f020003;
+    }
+    public static final class id {
+        public static final int app_version=0x7f08000a;
+        public static final int btnLogin=0x7f080009;
+        public static final int header=0x7f080000;
+        public static final int loginPassword=0x7f080008;
+        public static final int loginUsername=0x7f080007;
+        public static final int login_box=0x7f080006;
+        public static final int login_form=0x7f080005;
+        public static final int login_icon=0x7f080003;
+        public static final int login_text=0x7f080004;
+        public static final int logo=0x7f080001;
+        public static final int settings=0x7f080002;
+    }
+    public static final class layout {
+        public static final int login=0x7f030000;
     }
     public static final class string {
-        public static final int app_name=0x7f030000;
+        public static final int app_name=0x7f060000;
+        public static final int app_version=0x7f060006;
+        public static final int btn_login=0x7f060005;
+        public static final int jst_a_pic=0x7f060001;
+        public static final int loginpassword=0x7f060004;
+        public static final int user_login=0x7f060002;
+        public static final int username=0x7f060003;
     }
     public static final class style {
         /** 
@@ -27,10 +69,10 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f040000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f040001;
+        public static final int AppTheme=0x7f070001;
     }
 }
