@@ -3,6 +3,9 @@ package com.safapp.entities;
 import java.util.Date;
 import java.util.UUID;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+@DatabaseTable
 public class Category extends BaseEntity {
 	
 	public Category(UUID id, Date createdOn, Date updatedOn, boolean isActive,
@@ -12,9 +15,13 @@ public class Category extends BaseEntity {
 		Desciption = desciption;
 		this.user = user;
 	}
+	@DatabaseField
 	private String Name;
+	@DatabaseField
 	private String Desciption;
+	@DatabaseField
 	private User user;
+	
 	public String getName() {
 		return Name;
 	}

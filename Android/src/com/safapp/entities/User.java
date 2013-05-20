@@ -22,17 +22,21 @@ public class User extends BaseEntity{
 		Country = country;
 		UserType = userType;
 	}
+	
+	public final static String EMAIL = "email";
+	public final static String PHONE = "phone";
+	
 	@DatabaseField
 	private String Username;
 	@DatabaseField
 	private String Password;
 	@DatabaseField
 	private String FullName;
-	@DatabaseField
+	@DatabaseField(columnName = EMAIL)
 	private String Email;
-	@DatabaseField
+	@DatabaseField(columnName = PHONE)
 	private String PhoneNumber;
-	@DatabaseField
+	@DatabaseField(foreign = true)
 	private Country Country;
 	@DatabaseField
 	private UserType UserType;

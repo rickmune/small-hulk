@@ -3,6 +3,9 @@ package com.safapp.entities;
 import java.util.Date;
 import java.util.UUID;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+@DatabaseTable
 public class Product extends BaseEntity {
 
 	public Product(UUID id, Date createdOn, Date updatedOn, boolean isActive,
@@ -17,12 +20,19 @@ public class Product extends BaseEntity {
 		SPrice = sPrice;
 		this.user = user;
 	}
+	@DatabaseField
 	private String Name;
+	@DatabaseField
 	private String Description;
+	@DatabaseField(foreign = true)
 	private Category Category;
+	@DatabaseField
 	private float BPrice;
+	@DatabaseField
 	private float SPrice;
+	@DatabaseField(foreign = true)
 	private User user;
+	
 	public String getName() {
 		return Name;
 	}

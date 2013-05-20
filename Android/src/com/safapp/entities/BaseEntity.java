@@ -3,6 +3,8 @@ package com.safapp.entities;
 import java.util.Date;
 import java.util.UUID;
 
+import com.j256.ormlite.field.DatabaseField;
+
 public class BaseEntity {
 
 	public BaseEntity(UUID id, Date createdOn, Date updatedOn, boolean isActive) {
@@ -11,11 +13,15 @@ public class BaseEntity {
 		UpdatedOn = updatedOn;
 		IsActive = isActive;
 	}
-	
+	@DatabaseField
 	private UUID Id;
+	@DatabaseField
 	private Date CreatedOn;
+	@DatabaseField
 	private Date UpdatedOn;
+	@DatabaseField
 	private boolean IsActive;
+	
 	public UUID getId() {
 		return Id;
 	}
