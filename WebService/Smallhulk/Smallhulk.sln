@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallhulk.Core", "Smallhulk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallhulk.Data", "Smallhulk.Data\Smallhulk.Data.csproj", "{BB955CEF-CBC1-4127-BD49-A1289F19D233}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smallhulk.Web.Lib", "Smallhulk.Web.Lib\Smallhulk.Web.Lib.csproj", "{8DE50C7B-66B1-4467-A6B1-952229C6E3B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{BB955CEF-CBC1-4127-BD49-A1289F19D233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB955CEF-CBC1-4127-BD49-A1289F19D233}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB955CEF-CBC1-4127-BD49-A1289F19D233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DE50C7B-66B1-4467-A6B1-952229C6E3B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE50C7B-66B1-4467-A6B1-952229C6E3B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE50C7B-66B1-4467-A6B1-952229C6E3B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE50C7B-66B1-4467-A6B1-952229C6E3B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

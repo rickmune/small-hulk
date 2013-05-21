@@ -8,6 +8,10 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Smallhulk.Data.EF;
+using Smallhulk.Data.IOC;
+using Smallhulk.Web.Lib;
+using Smallhulk.Web.Lib.IOC;
+using StructureMap;
 
 namespace Smallhulk.Web
 {
@@ -24,8 +28,22 @@ namespace Smallhulk.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+           
             Database.SetInitializer<SafAppDbContext>(new SafAppDbContextInitializer());
+            IntializeIOC();
+
         }
+         private void IntializeIOC()
+         {
+             ObjectFactory.Initialize(x =>
+                                          {
+                                              x.AddRegistry<RepositoryRegistry>();
+                                              x.AddRegistry<BuilderRegistry>();
+
+                                          });
+             IContainer container = (IContainer) ObjectFactory.Container;
+             DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));
+             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapResolver(container);
+         }
     }
 }

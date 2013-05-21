@@ -46,8 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Util\DomainValidationException.cs" />
     <Compile Include="Util\IValidation.cs" />
     <Compile Include="Util\Md5Hash.cs" />
+    <Compile Include="Util\Query.cs" />
     <Compile Include="Util\ValidationExtensions.cs" />
     <Compile Include="Util\ValidationResultInfo.cs" />
   </ItemGroup>

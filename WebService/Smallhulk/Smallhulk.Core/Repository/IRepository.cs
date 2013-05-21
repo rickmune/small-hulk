@@ -12,5 +12,6 @@ namespace Smallhulk.Core.Repository
     {
         void Save(T entity);
         T GetById(Guid id);
+        QueryResult Query(QueryBase query);
     }
 }

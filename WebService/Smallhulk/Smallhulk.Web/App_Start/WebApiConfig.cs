@@ -14,6 +14,11 @@ namespace Smallhulk.Web
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.Routes.MapHttpRoute(
+                name: "GetUsers",
+                routeTemplate: "api/phone/masterdata/users",
+                defaults: new { controller = "MasterData", action = "GetAllUser" }
+                );
         }
     }
 }
