@@ -3,11 +3,13 @@ package com.safapp.utils.enums;
 import java.lang.reflect.Type;
 
 import com.google.gson.reflect.TypeToken;
+import com.safapp.entities.Account;
 import com.safapp.entities.BaseEntity;
 import com.safapp.entities.User;
 
 public enum EntityCollection {
 
+	ACCOUNT(Account.class, new TypeToken<Account>(){}.getType()),
 	USER(User.class, new TypeToken<User>(){}.getType());
 	
 	public final Class<BaseEntity> value;

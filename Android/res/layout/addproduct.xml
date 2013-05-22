@@ -10,14 +10,14 @@
             android:layout_width="fill_parent" android:layout_height="wrap_content"
             android:background="@color/coalblack" >
             <TextView
-                android:id="@+id/addcattitle" android:layout_width="fill_parent"
+                android:id="@+id/addproducttitle" android:layout_width="fill_parent"
                 android:layout_height="wrap_content" 
-                android:gravity="center" android:text="@string/addcat_title"
+                android:gravity="center" android:text="@string/addproduct_title"
                 android:textColor="#0093D2" android:textSize="13sp"
                 android:textStyle="bold" android:typeface="sans" />
             <LinearLayout
-                android:id="@+id/addcattitle_form" android:layout_width="fill_parent" 
-                android:layout_height="wrap_content" android:layout_below="@id/addcattitle"
+                android:id="@+id/addproducttitle_form" android:layout_width="fill_parent" 
+                android:layout_height="wrap_content" android:layout_below="@id/addproducttitle"
                 android:orientation="horizontal" android:baselineAligned="false">
                 <TextView
                     android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -25,40 +25,47 @@
                 </TextView>
 
                 <LinearLayout
-                    android:id="@+id/addcategory_box" android:layout_width="fill_parent" 
+                    android:id="@+id/addproduct_box" android:layout_width="fill_parent" 
                     android:layout_height="wrap_content" android:background="@drawable/login_background"
                     android:gravity="center" android:orientation="vertical"  android:layout_weight="1"
                     android:padding="10dp" >
                     <TextView
                         android:layout_width="fill_parent" android:layout_height="fill_parent"
-                        android:text="@string/category_name" android:textColor="#FFFFFF"
+                        android:text="@string/product_name" android:textColor="#FFFFFF"
                         android:textStyle="bold" />
                     <EditText
-                        android:id="@+id/enter_category_name" android:layout_width="fill_parent"
+                        android:id="@+id/enter_product_name" android:layout_width="fill_parent"
                         android:layout_height="wrap_content" android:background="@drawable/edittext_background"
-                        android:hint="@string/category_name" android:maxLines="1" 
+                        android:hint="@string/product_name" android:maxLines="1" 
                         android:paddingBottom="4dp" android:paddingLeft="4dp"
                         android:paddingTop="4dp" android:inputType="text"
                         android:singleLine="true" android:textColor="#000" />
                     <TextView
                         android:layout_width="fill_parent" android:layout_height="fill_parent"
-                        android:text="@string/category_desc" android:textColor="#FFFFFF"
+                        android:text="@string/product_desc" android:textColor="#FFFFFF"
                         android:textStyle="bold" />
                     <EditText
-                        android:id="@+id/enter_category_desc" android:layout_width="fill_parent"
+                        android:id="@+id/enter_product_desc" android:layout_width="fill_parent"
                         android:layout_height="wrap_content" android:background="@drawable/edittext_background"
-                        android:hint="@string/category_desc" android:maxLines="1" 
+                        android:hint="@string/product_desc" android:maxLines="1" 
                         android:paddingBottom="4dp" android:paddingLeft="4dp"
                         android:paddingTop="4dp" android:inputType="text"
                         android:singleLine="true" android:textColor="#000" />
+                    <TextView
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:text="@string/add_product_category" android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                    <Spinner android:id="@+id/addproduct_category" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:background="@drawable/textbox_border"
+                        android:paddingBottom="4dp" android:paddingLeft="4dp" android:paddingTop="4dp"/>
                     <LinearLayout
                         android:layout_width="fill_parent" android:layout_height="wrap_content"
                         android:layout_marginTop="10dp" android:gravity="right" >
                         <Button
-                            android:id="@+id/btnaddcategory" android:layout_width="@dimen/button_width"
+                            android:id="@+id/btnaddproduct" android:layout_width="@dimen/button_width"
                             android:layout_height="@dimen/button_height" android:layout_gravity="right"
                             android:background="@drawable/button_background_grad_other"
-                            android:onClick="onAddCategoryClick" android:text="@string/btn_addcategory"
+                            android:onClick="onAddCategoryClick" android:text="@string/btn_addproduct"
                             android:textSize="16sp" android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>

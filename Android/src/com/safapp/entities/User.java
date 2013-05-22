@@ -12,7 +12,8 @@ public class User extends BaseEntity{
 
 	public User(UUID id, Date createdOn, Date updatedOn, boolean isActive,
 			String username, String password, String fullName, String email,
-			String phoneNumber, com.safapp.entities.Country country, UserType userType) {
+			String phoneNumber, com.safapp.entities.Country country, UserType userType,
+			Account account) {
 		super(id, createdOn, updatedOn, isActive);
 		Username = username;
 		Password = password;
@@ -21,6 +22,7 @@ public class User extends BaseEntity{
 		PhoneNumber = phoneNumber;
 		Country = country;
 		UserType = userType;
+		Account = account;
 	}
 	
 	public final static String EMAIL = "email";
@@ -40,6 +42,8 @@ public class User extends BaseEntity{
 	private Country Country;
 	@DatabaseField
 	private UserType UserType;
+	@DatabaseField(foreign = true)
+	private Account Account;
 	
 	public String getUsername() {
 		return Username;
@@ -82,5 +86,11 @@ public class User extends BaseEntity{
 	}
 	public void setUserType(UserType userType) {
 		UserType = userType;
+	}
+	public Account getAccount() {
+		return Account;
+	}
+	public void setAccount(Account account) {
+		Account = account;
 	}
 }

@@ -21,6 +21,7 @@
     <string name="reg_confirm_password">Confirm Password</string>
     <string name="reg_radio_phone">Phone</string>
     <string name="reg_radio_email">Email</string>
+    <string name="reg_account">Account Name</string>
     <!-- dashboard -->
     <string name="dash_sale">Sales</string>
     <string name="dash_purchase">Purchase</string>
@@ -31,4 +32,10 @@
     <string name="btn_addcategory">Add</string>
     <string name="category_desc">Description</string>
     <string name="category_name">Name</string>
+    <!-- addproduct -->
+    <string name="addproduct_title">Product</string>
+    <string name="product_name">Name</string>
+    <string name="product_desc">Desciprtion</string>
+    <string name="btn_addproduct">Add</string>
+    <string name="add_product_category">Product Category</string>
 </resources>

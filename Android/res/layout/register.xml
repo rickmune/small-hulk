@@ -64,6 +64,17 @@
                     android:padding="10dp" >
                     <TextView
                         android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:text="@string/reg_account" android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/register_account_name" android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" android:background="@drawable/edittext_background"
+                        android:hint="@string/reg_account" android:maxLines="1" 
+                        android:paddingBottom="4dp" android:paddingLeft="4dp"
+                        android:paddingTop="4dp" android:inputType="text"
+                        android:singleLine="true" android:textColor="#000" />
+                    <TextView
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
                         android:text="@string/reg_phonenumber" android:textColor="#FFFFFF"
                         android:textStyle="bold" />
                     <EditText

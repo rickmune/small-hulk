@@ -11,14 +11,14 @@ public class Product extends BaseEntity {
 	public Product(UUID id, Date createdOn, Date updatedOn, boolean isActive,
 			String name, String description,
 			com.safapp.entities.Category category, float bPrice, float sPrice,
-			User user) {
+			Account account) {
 		super(id, createdOn, updatedOn, isActive);
 		Name = name;
 		Description = description;
 		Category = category;
 		BPrice = bPrice;
 		SPrice = sPrice;
-		this.user = user;
+		this.Account = account;
 	}
 	@DatabaseField
 	private String Name;
@@ -31,7 +31,7 @@ public class Product extends BaseEntity {
 	@DatabaseField
 	private float SPrice;
 	@DatabaseField(foreign = true)
-	private User user;
+	private Account Account;
 	
 	public String getName() {
 		return Name;
@@ -63,10 +63,10 @@ public class Product extends BaseEntity {
 	public void setSPrice(float sPrice) {
 		SPrice = sPrice;
 	}
-	public User getUser() {
-		return user;
+	public Account getAccount() {
+		return Account;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setAccount(Account account) {
+		this.Account = account;
 	}
 }

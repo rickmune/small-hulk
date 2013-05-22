@@ -9,18 +9,18 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Category extends BaseEntity {
 	
 	public Category(UUID id, Date createdOn, Date updatedOn, boolean isActive,
-			String name, String desciption, User user) {
+			String name, String desciption, Account account) {
 		super(id, createdOn, updatedOn, isActive);
 		Name = name;
 		Desciption = desciption;
-		this.user = user;
+		this.Account = account;
 	}
 	@DatabaseField
 	private String Name;
 	@DatabaseField
 	private String Desciption;
 	@DatabaseField
-	private User user;
+	private Account Account;
 	
 	public String getName() {
 		return Name;
@@ -34,10 +34,10 @@ public class Category extends BaseEntity {
 	public void setDesciption(String desciption) {
 		Desciption = desciption;
 	}
-	public User getUser() {
-		return user;
+	public Account getAccount() {
+		return Account;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Account account) {
+		this.Account = account;
 	}
 }
