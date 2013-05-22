@@ -10,77 +10,66 @@ using Smallhulk.Data.EF;
 
 namespace Smallhulk.Data.Repository
 {
-    public class UserRepository : IUserRepository
+    public class ProductRepository : IProductRepository
     {
         private SafAppDbContext _context;
 
-        public UserRepository(SafAppDbContext context)
+        public ProductRepository(SafAppDbContext context)
         {
             _context = context;
         }
 
-        public ValidationResultInfo Validate(User itemToValidate)
+        public ValidationResultInfo Validate(Product itemToValidate)
         {
             return itemToValidate.BasicValidation();
         }
 
-        public void Save(User entity)
+        public void Save(Product entity)
         {
             ValidationResultInfo vri = Validate(entity);
             if (!vri.IsValid)
-                throw new DomainValidationException(vri, "user  Details not Valid");
+                throw new DomainValidationException(vri, "Product  Details not Valid");
             DateTime date = DateTime.Now;
-            User tbl = _context.Users.FirstOrDefault(s => s.Id == entity.Id);
+            Product tbl = _context.Products.FirstOrDefault(s => s.Id == entity.Id);
             if (tbl == null)
             {
-                tbl = new User();
+                tbl = new Product();
                 tbl.CreatedOn = date;
                 tbl.IsActive = true;
 
                 tbl.Id = entity.Id;
-                _context.Users.Add(tbl);
+                _context.Products.Add(tbl);
             }
-            tbl.Username = entity.Username;
-            tbl.Password = entity.Password;
-            tbl.CountryId = entity.CountryId;
-            tbl.UserType = entity.UserType;
-            tbl.PhoneNumber = entity.PhoneNumber;
-            tbl.Fullname = entity.Fullname;
-            tbl.Email = entity.Email;tbl.UpdatedOn = date;
+            tbl.Name = entity.Name;
             tbl.AccountId = entity.AccountId;
-
-
+            tbl.UpdatedOn = date;
+            tbl.CategoryId = entity.CategoryId;
+            tbl.Description = entity.Description;
+            tbl.BuyingPrice = entity.BuyingPrice;
+            tbl.SellingPrice = entity.SellingPrice;
             _context.SaveChanges();
-           
-          
         }
 
-        public User GetById(Guid id)
+        public Product GetById(Guid id)
         {
-            return _context.Users.FirstOrDefault(s => s.Id == id);
+            return _context.Products.FirstOrDefault(s => s.Id == id);
         }
 
         public QueryResult Query(QueryBase query)
         {
+            var userQuery = _context.Products.AsQueryable();
             var q = query as QueryMasterData;
-            var userQuery = _context.Users.AsQueryable();
             var queryResult = new QueryResult();
             if (!string.IsNullOrWhiteSpace(q.Name))
             {
-                userQuery = userQuery.Where(s => s.Username.Contains(q.Name));
+                userQuery = userQuery.Where(s => s.Name.Contains(q.Name));
             }
             queryResult.Count = userQuery.Count();
-            userQuery = userQuery.OrderByDescending(s => s.Username);
+            userQuery = userQuery.OrderByDescending(s => s.Name);
             if (q.Skip.HasValue && q.Take.HasValue)
                 userQuery = userQuery.Skip(q.Skip.Value).Take(q.Take.Value);
             queryResult.Result = userQuery.ToList().OfType<BaseEntity>().ToList();
             return queryResult;
-        }
-
-        public User Login(string username, string password)
-        {
-            return
-                _context.Users.FirstOrDefault(s => s.Username.ToLower() == username.ToLower() && s.Password == password);
         }
     }
 }

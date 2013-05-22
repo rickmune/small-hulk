@@ -29,7 +29,7 @@ namespace Smallhulk.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
            
-            Database.SetInitializer<SafAppDbContext>(new SafAppDbContextInitializer());
+           // Database.SetInitializer<SafAppDbContext>(new SafAppDbContextInitializer());
             IntializeIOC();
 
         }

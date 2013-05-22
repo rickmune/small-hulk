@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
-
 using Smallhulk.Core.Domain;
 using Smallhulk.Core.Repository;
 using Smallhulk.Core.Util;
@@ -21,11 +19,16 @@ namespace Smallhulk.Web.Api
         {
             _dataTransferBuilder = dataTransferBuilder;
         }
-
+         [HttpGet]
         public IEnumerable<UserDTO> GetAllUsers()
         {
             var all = _dataTransferBuilder.GetAllUsers();
             return all;
+        }
+        [HttpGet]
+        public UserDTO Login(string username,string password)
+        {
+            return _dataTransferBuilder.Login(username, password);
         }
     }
 }

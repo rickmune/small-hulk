@@ -33,6 +33,12 @@ namespace Smallhulk.Core.Domain
         public virtual Country Country { get; set; }
 
         public Guid CountryId { get; set; }
-        
+
+        [ForeignKey("AccountId")]
+        public virtual Account Account { get; set; }
+
+        public Guid AccountId { get; set; }
+
+
     }
 }

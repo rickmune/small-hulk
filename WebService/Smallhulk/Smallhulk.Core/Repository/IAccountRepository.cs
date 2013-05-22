@@ -7,8 +7,7 @@ using Smallhulk.Core.Domain;
 
 namespace Smallhulk.Core.Repository
 {
-   public  interface  IUserRepository:IRepository<User>
+   public interface IAccountRepository:IRepository<Account>
    {
-       User Login(string username, string password);
-   }
+    }
 }

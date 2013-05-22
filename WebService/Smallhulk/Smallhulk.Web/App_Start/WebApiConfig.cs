@@ -17,8 +17,14 @@ namespace Smallhulk.Web
             config.Routes.MapHttpRoute(
                 name: "GetUsers",
                 routeTemplate: "api/phone/masterdata/users",
-                defaults: new { controller = "MasterData", action = "GetAllUser" }
+                defaults: new { controller = "MasterData", action = "GetAllUsers" }
                 );
+            config.Routes.MapHttpRoute(
+               name: "Login",
+               routeTemplate: "api/phone/masterdata/login",
+               defaults: new { controller = "MasterData", action = "login" }
+               );
+            //config.EnableSystemDiagnosticsTracing();
         }
     }
 }

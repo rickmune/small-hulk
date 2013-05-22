@@ -10,5 +10,6 @@ namespace Smallhulk.Web.Lib.DTOBuilders
     public  interface IDataTransferBuilder
     {
         IEnumerable<UserDTO> GetAllUsers();
+        UserDTO Login(string username,string password);
     }
 }

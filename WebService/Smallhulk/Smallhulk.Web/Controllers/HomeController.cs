@@ -24,13 +24,25 @@ namespace Smallhulk.Web.Controllers
         public ActionResult Index()
         {
            
-
           // var repo = new UserRepository(db);
             var query = new QueryMasterData {Name = "gitau"};
             var result = _userRepository.Query(query);
+            if(result.Count==0)
+            {
+                SafAppDbContextInitializer initializer = new SafAppDbContextInitializer();
+                initializer.Seed();
+            }
             return View();
            
         }
+        public ActionResult Seed()
+        {
+           // SafAppDbContextInitializer initializer= new SafAppDbContextInitializer();
+           // initializer.Seed();
+            return View("Index");
+
+        }
+
 
     }
 }
