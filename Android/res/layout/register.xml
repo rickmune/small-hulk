@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:background="@color/coalblack" >
-
+    android:layout_width="fill_parent" android:layout_height="fill_parent" 
+    android:background="@color/coalblack">
     <RelativeLayout
         android:id="@+id/header" android:layout_width="fill_parent"
         android:layout_height="wrap_content" android:background="@drawable/ic_launcher"
@@ -64,66 +62,75 @@
                     android:layout_height="wrap_content" android:background="@drawable/login_background"
                     android:gravity="center" android:orientation="vertical"  android:layout_weight="1"
                     android:padding="10dp" >
-                    <RadioGroup android:id="@+id/radiologintype" android:layout_width="wrap_content"
-				        android:layout_height="wrap_content" android:orientation="horizontal">
-					    <RadioButton
-				            android:id="@+id/radiophonenumber" android:layout_width="wrap_content"
-				            android:layout_height="wrap_content" android:text="@string/reg_radio_phone" 
-				            android:checked="true"/>
-				        <RadioButton
-				            android:id="@+id/radioemail" android:layout_width="wrap_content"
-				            android:layout_height="wrap_content" android:text="@string/reg_radio_email" />
-				    </RadioGroup>
-                    <LinearLayout android:id="@+id/login_phonenumber"
-                        android:layout_width="fill_parent" android:layout_height="wrap_content"
-                        android:gravity="center" android:orientation="vertical">
-                        <TextView
-                            android:layout_width="fill_parent" android:layout_height="fill_parent"
-                            android:text="@string/loginphone" android:textColor="#FFFFFF"
-                            android:textStyle="bold" />
-                        <EditText
-	                        android:id="@+id/login_phone" android:layout_width="fill_parent"
-	                        android:layout_height="wrap_content" android:background="@drawable/edittext_background"
-	                        android:hint="@string/loginphone" android:maxLines="1"
-	                        android:paddingBottom="4dp" android:paddingLeft="4dp" android:inputType="phone"
-	                        android:paddingTop="4dp" android:singleLine="true"
-	                        android:textColor="#000" />
-                    </LinearLayout>
-                    <LinearLayout android:id="@+id/login_emaillayout"
-                        android:layout_width="fill_parent" android:layout_height="wrap_content"
-                        android:gravity="center" android:orientation="vertical" android:visibility="gone">
-                        <TextView
-                            android:layout_width="fill_parent" android:layout_height="fill_parent"
-                            android:text="@string/loginemail" android:textColor="#FFFFFF"
-                            android:textStyle="bold" />
-                        <EditText
-	                        android:id="@+id/login_email" android:layout_width="fill_parent"
-	                        android:layout_height="wrap_content" android:background="@drawable/edittext_background"
-	                        android:hint="@string/loginemail" android:maxLines="1" android:inputType="textEmailAddress"
-	                        android:paddingBottom="4dp" android:paddingLeft="4dp"
-	                        android:paddingTop="4dp" android:singleLine="true"
-	                        android:textColor="#000" />
-                    </LinearLayout>
-                    
                     <TextView
                         android:layout_width="fill_parent" android:layout_height="fill_parent"
-                        android:text="@string/loginpassword" android:textColor="#FFFFFF"
+                        android:text="@string/reg_phonenumber" android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/register_phone_no" android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" android:background="@drawable/edittext_background"
+                        android:hint="@string/reg_phonenumber" android:maxLines="1" 
+                        android:paddingBottom="4dp" android:paddingLeft="4dp"
+                        android:paddingTop="4dp" android:inputType="phone"
+                        android:singleLine="true" android:textColor="#000" />
+                    <TextView
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:text="@string/reg_email" android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/register_email" android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" android:background="@drawable/edittext_background"
+                        android:hint="@string/reg_email" android:maxLines="1" 
+                        android:paddingBottom="4dp" android:paddingLeft="4dp"
+                        android:paddingTop="4dp" android:inputType="textEmailAddress"
+                        android:singleLine="true" android:textColor="#000" />
+                    <TextView
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:text="@string/reg_password" android:textColor="#FFFFFF"
                         android:textStyle="bold" />
                     <EditText
                         android:id="@+id/loginPassword" android:layout_width="fill_parent"
                         android:layout_height="wrap_content" android:background="@drawable/edittext_background"
-                        android:hint="@string/loginpassword" android:maxLines="1" 
+                        android:hint="@string/reg_password" android:maxLines="1" 
                         android:paddingBottom="4dp" android:paddingLeft="4dp"
                         android:paddingTop="4dp" android:inputType="textPassword"
                         android:singleLine="true" android:textColor="#000" />
+                    <TextView
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:text="@string/reg_confirm_password" android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/loginPasswordConfirm" android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" android:background="@drawable/edittext_background"
+                        android:hint="@string/reg_confirm_password" android:maxLines="1" 
+                        android:paddingBottom="4dp" android:paddingLeft="4dp"
+                        android:paddingTop="4dp" android:inputType="textPassword"
+                        android:singleLine="true" android:textColor="#000" />
+                    <TextView
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:text="@string/reg_fullname" android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/register_full_name" android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" android:background="@drawable/edittext_background"
+                        android:hint="@string/reg_fullname" android:maxLines="1" 
+                        android:paddingBottom="4dp" android:paddingLeft="4dp"
+                        android:paddingTop="4dp" android:singleLine="true" android:textColor="#000" />
+                    <TextView
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:text="@string/reg_country" android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                    <Spinner android:id="@+id/register_country" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:background="@drawable/textbox_border"
+                        android:paddingBottom="4dp" android:paddingLeft="4dp" android:paddingTop="4dp"/>
                     <LinearLayout
                         android:layout_width="fill_parent" android:layout_height="wrap_content"
                         android:layout_marginTop="10dp" android:gravity="right" >
                         <Button
-                            android:id="@+id/btnLogin" android:layout_width="@dimen/button_width"
+                            android:id="@+id/btnRegister" android:layout_width="@dimen/button_width"
                             android:layout_height="@dimen/button_height" android:layout_gravity="right"
                             android:background="@drawable/button_background_grad_other"
-                            android:onClick="onLoginClick" android:text="@string/btn_login"
+                            android:onClick="onRegisterClick" android:text="@string/btn_register"
                             android:textSize="16sp" android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>

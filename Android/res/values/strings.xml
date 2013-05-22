@@ -3,9 +3,32 @@
     <string name="app_name">AndroidClient</string>
 
     <string name="jst_a_pic">A picture</string>
+    <!-- login -->
     <string name="user_login">Login</string>
     <string name="username">User Name</string>
     <string name="loginpassword">Password</string>
     <string name="btn_login">Log</string>
     <string name="app_version">Your app v 1.0.0</string>
+    <string name="loginemail">Email</string>
+    <string name="loginphone">Phone</string>
+    <!-- registration -->
+    <string name="reg_fullname">Full Name</string>
+    <string name="reg_phonenumber">Phone Number</string>
+    <string name="reg_email">email</string>
+    <string name="reg_password">Password</string>
+    <string name="btn_register">Register</string>
+    <string name="reg_country">Country</string>
+    <string name="reg_confirm_password">Confirm Password</string>
+    <string name="reg_radio_phone">Phone</string>
+    <string name="reg_radio_email">Email</string>
+    <!-- dashboard -->
+    <string name="dash_sale">Sales</string>
+    <string name="dash_purchase">Purchase</string>
+    <string name="dash_admin">Admin</string>
+    <string name="dash_reports">Reports</string>
+    <!-- addcategory -->
+    <string name="addcat_title">Product Category</string>
+    <string name="btn_addcategory">Add</string>
+    <string name="category_desc">Description</string>
+    <string name="category_name">Name</string>
 </resources>

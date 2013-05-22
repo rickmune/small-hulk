@@ -9,54 +9,179 @@ package com.safapp.androidclient;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int debugDraw=0x7f010003;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int horizontalSpacing=0x7f010000;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int layout_horizontalSpacing=0x7f010005;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int layout_newLine=0x7f010004;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int layout_verticalSpacing=0x7f010006;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
+<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int orientation=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int verticalSpacing=0x7f010001;
     }
     public static final class color {
-        public static final int coalblack=0x7f040000;
-        public static final int genBorder=0x7f040001;
-        public static final int grey05=0x7f040005;
-        public static final int normalGradBorder=0x7f04000a;
-        public static final int normalGradEnd=0x7f040008;
-        public static final int normalGradStart=0x7f040009;
-        public static final int okGradStart=0x7f040002;
-        public static final int orange4=0x7f040006;
-        public static final int orange5=0x7f040007;
-        public static final int yellow1=0x7f040003;
-        public static final int yellow2=0x7f040004;
+        public static final int coalblack=0x7f050000;
+        public static final int genBorder=0x7f050001;
+        public static final int grey05=0x7f050005;
+        public static final int normalGradBorder=0x7f05000a;
+        public static final int normalGradEnd=0x7f050008;
+        public static final int normalGradStart=0x7f050009;
+        public static final int okGradStart=0x7f050002;
+        public static final int orange4=0x7f050006;
+        public static final int orange5=0x7f050007;
+        public static final int yellow1=0x7f050003;
+        public static final int yellow2=0x7f050004;
     }
     public static final class dimen {
-        public static final int button_height=0x7f050001;
-        public static final int button_width=0x7f050000;
+        public static final int button_height=0x7f060001;
+        public static final int button_width=0x7f060000;
     }
     public static final class drawable {
         public static final int button_background_grad_other=0x7f020000;
         public static final int edittext_background=0x7f020001;
         public static final int ic_launcher=0x7f020002;
         public static final int login_background=0x7f020003;
+        public static final int textbox_border=0x7f020004;
     }
     public static final class id {
-        public static final int app_version=0x7f08000a;
-        public static final int btnLogin=0x7f080009;
-        public static final int header=0x7f080000;
-        public static final int loginPassword=0x7f080008;
-        public static final int loginUsername=0x7f080007;
-        public static final int login_box=0x7f080006;
-        public static final int login_form=0x7f080005;
-        public static final int login_icon=0x7f080003;
-        public static final int login_text=0x7f080004;
-        public static final int logo=0x7f080001;
-        public static final int settings=0x7f080002;
+        public static final int addcategory_box=0x7f040005;
+        public static final int addcattitle=0x7f040003;
+        public static final int addcattitle_form=0x7f040004;
+        public static final int app_version=0x7f04001e;
+        public static final int btnLogin=0x7f04001d;
+        public static final int btnRegister=0x7f040024;
+        public static final int btnaddcategory=0x7f040008;
+        public static final int dashboard_admin=0x7f04000d;
+        public static final int dashboard_purchases=0x7f04000c;
+        public static final int dashboard_reports=0x7f04000e;
+        public static final int dashboard_sales=0x7f04000a;
+        public static final int enter_category_desc=0x7f040007;
+        public static final int enter_category_name=0x7f040006;
+        public static final int header=0x7f040002;
+        public static final int horizontal=0x7f040000;
+        public static final int loginPassword=0x7f04001c;
+        public static final int loginPasswordConfirm=0x7f040021;
+        public static final int login_box=0x7f040014;
+        public static final int login_email=0x7f04001b;
+        public static final int login_emaillayout=0x7f04001a;
+        public static final int login_form=0x7f040013;
+        public static final int login_icon=0x7f040011;
+        public static final int login_phone=0x7f040019;
+        public static final int login_phonenumber=0x7f040018;
+        public static final int login_text=0x7f040012;
+        public static final int logo=0x7f04000f;
+        public static final int purchases=0x7f04000b;
+        public static final int radioemail=0x7f040017;
+        public static final int radiologintype=0x7f040015;
+        public static final int radiophonenumber=0x7f040016;
+        public static final int register_country=0x7f040023;
+        public static final int register_email=0x7f040020;
+        public static final int register_full_name=0x7f040022;
+        public static final int register_phone_no=0x7f04001f;
+        public static final int sales=0x7f040009;
+        public static final int settings=0x7f040010;
+        public static final int vertical=0x7f040001;
     }
     public static final class layout {
-        public static final int login=0x7f030000;
+        public static final int addcategory=0x7f030000;
+        public static final int dashboard=0x7f030001;
+        public static final int header_logo=0x7f030002;
+        public static final int login=0x7f030003;
+        public static final int register=0x7f030004;
     }
     public static final class string {
-        public static final int app_name=0x7f060000;
-        public static final int app_version=0x7f060006;
-        public static final int btn_login=0x7f060005;
-        public static final int jst_a_pic=0x7f060001;
-        public static final int loginpassword=0x7f060004;
-        public static final int user_login=0x7f060002;
-        public static final int username=0x7f060003;
+        /**  addcategory 
+         */
+        public static final int addcat_title=0x7f070016;
+        public static final int app_name=0x7f070000;
+        public static final int app_version=0x7f070006;
+        public static final int btn_addcategory=0x7f070017;
+        public static final int btn_login=0x7f070005;
+        public static final int btn_register=0x7f07000d;
+        public static final int category_desc=0x7f070018;
+        public static final int category_name=0x7f070019;
+        public static final int dash_admin=0x7f070014;
+        public static final int dash_purchase=0x7f070013;
+        public static final int dash_reports=0x7f070015;
+        /**  dashboard 
+         */
+        public static final int dash_sale=0x7f070012;
+        public static final int jst_a_pic=0x7f070001;
+        public static final int loginemail=0x7f070007;
+        public static final int loginpassword=0x7f070004;
+        public static final int loginphone=0x7f070008;
+        public static final int reg_confirm_password=0x7f07000f;
+        public static final int reg_country=0x7f07000e;
+        public static final int reg_email=0x7f07000b;
+        /**  registration 
+         */
+        public static final int reg_fullname=0x7f070009;
+        public static final int reg_password=0x7f07000c;
+        public static final int reg_phonenumber=0x7f07000a;
+        public static final int reg_radio_email=0x7f070011;
+        public static final int reg_radio_phone=0x7f070010;
+        /**  login 
+         */
+        public static final int user_login=0x7f070002;
+        public static final int username=0x7f070003;
     }
     public static final class style {
         /** 
@@ -69,10 +194,157 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a FlowLayout.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #FlowLayout_debugDraw com.safapp.androidclient:debugDraw}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_horizontalSpacing com.safapp.androidclient:horizontalSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_orientation com.safapp.androidclient:orientation}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_verticalSpacing com.safapp.androidclient:verticalSpacing}</code></td><td></td></tr>
+           </table>
+           @see #FlowLayout_debugDraw
+           @see #FlowLayout_horizontalSpacing
+           @see #FlowLayout_orientation
+           @see #FlowLayout_verticalSpacing
+         */
+        public static final int[] FlowLayout = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#debugDraw}
+          attribute's value can be found in the {@link #FlowLayout} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:debugDraw
+        */
+        public static final int FlowLayout_debugDraw = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#horizontalSpacing}
+          attribute's value can be found in the {@link #FlowLayout} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:horizontalSpacing
+        */
+        public static final int FlowLayout_horizontalSpacing = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#orientation}
+          attribute's value can be found in the {@link #FlowLayout} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
+<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name android:orientation
+        */
+        public static final int FlowLayout_orientation = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#verticalSpacing}
+          attribute's value can be found in the {@link #FlowLayout} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:verticalSpacing
+        */
+        public static final int FlowLayout_verticalSpacing = 1;
+        /** Attributes that can be used with a FlowLayout_LayoutParams.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_horizontalSpacing com.safapp.androidclient:layout_horizontalSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_newLine com.safapp.androidclient:layout_newLine}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_verticalSpacing com.safapp.androidclient:layout_verticalSpacing}</code></td><td></td></tr>
+           </table>
+           @see #FlowLayout_LayoutParams_layout_horizontalSpacing
+           @see #FlowLayout_LayoutParams_layout_newLine
+           @see #FlowLayout_LayoutParams_layout_verticalSpacing
+         */
+        public static final int[] FlowLayout_LayoutParams = {
+            0x7f010004, 0x7f010005, 0x7f010006
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#layout_horizontalSpacing}
+          attribute's value can be found in the {@link #FlowLayout_LayoutParams} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:layout_horizontalSpacing
+        */
+        public static final int FlowLayout_LayoutParams_layout_horizontalSpacing = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#layout_newLine}
+          attribute's value can be found in the {@link #FlowLayout_LayoutParams} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:layout_newLine
+        */
+        public static final int FlowLayout_LayoutParams_layout_newLine = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#layout_verticalSpacing}
+          attribute's value can be found in the {@link #FlowLayout_LayoutParams} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:layout_verticalSpacing
+        */
+        public static final int FlowLayout_LayoutParams_layout_verticalSpacing = 2;
+    };
 }
