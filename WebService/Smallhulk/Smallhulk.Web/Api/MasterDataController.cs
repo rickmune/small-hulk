@@ -26,7 +26,7 @@ namespace Smallhulk.Web.Api
             return all;
         }
         [HttpGet]
-        public BasicResponse Login(string username,string password)
+         public TranferResponse<UserDTO> Login(string username, string password)
         {
             return _dataTransferBuilder.Login(username, password);
         }
