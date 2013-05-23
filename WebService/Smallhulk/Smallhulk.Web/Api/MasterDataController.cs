@@ -20,13 +20,13 @@ namespace Smallhulk.Web.Api
             _dataTransferBuilder = dataTransferBuilder;
         }
          [HttpGet]
-        public IEnumerable<UserDTO> GetAllUsers()
+        public TranferResponse<UserDTO> GetAllUsers()
         {
             var all = _dataTransferBuilder.GetAllUsers();
             return all;
         }
         [HttpGet]
-        public UserDTO Login(string username,string password)
+        public BasicResponse Login(string username,string password)
         {
             return _dataTransferBuilder.Login(username, password);
         }

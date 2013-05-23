@@ -19,9 +19,22 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
            _userRepository = userRepository;
        }
 
-       public IEnumerable<UserDTO> GetAllUsers()
+       public TranferResponse<UserDTO> GetAllUsers()
        {
-           return _userRepository.Query(new QueryMasterData()).Result.OfType<User>().Select(MapUserToUserDto);
+           TranferResponse<UserDTO> response = new TranferResponse<UserDTO>();
+           try
+           {
+               var data =_userRepository.Query(new QueryMasterData()).Result.OfType<User>().Select(MapUserToUserDto).ToList();
+               response.Data.AddRange(data);   
+               response.Status = true;
+           }
+           catch (Exception ex)
+           {
+               response.Info = ex.Message;
+               response.Status = false;
+               response.Info = "Success";
+           }
+           return response;
        }
 
        private static UserDTO MapUserToUserDto(User s)
@@ -41,15 +54,38 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
                       };
        }
 
-       public UserDTO Login(string username, string password)
+       public TranferResponse<UserDTO> Login(string username, string password)
        {
-           var user = _userRepository.Login(username, password);
-           if (user!=null)
+           TranferResponse<UserDTO> response = new TranferResponse<UserDTO>();
+           
+           try
            {
-               return MapUserToUserDto(user);
+               var user = _userRepository.Login(username, password);
+               if (user != null)
+               {
+                   response.Data.Add(MapUserToUserDto(user));
+                   response.Status = true;
+                   response.Info = "Success";
+
+               }
+           }
+           catch(Exception ex)
+           {
+               response.Info = ex.Message;
+               response.Status = false;
 
            }
-           return null;
+           return response;
+       }
+
+       public TranferResponse<UserDTO> GetAccount(Guid accountId)
+       {
+           throw new NotImplementedException();
+       }
+
+       public BasicResponse AddUser(UserDTO user)
+       {
+           throw new NotImplementedException();
        }
    }
 }

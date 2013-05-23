@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Smallhulk.Core.Domain;
 
 namespace Smallhulk.Web.Lib.DTOS
 {
-   public abstract  class BaseDTO
+    public class AccountDTO : BaseDTO
     {
 
-       public Guid Id { get; set; }
-       public bool IsActive { get; set; }
+        public string Name { get; set; }
+        
     }
 }
