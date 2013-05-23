@@ -20,4 +20,5 @@ public class UserRepository extends BaseEntityRepository<User> implements IUserR
 		//int userType = type.value;
 		return null;
 	}
+	
 }

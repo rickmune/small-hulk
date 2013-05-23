@@ -16,4 +16,5 @@ public interface IBaseEntityRepository<T> {
 	public int deleteById(UUID Id) throws Exception;
 	
 	public void setDataClass();
+	
 }
