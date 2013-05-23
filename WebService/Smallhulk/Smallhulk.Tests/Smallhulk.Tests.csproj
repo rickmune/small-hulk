@@ -48,9 +48,14 @@
     <Compile Include="IocHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryFixtures\BaseFixture.cs" />
+    <Compile Include="RepositoryFixtures\AccountRepositoryFixture.cs" />
+    <Compile Include="RepositoryFixtures\CategoryRepositoryFixture.cs" />
+    <Compile Include="RepositoryFixtures\ProductRepositoryFixture.cs" />
+    <Compile Include="RepositoryFixtures\UserRepositoryFixture.cs" />
     <Compile Include="RepositoryFixtures\CountryRepositoryFixture.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

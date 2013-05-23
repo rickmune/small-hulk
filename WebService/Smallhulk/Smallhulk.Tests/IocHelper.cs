@@ -11,7 +11,7 @@ namespace Smallhulk.Tests
     {
        
 
-        protected static T Using<T>() where T : class
+        public static T Using<T>() where T : class
         {
             return ObjectFactory.GetInstance<T>();
         }

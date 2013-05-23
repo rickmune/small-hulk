@@ -10,29 +10,29 @@ using Smallhulk.Core.Util;
 namespace Smallhulk.Tests.RepositoryFixtures
 {
     [TestFixture]
-    class CountryRepositoryFixture:BaseFixture
+    class AccountRepositoryFixture:BaseFixture
     {
         [Test]
         public override void CanSave()
         {
-            var country = AddCountry();
-            Assert.IsNotNull(country);
+            var entity = AddAccount();
+            Assert.IsNotNull(entity);
         }
          [Test]
         public override void CanGetById()
         {
-            var country = AddCountry();
-             var country2 = IocHelper.Using<ICountryRepository>().GetById(country.Id);
-             Assert.IsNotNull(country);
-             Assert.AreEqual(country.Name, country2.Name);
+            var entity = AddAccount();
+             var entity2 = IocHelper.Using<IAccountRepository>().GetById(entity.Id);
+             Assert.IsNotNull(entity);
+             Assert.AreEqual(entity.Name, entity2.Name);
 
         }
          [Test]
         public override void CanQuery()
         {
-            var country = AddCountry();
-            var queryResult = IocHelper.Using<ICountryRepository>().Query(new QueryMasterData{Name = country.Name});
-            Assert.IsNotNull(country);
+            var entity = AddAccount();
+            var queryResult = IocHelper.Using<IAccountRepository>().Query(new QueryMasterData { Name = entity.Name });
+            Assert.IsNotNull(entity);
             Assert.IsTrue(queryResult.Count>0);
         }
     }
