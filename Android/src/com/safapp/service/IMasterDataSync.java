@@ -1,12 +1,14 @@
 package com.safapp.service;
 
-public interface IMasterDataSync {
+public interface IMasterDataSync extends IServiceBase{
 
-	public String getGetCountry();
+	public boolean getGetCountry();
 	
-	public String logIn(String userName, String Password);
+	public boolean logIn(String userName, String Password);
 	
-	public String getProduct(String accountId);
+	public boolean getProduct(String accountId);
 	
-	public String getCategory(String accountId);
+	public boolean getCategory(String accountId);
+	
+	public boolean getUser();
 }

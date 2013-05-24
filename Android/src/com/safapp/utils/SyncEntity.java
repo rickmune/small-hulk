@@ -1,10 +1,12 @@
 package com.safapp.utils;
 
-import com.safapp.entities.BaseEntity;
+import java.util.List;
 
-public class SyncEntity <T extends BaseEntity>{
+import com.safapp.dto.BaseDTO;
+
+public class SyncEntity <T extends BaseDTO>{
 	
-	public SyncEntity(boolean status, String info, T t) {
+	public SyncEntity(boolean status, String info, List<T> t) {
 		super();
 		Status = status;
 		Info = info;
@@ -12,7 +14,7 @@ public class SyncEntity <T extends BaseEntity>{
 	}
 	private boolean Status;
 	private String Info;
-	private T t;
+	private List<T> t;
 	
 	public boolean isStatus() {
 		return Status;
@@ -26,10 +28,10 @@ public class SyncEntity <T extends BaseEntity>{
 	public void setInfo(String info) {
 		Info = info;
 	}
-	public T getT() {
+	public List<T> getT() {
 		return t;
 	}
-	public void setT(T t) {
+	public void setT(List<T> t) {
 		this.t = t;
 	}
 	
