@@ -20,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.safapp.ui.AddCategory"></activity>
+        <activity android:name="com.safapp.ui.AddProduct"></activity>
+        <activity android:name="com.safapp.ui.Registration"></activity>
     </application>
 
 </manifest>

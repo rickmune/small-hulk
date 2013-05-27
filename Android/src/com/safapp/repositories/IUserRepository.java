@@ -7,4 +7,5 @@ public interface IUserRepository extends IBaseEntityRepository<User> {
 
 	public User getByEmailorPhone(String userName, UserType type) throws Exception;
 	
+	public boolean doLogin(String userName, String passWord, UserType type);
 }

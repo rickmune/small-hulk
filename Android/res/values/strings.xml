@@ -22,6 +22,7 @@
     <string name="reg_radio_phone">Phone</string>
     <string name="reg_radio_email">Email</string>
     <string name="reg_account">Account Name</string>
+    <string name="reg_username"></string>
     <!-- dashboard -->
     <string name="dash_sale">Sales</string>
     <string name="dash_purchase">Purchase</string>

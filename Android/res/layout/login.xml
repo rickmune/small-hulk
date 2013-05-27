@@ -65,14 +65,15 @@
                     android:gravity="center" android:orientation="vertical"  android:layout_weight="1"
                     android:padding="10dp" >
                     <RadioGroup android:id="@+id/radiologintype" android:layout_width="wrap_content"
-				        android:layout_height="wrap_content" android:orientation="horizontal">
+				        android:layout_height="wrap_content" android:orientation="horizontal" >
 					    <RadioButton
-				            android:id="@+id/radiophonenumber" android:layout_width="wrap_content"
+				            android:id="@+id/radiophonenumber" android:layout_width="wrap_content" 
 				            android:layout_height="wrap_content" android:text="@string/reg_radio_phone" 
-				            android:checked="true"/>
+				            android:checked="true" android:textColor="@color/milkywhite"/>
 				        <RadioButton
 				            android:id="@+id/radioemail" android:layout_width="wrap_content"
-				            android:layout_height="wrap_content" android:text="@string/reg_radio_email" />
+				            android:layout_height="wrap_content" android:text="@string/reg_radio_email" 
+				            android:textColor="@color/milkywhite"/>
 				    </RadioGroup>
                     <LinearLayout android:id="@+id/login_phonenumber"
                         android:layout_width="fill_parent" android:layout_height="wrap_content"

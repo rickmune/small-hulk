@@ -8,6 +8,13 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable
 public class Country extends BaseEntity{
 
+	public Country() {
+	}
+	
+	public Country(UUID id) {
+		super(id);
+	}
+	
 	public Country(UUID id, Date createdOn, Date updatedOn, boolean isActive) {
 		super(id, createdOn, updatedOn, isActive);
 	}

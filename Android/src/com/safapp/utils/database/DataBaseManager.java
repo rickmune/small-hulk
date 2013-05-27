@@ -53,7 +53,7 @@ public class DataBaseManager extends OrmLiteSqliteOpenHelper implements IDataBas
 		}
 	}
 	
-	private <T> Dao<T, UUID> getDBDao( Class<T> dataClass) throws SQLException{
+	public <T> Dao<T, UUID> getDBDao( Class<T> dataClass) throws SQLException{
 		return getDao(dataClass);
 	}
 	

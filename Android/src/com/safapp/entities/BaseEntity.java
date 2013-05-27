@@ -7,6 +7,13 @@ import com.j256.ormlite.field.DatabaseField;
 
 public class BaseEntity {
 
+	public BaseEntity() {
+	}
+	
+	public BaseEntity(UUID id) {
+		Id = id;
+	}
+	
 	public BaseEntity(UUID id, Date createdOn, Date updatedOn, boolean isActive) {
 		Id = id;
 		CreatedOn = createdOn;
