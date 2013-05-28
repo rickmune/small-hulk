@@ -63,6 +63,7 @@ public class Login extends OrmLiteBaseActivity<DataBaseManager>{
 	}
 	
 	public void onLoginClick(View view) {
+				
 		String password = loginPassword.getText().toString().trim();
 		String userName = "";
 		UserType type = null;

@@ -17,7 +17,7 @@ import com.safapp.utils.GlobalSettings;
 import com.safapp.utils.SyncEntity;
 import com.safapp.utils.http.IHttpUtils;
 
-public class MasterDataSync implements IMasterDataSync {
+public class MasterDataSync extends ServiceBase implements IMasterDataSync {
 
 	public MasterDataSync(IHttpUtils httpUtils) {
 		this.httpUtils = httpUtils;
