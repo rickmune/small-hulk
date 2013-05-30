@@ -51,6 +51,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -210,6 +211,20 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="js\collections\users.js" />
+    <Content Include="js\app.js" />
+    <Content Include="js\libs\backbone\backbone.js" />
+    <Content Include="js\boilerplate.js" />
+    <Content Include="js\libs\bootstrap\bootstrap.min.js" />
+    <Content Include="js\libs\jquery\jquery-1.8.2.min.js" />
+    <Content Include="js\libs\text\text.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\libs\require\require.js" />
+    <Content Include="js\router.js" />
+    <Content Include="js\libs\underscore\underscore.js" />
+    <Content Include="js\models\user.js" />
+    <Content Include="js\templates\userslist_template.html" />
+    <Content Include="js\views\userslistview.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

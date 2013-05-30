@@ -3,3 +3,17 @@
 }
 
 <h4 class="muted">Index</h4>
+<div id="page_container">
+    
+</div>
+<script type="text/javascript" >
+    window.pageload = function () {
+        console.log("pageload.....");
+        require(['userlistviewmodel'], function (userlistvw) {
+           
+           userlistvw = new userlistvw();
+            userlistvw.render();
+        });
+    }
+</script>
+

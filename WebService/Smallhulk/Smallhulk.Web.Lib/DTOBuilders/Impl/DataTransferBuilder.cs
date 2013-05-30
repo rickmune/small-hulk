@@ -13,10 +13,12 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
    public class DataTransferBuilder : IDataTransferBuilder
    {
        private IUserRepository _userRepository;
+       private ICountryRepository _countryRepository;
 
-       public DataTransferBuilder(IUserRepository userRepository)
+       public DataTransferBuilder(IUserRepository userRepository, ICountryRepository countryRepository)
        {
            _userRepository = userRepository;
+           _countryRepository = countryRepository;
        }
 
        public TranferResponse<UserDTO> GetAllUsers()
@@ -48,7 +50,7 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
                           Password = s.Password,
                           PhoneNumber = s.PhoneNumber,
                           IsActive = s.IsActive,
-                          UserType = s.UserType,
+                          UserTypeId = (int)s.UserType,
                           Username = s.Username,
 
                       };
@@ -56,7 +58,7 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
 
        public TranferResponse<UserDTO> Login(string username, string password)
        {
-           TranferResponse<UserDTO> response = new TranferResponse<UserDTO>();
+           var response = new TranferResponse<UserDTO>();
            
            try
            {
@@ -76,6 +78,37 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
 
            }
            return response;
+       }
+
+       public TranferResponse<CountryDTO> GetCountry()
+       {
+           TranferResponse<CountryDTO> response = new TranferResponse<CountryDTO>();
+           try
+           {
+               var data = _countryRepository.Query(new QueryMasterData()).Result.OfType<Country>().Select(Map).ToList();
+               response.Data.AddRange(data);
+               response.Status = true;
+           }
+           catch (Exception ex)
+           {
+               response.Info = ex.Message;
+               response.Status = false;
+               response.Info = "Success";
+           }
+           return response;
+       }
+       private static CountryDTO Map(Country s)
+       {
+           return new CountryDTO
+           {
+               Id = s.Id,
+               Name = s.Name,
+               ZipCode = s.ZipCode,
+               Code = s.Code,
+               IsActive = s.IsActive,
+               
+
+           };
        }
 
        public TranferResponse<UserDTO> GetAccount(Guid accountId)

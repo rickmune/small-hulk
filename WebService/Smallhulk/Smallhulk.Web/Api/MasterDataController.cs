@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Smallhulk.Core.Domain;
@@ -11,6 +13,7 @@ using Smallhulk.Web.Lib.DTOS;
 
 namespace Smallhulk.Web.Api
 {
+
     public class MasterDataController : ApiController
     {
         private IDataTransferBuilder _dataTransferBuilder;
@@ -26,9 +29,28 @@ namespace Smallhulk.Web.Api
             return all;
         }
         [HttpGet]
-         public TranferResponse<UserDTO> Login(string username, string password)
+         public HttpResponseMessage Login(string username, string password)
         {
-            return _dataTransferBuilder.Login(username, password);
+            HttpStatusCode returnCode = HttpStatusCode.OK;
+
+            var response = new TranferResponse<UserDTO>();
+            try
+            {
+                response = _dataTransferBuilder.Login(username, password);
+            }
+            catch (Exception ex)
+            {
+                response.Info = ex.Message;
+                returnCode = HttpStatusCode.ServiceUnavailable;
+            }
+            return Request.CreateResponse(returnCode, response);
+            
+        }
+        [HttpGet]
+        public TranferResponse<CountryDTO> GetCountries()
+        {
+            var all = _dataTransferBuilder.GetCountry();
+            return all;
         }
     }
 }

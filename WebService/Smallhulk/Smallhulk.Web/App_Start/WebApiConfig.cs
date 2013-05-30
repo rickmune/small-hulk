@@ -24,6 +24,11 @@ namespace Smallhulk.Web
                routeTemplate: "api/phone/masterdata/login",
                defaults: new { controller = "MasterData", action = "login" }
                );
+            config.Routes.MapHttpRoute(
+              name: "GetCountries",
+              routeTemplate: "api/phone/masterdata/countries",
+              defaults: new { controller = "MasterData", action = "GetCountries" }
+              );
             //config.EnableSystemDiagnosticsTracing();
         }
     }

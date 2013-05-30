@@ -21,7 +21,7 @@
                             <li class="active"><a href="#">Home</a></li>
                             <li><a href="#">Admin</a></li>
                             <li><a href="#">Reports</a></li>
-                            <li><a href="#">Profile</a></li>
+                            <li><a href="home#/showUsers">Profile</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle"
                                     data-toggle="dropdown"
@@ -54,9 +54,10 @@
     <!-- /container -->
 
 
-    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/jquery")*@
     @RenderSection("scripts", required: false)
-    <script src="/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script data-main="js/main" src="/js/libs/require/require.js"></script>
+  @*  <script src="/Content/bootstrap/js/bootstrap.min.js"></script>*@
 </body>
 </html>
 
