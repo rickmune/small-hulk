@@ -3,7 +3,7 @@ package com.safapp.utils;
 public class GlobalSettings {
 
 	private static final String ControlFolder = "/api/phone/";
-	private static String IPADDRESS = "http://10.0.2.2:49444";//null;//"http://10.0.0.246:54192";
+	private static String IPADDRESS = "http://10.0.0.246:49445";//null;//"http://10.0.0.246:54192";
 	private static final String masterdataController = "MasterData/";
 	private static final String user = "users";
 	

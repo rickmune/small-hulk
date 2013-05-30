@@ -56,7 +56,7 @@ public class MasterDataSync extends ServiceBase implements IMasterDataSync {
 			string = httpUtils.GetRequest(GlobalSettings.userWebService(), params);
 			SyncEntity<UserDto> syncEntity = deserialize(string, new TypeToken<SyncEntity<UserDto>>(){}.getType());
 			Log.d(Tag, "Info: "+ syncEntity.getInfo()+" Is Success: " + syncEntity.isStatus());
-			List<UserDto> dtos = syncEntity.getT();
+			List<UserDto> dtos = syncEntity.getData();
 			Log.d(Tag, "dtos.size(): "+ dtos.size());
 			return true;
 		} catch (Exception e) {
