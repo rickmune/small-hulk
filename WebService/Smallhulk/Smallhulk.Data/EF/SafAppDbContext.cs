@@ -54,11 +54,7 @@ namespace Smallhulk.Data.EF
        {
            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
-           modelBuilder.Entity<User>()
-               .HasRequired(a => a.Country)
-               .WithMany()
-               .HasForeignKey(u => u.CountryId)
-               .WillCascadeOnDelete(false);
+         
            modelBuilder.Entity<User>()
               .HasRequired(a => a.Account)
               .WithMany()
@@ -127,7 +123,7 @@ namespace Smallhulk.Data.EF
                                UpdatedOn = DateTime.Now,
                                Username = "gitau",
                                UserType = UserType.Email,
-                               Country = country,
+                             
                                Account = account
 
                            };
@@ -144,7 +140,6 @@ namespace Smallhulk.Data.EF
                                UpdatedOn = DateTime.Now,
                                Username = "maina",
                                UserType = UserType.Email,
-                               Country = country,
                                Account = account
                            };
            context.Users.Add(user2);

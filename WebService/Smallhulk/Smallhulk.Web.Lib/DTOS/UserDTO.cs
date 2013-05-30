@@ -18,6 +18,7 @@ namespace Smallhulk.Web.Lib.DTOS
         public int UserTypeId { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public Guid CountryId { get; set; }
+       
+        public Guid AccountId { get; set; }
     }
 }

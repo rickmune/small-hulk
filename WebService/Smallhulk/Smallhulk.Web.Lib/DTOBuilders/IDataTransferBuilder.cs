@@ -13,7 +13,8 @@ namespace Smallhulk.Web.Lib.DTOBuilders
         TranferResponse<UserDTO> GetAllUsers();
         TranferResponse<UserDTO> Login(string username, string password);
          TranferResponse<CountryDTO> GetCountry();
-        //BasicResponse AddUser(UserDTO user);
+         BasicResponse AddAccount(AccountDTO dto);
+        BasicResponse AddUser(UserDTO user);
     }
      
     public class BasicResponse

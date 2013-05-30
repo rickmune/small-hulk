@@ -73,9 +73,9 @@ namespace Smallhulk.Tests.RepositoryFixtures
                 UpdatedOn = DateTime.Now,
                 PhoneNumber = TestString(),
                 Account = account,
-                Country = country,
+              
                 AccountId = account.Id,
-                CountryId = country.Id,
+              
                 Email = TestString(),
                 Fullname = TestString(),
                 UserType = UserType.Email,

@@ -14,12 +14,19 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
    {
        private IUserRepository _userRepository;
        private ICountryRepository _countryRepository;
+       private IAccountRepository _accountRepository;
+       private IProductRepository _productRepository;
+       private ICategoryRepository _categoryRepository;
 
-       public DataTransferBuilder(IUserRepository userRepository, ICountryRepository countryRepository)
+       public DataTransferBuilder(IUserRepository userRepository, ICountryRepository countryRepository, IAccountRepository accountRepository, IProductRepository productRepository, ICategoryRepository categoryRepository)
        {
            _userRepository = userRepository;
            _countryRepository = countryRepository;
+           _accountRepository = accountRepository;
+           _productRepository = productRepository;
+           _categoryRepository = categoryRepository;
        }
+
 
        public TranferResponse<UserDTO> GetAllUsers()
        {
@@ -39,22 +46,7 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
            return response;
        }
 
-       private static UserDTO MapUserToUserDto(User s)
-       {
-           return new UserDTO
-                      {
-                          Id = s.Id,
-                          CountryId = s.CountryId,
-                          Email = s.Email,
-                          Fullname = s.Fullname,
-                          Password = s.Password,
-                          PhoneNumber = s.PhoneNumber,
-                          IsActive = s.IsActive,
-                          UserTypeId = (int)s.UserType,
-                          Username = s.Username,
-
-                      };
-       }
+       
 
        public TranferResponse<UserDTO> Login(string username, string password)
        {
@@ -97,6 +89,71 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
            }
            return response;
        }
+
+       public BasicResponse AddAccount(AccountDTO dto)
+       {
+           BasicResponse response = new BasicResponse();
+           try
+           {
+               var account = new Account()
+                                 {
+                                     Name = dto.Name,
+                                     Id = dto.Id,
+                                     IsActive = true,
+                                     CreatedOn = DateTime.Now,
+                                     UpdatedOn = DateTime.Now,
+                                 };
+
+               _accountRepository.Save(account);
+               response.Status = true;
+               response.Info = "Success";
+
+           }
+           catch (Exception ex)
+           {
+
+               response.Status = false;
+               response.Info = ex.Message;
+           }
+           return response;
+       }
+
+       public BasicResponse AddUser(UserDTO dto)
+       {
+           BasicResponse response = new BasicResponse();
+           try
+           {
+               var entity = new User()
+               {
+                   Username = dto.Username,
+                   Id = dto.Id,
+                   IsActive = true,
+                   CreatedOn = DateTime.Now,
+                   UpdatedOn = DateTime.Now,
+                   AccountId = dto.AccountId,
+                   Email = dto.Email,
+                   Fullname = dto.Fullname,
+                   Password = dto.Password,
+                   PhoneNumber = dto.PhoneNumber,
+                   UserType =(UserType) dto.UserTypeId,
+                   
+               };
+
+               _userRepository.Save(entity);
+               response.Status = true;
+               response.Info = "Success";
+
+           }
+           catch (Exception ex)
+           {
+
+               response.Status = false;
+               response.Info = ex.Message;
+           }
+           return response;
+       }
+
+
        private static CountryDTO Map(Country s)
        {
            return new CountryDTO
@@ -110,15 +167,22 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
 
            };
        }
-
-       public TranferResponse<UserDTO> GetAccount(Guid accountId)
+       private static UserDTO MapUserToUserDto(User s)
        {
-           throw new NotImplementedException();
+           return new UserDTO
+           {
+               Id = s.Id,
+               Email = s.Email,
+               Fullname = s.Fullname,
+               Password = s.Password,
+               PhoneNumber = s.PhoneNumber,
+               IsActive = s.IsActive,
+               UserTypeId = (int)s.UserType,
+               Username = s.Username,
+
+           };
        }
 
-       public BasicResponse AddUser(UserDTO user)
-       {
-           throw new NotImplementedException();
-       }
+    
    }
 }

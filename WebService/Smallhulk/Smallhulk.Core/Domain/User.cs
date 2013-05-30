@@ -29,10 +29,9 @@ namespace Smallhulk.Core.Domain
 
         public string PhoneNumber { get; set; }
 
-        [ForeignKey("CountryId")]
-        public virtual Country Country { get; set; }
+       
 
-        public Guid CountryId { get; set; }
+       
 
         [ForeignKey("AccountId")]
         public virtual Account Account { get; set; }

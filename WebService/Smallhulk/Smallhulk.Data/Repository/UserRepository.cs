@@ -42,7 +42,6 @@ namespace Smallhulk.Data.Repository
             }
             tbl.Username = entity.Username;
             tbl.Password = entity.Password;
-            tbl.CountryId = entity.CountryId;
             tbl.UserType = entity.UserType;
             tbl.PhoneNumber = entity.PhoneNumber;
             tbl.Fullname = entity.Fullname;
