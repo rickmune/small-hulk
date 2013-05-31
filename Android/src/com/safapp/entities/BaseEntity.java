@@ -20,7 +20,7 @@ public class BaseEntity {
 		UpdatedOn = updatedOn;
 		IsActive = isActive;
 	}
-	@DatabaseField
+	@DatabaseField(id = true)
 	private UUID Id;
 	@DatabaseField
 	private Date CreatedOn;

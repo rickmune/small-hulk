@@ -5,22 +5,32 @@ import java.util.UUID;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.safapp.dto.UserDto;
 import com.safapp.utils.enums.UserType;
 
 @DatabaseTable
 public class User extends BaseEntity{
 
+	public User() {
+	}
+	
+	public User(UUID id, Date createdOn, Date updatedOn, boolean isActive) {
+		super(id, createdOn, updatedOn, isActive);
+		// TODO Auto-generated constructor stub
+	}
+	public User(UUID id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
 	public User(UUID id, Date createdOn, Date updatedOn, boolean isActive,
 			String username, String password, String fullName, String email,
-			String phoneNumber, com.safapp.entities.Country country, UserType userType,
-			Account account) {
+			String phoneNumber, UserType userType, Account account) {
 		super(id, createdOn, updatedOn, isActive);
 		Username = username;
 		Password = password;
 		FullName = fullName;
 		Email = email;
 		PhoneNumber = phoneNumber;
-		Country = country;
 		UserType = userType;
 		Account = account;
 	}
@@ -38,8 +48,6 @@ public class User extends BaseEntity{
 	private String Email;
 	@DatabaseField(columnName = PHONE)
 	private String PhoneNumber;
-	@DatabaseField(foreign = true)
-	private Country Country;
 	@DatabaseField
 	private UserType UserType;
 	@DatabaseField(foreign = true)
@@ -75,12 +83,7 @@ public class User extends BaseEntity{
 	public void setPhoneNumber(String phoneNumber) {
 		PhoneNumber = phoneNumber;
 	}
-	public Country getCountry() {
-		return Country;
-	}
-	public void setCountry(Country country) {
-		Country = country;
-	}
+
 	public UserType getUserType() {
 		return UserType;
 	}
@@ -92,5 +95,10 @@ public class User extends BaseEntity{
 	}
 	public void setAccount(Account account) {
 		Account = account;
+	}
+	
+	public UserDto makeDTO(){
+		return new UserDto(getId(), isIsActive(), Username, 
+				Password, FullName, UserType, EMAIL, PhoneNumber, Account.getId());
 	}
 }

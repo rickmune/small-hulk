@@ -8,7 +8,7 @@ public class UserDto extends BaseDTO{
 
 	public UserDto(UUID id, boolean isActive, String username, String password,
 			String fullname, com.safapp.utils.enums.UserType userType,
-			String email, String phoneNumber, UUID countryId) {
+			String email, String phoneNumber, UUID accountId) {
 		super(id, isActive);
 		Username = username;
 		Password = password;
@@ -16,7 +16,7 @@ public class UserDto extends BaseDTO{
 		UserType = userType;
 		Email = email;
 		PhoneNumber = phoneNumber;
-		CountryId = countryId;
+		AccountId = accountId;
 	}
 	
 	private String Username;
@@ -25,7 +25,7 @@ public class UserDto extends BaseDTO{
 	private UserType UserType;
 	private String Email;
 	private String PhoneNumber;
-	private UUID CountryId;
+	private UUID AccountId;
 	public String getUsername() {
 		return Username;
 	}
@@ -62,10 +62,10 @@ public class UserDto extends BaseDTO{
 	public void setPhoneNumber(String phoneNumber) {
 		PhoneNumber = phoneNumber;
 	}
-	public UUID getCountryId() {
-		return CountryId;
+	public UUID getAccountId() {
+		return AccountId;
 	}
-	public void setCountryId(UUID countryId) {
-		CountryId = countryId;
+	public void setAccountId(UUID accountId) {
+		AccountId = accountId;
 	}
 }

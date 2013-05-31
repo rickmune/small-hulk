@@ -5,6 +5,11 @@ import com.safapp.repositories.ICategoryRepsitory;
 
 public class CategoryRepsitory extends BaseEntityRepository<Category> implements ICategoryRepsitory {
 
+	
+	public CategoryRepsitory() {
+		setDataClass();
+	}
+
 	@Override
 	public void setDataClass() {
 		dataClass = Category.class;

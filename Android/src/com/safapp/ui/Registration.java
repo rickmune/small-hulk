@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.safapp.androidclient.R;
 import com.safapp.entities.Account;
-import com.safapp.entities.Country;
 import com.safapp.entities.User;
 import com.safapp.service.ILoginService;
 import com.safapp.utils.ServiceRegistry;
@@ -67,7 +66,7 @@ public class Registration extends Activity{
 		Date date = new Date();
 		Account account = new Account(UUID.randomUUID(), date, date, true, accoutName);
 		User user = new User(UUID.randomUUID(), date, date, true, username, confirmPassword, fullName, 
-				email, phoneNumber, new Country(CountyId), userType, account);
+				email, phoneNumber, userType, account);
 		boolean done = ServiceRegistry.get(ILoginService.class).register(user, account);
 		if(done)
 			startActivity(new Intent(Registration.this, DashBoard.class));

@@ -1,34 +1,55 @@
 package com.safapp.service;
 
-import java.lang.reflect.Type;
 import java.util.Hashtable;
 import java.util.List;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.safapp.dto.CountryDTO;
 import com.safapp.dto.UserDto;
+import com.safapp.entities.Account;
+import com.safapp.entities.User;
+import com.safapp.repositories.IAccountRepository;
+import com.safapp.repositories.ICountryRepository;
+import com.safapp.repositories.IUserRepository;
 import com.safapp.utils.GlobalSettings;
+import com.safapp.utils.JsonConverter;
 import com.safapp.utils.SyncEntity;
 import com.safapp.utils.http.IHttpUtils;
 
 public class MasterDataSync extends ServiceBase implements IMasterDataSync {
 
-	public MasterDataSync(IHttpUtils httpUtils) {
+	ICountryRepository countryRepository;
+	IAccountRepository accountRepository;
+	IUserRepository userRepository;
+	
+	public MasterDataSync(IHttpUtils httpUtils, ICountryRepository countryRepository) {
 		this.httpUtils = httpUtils;
+		this.countryRepository = countryRepository;
 	}
 
 	private static final String Tag = "MasterDataSync";
 	
 	IHttpUtils httpUtils;
 	@Override
-	public boolean getGetCountry() {
-		
+	public boolean getCountry() {
+		String string = "";
+		Hashtable<String, String> params = new Hashtable<String, String>();
+		try {
+			string = httpUtils.GetRequest(GlobalSettings.getcountryWebService(), params);
+			SyncEntity<CountryDTO> syncEntity = JsonConverter.deserialize(string, new TypeToken<SyncEntity<CountryDTO>>(){}.getType());
+			Log.d(Tag, "Info: "+ syncEntity.getInfo()+" Is Success: " + syncEntity.isStatus());
+			List<CountryDTO> dtos = syncEntity.getData();
+			for(CountryDTO dto : dtos){
+				int y = countryRepository.save(dto.Map());
+				Log.d(Tag, "save country: "+ y);
+			}
+			Log.d(Tag, "dtos.size(): "+ dtos.size());
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -53,8 +74,8 @@ public class MasterDataSync extends ServiceBase implements IMasterDataSync {
 		String string = "";
 		Hashtable<String, String> params = new Hashtable<String, String>();
 		try {
-			string = httpUtils.GetRequest(GlobalSettings.userWebService(), params);
-			SyncEntity<UserDto> syncEntity = deserialize(string, new TypeToken<SyncEntity<UserDto>>(){}.getType());
+			string = httpUtils.GetRequest(GlobalSettings.getuserWebService(), params);
+			SyncEntity<UserDto> syncEntity = JsonConverter.deserialize(string, new TypeToken<SyncEntity<UserDto>>(){}.getType());
 			Log.d(Tag, "Info: "+ syncEntity.getInfo()+" Is Success: " + syncEntity.isStatus());
 			List<UserDto> dtos = syncEntity.getData();
 			Log.d(Tag, "dtos.size(): "+ dtos.size());
@@ -65,20 +86,53 @@ public class MasterDataSync extends ServiceBase implements IMasterDataSync {
 		return false;
 	}
 	
-	private <T> T deserialize(String json, Type t){
-		Log.d(Tag, "deserialize b4: "+json);
-		GsonBuilder b = new GsonBuilder();
-		b.setDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-		Log.d(Tag, "deserialize EntitySyncInfoserializer");
-    	Gson gson = b.create();
-    	JsonParser parser = new JsonParser();
-    	try{
-    		JsonObject object1 = parser.parse(json.trim()).getAsJsonObject();
-    		return gson.fromJson(object1, t);
-    	}catch(Exception e){
-    		Log.d(Tag, e.getMessage());
-    		JsonArray array = parser.parse(json.trim()).getAsJsonArray();
-    		return gson.fromJson(array, t);
-    	}
+	@Override
+	public boolean getAddUser(User user) {
+		int x=0;
+		try {
+			x = userRepository.save(user);
+			Log.d(Tag, "userRepository save: "+ x);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		String resp = null;
+		String json = JsonConverter.MapObject(user.makeDTO());
+		Hashtable<String, String> params = new Hashtable<String, String>();
+		params.put("userDto", json);
+		try {
+			resp = httpUtils.PostRequest(GlobalSettings.putUserWebService(), params);
+			Log.d(Tag, "getAddUser: "+ resp);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
+
+	@Override
+	public boolean getAddAccount(Account account) {
+		int x = 0;
+		try {
+			x = accountRepository.save(account);
+			Log.d(Tag, "accountRepository save: "+ x);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		String resp = null;
+		String json = JsonConverter.MapObject(account.toDTO());
+		Hashtable<String, String> params = new Hashtable<String, String>();
+		params.put("accountDTO", json);
+		try {
+			resp = httpUtils.PostRequest(GlobalSettings.putAccountWebService(), params);
+			Log.d(Tag, "getAddAccount: "+ resp);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	
 }

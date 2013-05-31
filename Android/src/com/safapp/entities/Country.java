@@ -8,6 +8,14 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable
 public class Country extends BaseEntity{
 
+	public Country(UUID id, Date createdOn, Date updatedOn, boolean isActive,
+			String name, String code, String zipCode) {
+		super(id, createdOn, updatedOn, isActive);
+		Name = name;
+		Code = code;
+		ZipCode = zipCode;
+	}
+
 	public Country() {
 	}
 	
@@ -15,9 +23,6 @@ public class Country extends BaseEntity{
 		super(id);
 	}
 	
-	public Country(UUID id, Date createdOn, Date updatedOn, boolean isActive) {
-		super(id, createdOn, updatedOn, isActive);
-	}
 	@DatabaseField
 	private String Name;
 	@DatabaseField

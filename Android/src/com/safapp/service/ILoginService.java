@@ -6,7 +6,7 @@ import com.safapp.utils.enums.UserType;
 
 public interface ILoginService extends IServiceBase{
 
-	public String phoneSetUp(String userName, String password);
+	public boolean phoneSetUp(String userName, String password);
 	
 	public boolean doLogin(String userName, String password, UserType type);
 	

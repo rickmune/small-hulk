@@ -8,6 +8,16 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable
 public class Category extends BaseEntity {
 	
+	public Category() {
+	}
+	public Category(UUID id, Date createdOn, Date updatedOn, boolean isActive) {
+		super(id, createdOn, updatedOn, isActive);
+		// TODO Auto-generated constructor stub
+	}
+	public Category(UUID id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
 	public Category(UUID id, Date createdOn, Date updatedOn, boolean isActive,
 			String name, String desciption, Account account) {
 		super(id, createdOn, updatedOn, isActive);

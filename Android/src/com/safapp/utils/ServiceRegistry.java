@@ -3,6 +3,7 @@ package com.safapp.utils;
 import java.util.EnumSet;
 import java.util.HashMap;
 
+import com.safapp.repositories.ICountryRepository;
 import com.safapp.service.IMasterDataSync;
 import com.safapp.service.IServiceBase;
 import com.safapp.service.MasterDataSync;
@@ -28,7 +29,7 @@ public class ServiceRegistry {
 	private static <T> T getT(Class<T> class1){
 		T object = null;
 		if(class1 == IMasterDataSync.class){
-			object = (T) new MasterDataSync(get(IHttpUtils.class));
+			object = (T) new MasterDataSync(get(IHttpUtils.class), RepositoryRegistry.get(ICountryRepository.class));
 		}else{
 			for(ServiceCollection dir : EnumSet.allOf(ServiceCollection.class)){
 				if(dir.Iservice.equals(class1)){

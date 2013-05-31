@@ -7,7 +7,17 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable
 public class Product extends BaseEntity {
-
+	
+	public Product() {
+	}
+	public Product(UUID id, Date createdOn, Date updatedOn, boolean isActive) {
+		super(id, createdOn, updatedOn, isActive);
+		// TODO Auto-generated constructor stub
+	}
+	public Product(UUID id) {
+		super(id);
+		// TODO Auto-generated constructor stub
+	}
 	public Product(UUID id, Date createdOn, Date updatedOn, boolean isActive,
 			String name, String description,
 			com.safapp.entities.Category category, float bPrice, float sPrice,
