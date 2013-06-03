@@ -24,7 +24,7 @@ public class Account extends BaseEntity {
 	}
 	@DatabaseField
 	private String Name;
-	@DatabaseField(foreignAutoCreate = true)
+	@DatabaseField(foreign = true)
 	private Country Country;
 
 	public String getName() {

@@ -27,7 +27,7 @@ public class Category extends BaseEntity {
 	private String Name;
 	@DatabaseField
 	private String Desciption;
-	@DatabaseField
+	@DatabaseField(foreign = true)
 	private Account Account;
 	
 	public String getName() {

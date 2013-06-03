@@ -16,11 +16,9 @@ public class User extends BaseEntity{
 	
 	public User(UUID id, Date createdOn, Date updatedOn, boolean isActive) {
 		super(id, createdOn, updatedOn, isActive);
-		// TODO Auto-generated constructor stub
 	}
 	public User(UUID id) {
 		super(id);
-		// TODO Auto-generated constructor stub
 	}
 	public User(UUID id, Date createdOn, Date updatedOn, boolean isActive,
 			String username, String password, String fullName, String email,

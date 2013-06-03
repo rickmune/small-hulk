@@ -24,6 +24,7 @@
         <activity android:name="com.safapp.ui.AddProduct"></activity>
         <activity android:name="com.safapp.ui.Registration"></activity>
         <activity android:name="com.safapp.ui.Home"></activity>
+        <activity android:name="com.safapp.ui.Admin"></activity>
     </application>
 
 </manifest>
