@@ -48,5 +48,51 @@ namespace Smallhulk.Tests.WebAPIFixitures
 
 
         }
+        [Test]
+        public void AddProduct()
+        {
+            //string urlSuffix = "api/phone/masterdata/addcategory";
+            HttpClient client = Client();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Guid accountId = Guid.NewGuid();
+            AccountDTO dtoacount = new AccountDTO()
+            {
+                Name = Guid.NewGuid().ToString(),
+                Id = accountId,
+                IsActive = true,
+            };
+            var responseacc = client.PostAsJsonAsync("api/phone/masterdata/addaccount", dtoacount);
+            var _responseacc = responseacc.Result;
+            Guid categoryid = Guid.NewGuid();
+            CategoryDTO dto = new CategoryDTO()
+            {
+                Name = Guid.NewGuid().ToString(),
+                Id = categoryid,
+                IsActive = true,
+                AccountId = accountId,
+                Description = "noma",
+
+            };
+            var response = client.PostAsJsonAsync("api/phone/masterdata/addcategory", dto);
+            var _response = response.Result;
+            
+            ProductDTO product = new ProductDTO()
+            {
+                Name = Guid.NewGuid().ToString(),
+                Id = Guid.NewGuid(),
+                IsActive = true,
+                BuyingPrice = 1,
+                SellingPrice = 90,
+                AccountId = accountId,
+                CategoryId = categoryid,
+                Description = "product web api",
+
+            };
+            var response2 = client.PostAsJsonAsync("api/phone/masterdata/addproduct", product);
+            var _response2 = response2.Result;
+
+
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace Smallhulk.Web.Lib.DTOBuilders
          TranferResponse<CountryDTO> GetCountry();
          BasicResponse AddAccount(AccountDTO dto);
         BasicResponse AddUser(UserDTO user);
+        BasicResponse AddCategory(CategoryDTO dto);
+        BasicResponse AddProduct(ProductDTO dto);
     }
      
     public class BasicResponse

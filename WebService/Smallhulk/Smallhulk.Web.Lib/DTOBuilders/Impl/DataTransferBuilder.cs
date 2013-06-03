@@ -153,6 +153,71 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
            return response;
        }
 
+       public BasicResponse AddCategory(CategoryDTO dto)
+       {
+           BasicResponse response = new BasicResponse();
+           try
+           {
+               var account = new Category()
+               {
+                   Name = dto.Name,
+                   Id = dto.Id,
+                   AccountId = dto.AccountId,
+                   Description = dto.Description,
+                   
+                   IsActive = true,
+                   CreatedOn = DateTime.Now,
+                   UpdatedOn = DateTime.Now,
+                  
+               };
+
+               _categoryRepository.Save(account);
+               response.Status = true;
+               response.Info = "Success";
+
+           }
+           catch (Exception ex)
+           {
+
+               response.Status = false;
+               response.Info = ex.Message;
+           }
+           return response;
+       }
+
+       public BasicResponse AddProduct(ProductDTO dto)
+       {
+           BasicResponse response = new BasicResponse();
+           try
+           {
+               var account = new Product()
+               {
+                   Name = dto.Name,
+                   Id = dto.Id,
+                   AccountId = dto.AccountId,
+                   Description = dto.Description,
+                   IsActive = true,
+                   CreatedOn = DateTime.Now,
+                   UpdatedOn = DateTime.Now,
+                   CategoryId = dto.CategoryId,
+                   BuyingPrice = dto.BuyingPrice,
+                   SellingPrice = dto.SellingPrice,
+               };
+
+               _productRepository.Save(account);
+               response.Status = true;
+               response.Info = "Success";
+
+           }
+           catch (Exception ex)
+           {
+
+               response.Status = false;
+               response.Info = ex.Message;
+           }
+           return response;
+       }
+
 
        private static CountryDTO Map(Country s)
        {

@@ -64,5 +64,17 @@ namespace Smallhulk.Web.Api
             var all = _dataTransferBuilder.AddUser(user);
             return all;
         }
+        [HttpPost]
+        public BasicResponse AddCategory(CategoryDTO dto)
+        {
+            var all = _dataTransferBuilder.AddCategory(dto);
+            return all;
+        }
+        [HttpPost]
+        public BasicResponse AddProduct(ProductDTO dto)
+        {
+            var all = _dataTransferBuilder.AddProduct(dto);
+            return all;
+        }
     }
 }
