@@ -60,6 +60,10 @@ namespace Smallhulk.Data.Repository
             {
                 userQuery = userQuery.Where(s => s.Name.Contains(q.Name));
             }
+            if (q.AccountId!=Guid.Empty)
+            {
+                userQuery = userQuery.Where(s => s.AccountId==q.AccountId);
+            }
             queryResult.Count = userQuery.Count();
             userQuery = userQuery.OrderByDescending(s => s.Name);
             if (q.Skip.HasValue && q.Take.HasValue)

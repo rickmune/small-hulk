@@ -12,43 +12,59 @@ namespace Smallhulk.Web
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new {id = RouteParameter.Optional}
+                );
             config.Routes.MapHttpRoute(
                 name: "GetUsers",
                 routeTemplate: "api/phone/masterdata/users",
-                defaults: new { controller = "MasterData", action = "GetAllUsers" }
+                defaults: new {controller = "MasterData", action = "GetAllUsers"}
                 );
             config.Routes.MapHttpRoute(
-               name: "Login",
-               routeTemplate: "api/phone/masterdata/login",
-               defaults: new { controller = "MasterData", action = "login" }
+                name: "Login",
+                routeTemplate: "api/phone/masterdata/login",
+                defaults: new {controller = "MasterData", action = "login"}
+                );
+            config.Routes.MapHttpRoute(
+                name: "GetCountries",
+                routeTemplate: "api/phone/masterdata/countries",
+                defaults: new {controller = "MasterData", action = "GetCountries"}
+                );
+            config.Routes.MapHttpRoute(
+                name: "AddAccount",
+                routeTemplate: "api/phone/masterdata/addaccount",
+                defaults: new {controller = "MasterData", action = "AddAccount"}
+                );
+            config.Routes.MapHttpRoute(
+                name: "AddUser",
+                routeTemplate: "api/phone/masterdata/adduser",
+                defaults: new {controller = "MasterData", action = "AddUser"}
+                );
+            config.Routes.MapHttpRoute(
+                name: "AddCategory",
+                routeTemplate: "api/phone/masterdata/addcategory",
+                defaults: new {controller = "MasterData", action = "AddCategory"}
+                );
+            config.Routes.MapHttpRoute(
+                name: "AddProduct",
+                routeTemplate: "api/phone/masterdata/addproduct",
+                defaults: new {controller = "MasterData", action = "AddProduct"}
+                );
+            config.Routes.MapHttpRoute(
+                name: "GetAccount",
+                routeTemplate: "api/phone/masterdata/account/{accountid}",
+                defaults: new { controller = "MasterData", action = "GetAccount", accountid = "accountid" }
+                );
+           
+            config.Routes.MapHttpRoute(
+               name: "GetCategories",
+               routeTemplate: "api/phone/masterdata/categories/{accountid}",
+               defaults: new { controller = "MasterData", action = "GetCategories", accountid = "accountid" }
                );
             config.Routes.MapHttpRoute(
-              name: "GetCountries",
-              routeTemplate: "api/phone/masterdata/countries",
-              defaults: new { controller = "MasterData", action = "GetCountries" }
+              name: "GetProducts",
+              routeTemplate: "api/phone/masterdata/products/{accountid}",
+              defaults: new { controller = "MasterData", action = "GetProducts", accountid = "accountid" }
               );
-            config.Routes.MapHttpRoute(
-             name: "AddAccount",
-             routeTemplate: "api/phone/masterdata/addaccount",
-             defaults: new { controller = "MasterData", action = "AddAccount" }
-             );
-            config.Routes.MapHttpRoute(
-             name: "AddUser",
-             routeTemplate: "api/phone/masterdata/adduser",
-             defaults: new { controller = "MasterData", action = "AddUser" }
-             );
-            config.Routes.MapHttpRoute(
-            name: "AddCategory",
-            routeTemplate: "api/phone/masterdata/addcategory",
-            defaults: new { controller = "MasterData", action = "AddCategory" }
-            );
-            config.Routes.MapHttpRoute(
-           name: "AddProduct",
-           routeTemplate: "api/phone/masterdata/addproduct",
-           defaults: new { controller = "MasterData", action = "AddProduct" }
-           );
             //config.EnableSystemDiagnosticsTracing();
         }
     }

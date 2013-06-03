@@ -218,7 +218,105 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
            return response;
        }
 
+       public TranferResponse<AccountDTO> GetAccount(Guid accountid)
+       {
+           TranferResponse<AccountDTO> response = new TranferResponse<AccountDTO>();
+           try
+           {
+               var data = _accountRepository.GetById(accountid);//.Query(new QueryMasterData()).Result.OfType<User>().Select(MapUserToUserDto).ToList();
+               if(data==null)
+               {
+                   response.Info = "invalid account id";
+                    response.Status = false;
+                   return response;
+               }
+               response.Data.Add(Map(data));
+               response.Status = true;
+           }
+           catch (Exception ex)
+           {
+               response.Info = ex.Message;
+               response.Status = false;
+             
+           }
+           return response;
+       }
 
+       public TranferResponse<CategoryDTO> GetCategory(Guid accountid)
+       {
+           TranferResponse<CategoryDTO> response = new TranferResponse<CategoryDTO>();
+           try
+           {
+               var data = _categoryRepository.Query(new QueryMasterData{AccountId = accountid}).Result.OfType<Category>().Select(Map).ToList();
+               response.Data.AddRange(data);
+               response.Status = true;
+           }
+           catch (Exception ex)
+           {
+               response.Info = ex.Message;
+               response.Status = false;
+
+           }
+           return response;
+       }
+
+       public TranferResponse<ProductDTO> GetProduct(Guid accountid)
+       {
+           TranferResponse<ProductDTO> response = new TranferResponse<ProductDTO>();
+           try
+           {
+               var data = _productRepository.Query(new QueryMasterData { AccountId = accountid }).Result.OfType<Product>().Select(Map).ToList();
+               response.Data.AddRange(data);
+               response.Status = true;
+           }
+           catch (Exception ex)
+           {
+               response.Info = ex.Message;
+               response.Status = false;
+
+           }
+           return response;
+       }
+       private static AccountDTO Map(Account s)
+       {
+           return new AccountDTO
+           {
+               Id = s.Id,
+               Name = s.Name,
+               IsActive = s.IsActive,
+               
+
+
+           };
+       }
+       private static CategoryDTO Map(Category s)
+       {
+           return new CategoryDTO
+           {
+               Id = s.Id,
+               Name = s.Name,
+               IsActive = s.IsActive,
+               AccountId = s.AccountId,
+               Description = s.Description,
+
+
+           };
+       }
+       private static ProductDTO Map(Product s)
+       {
+           return new ProductDTO
+           {
+               Id = s.Id,
+               Name = s.Name,
+               IsActive = s.IsActive,
+               AccountId = s.AccountId,
+               Description = s.Description,
+               BuyingPrice = s.BuyingPrice,
+               SellingPrice = s.SellingPrice,
+               CategoryId = s.CategoryId,
+
+           };
+       }
        private static CountryDTO Map(Country s)
        {
            return new CountryDTO
