@@ -10,7 +10,11 @@ public class LoginService implements ILoginService {
 
 	private static final String Tag = "LoginService";
 	IMasterDataSync dataSync;
-		
+	
+	public LoginService(IMasterDataSync dataSync) {
+		this.dataSync = dataSync;
+	}
+	
 	@Override
 	public boolean phoneSetUp(String userName, String password) {
 		return dataSync.getCountry();
@@ -18,8 +22,9 @@ public class LoginService implements ILoginService {
 
 	@Override
 	public boolean doLogin(String userName, String password, UserType type) {
-		// TODO Auto-generated method stub
-		return false;
+		if(!dataSync.logIn(userName, password))
+			return false;
+		return true;
 	}
 
 	@Override
@@ -28,7 +33,6 @@ public class LoginService implements ILoginService {
 		if(!dataSync.getAddAccount(account) && dataSync.getAddUser(user)){
 			return false;
 		}
-		//sync other stuff
 		return true;
 	}
 

@@ -4,8 +4,10 @@ import java.util.EnumSet;
 import java.util.HashMap;
 
 import com.safapp.repositories.ICountryRepository;
+import com.safapp.service.ILoginService;
 import com.safapp.service.IMasterDataSync;
 import com.safapp.service.IServiceBase;
+import com.safapp.service.LoginService;
 import com.safapp.service.MasterDataSync;
 import com.safapp.utils.enums.ServiceCollection;
 import com.safapp.utils.http.IHttpUtils;
@@ -30,6 +32,8 @@ public class ServiceRegistry {
 		T object = null;
 		if(class1 == IMasterDataSync.class){
 			object = (T) new MasterDataSync(get(IHttpUtils.class), RepositoryRegistry.get(ICountryRepository.class));
+		}else if(class1 == ILoginService.class){
+			object = (T) new LoginService(get(IMasterDataSync.class));
 		}else{
 			for(ServiceCollection dir : EnumSet.allOf(ServiceCollection.class)){
 				if(dir.Iservice.equals(class1)){

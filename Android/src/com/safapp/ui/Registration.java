@@ -5,17 +5,25 @@ import java.util.UUID;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.safapp.androidclient.R;
 import com.safapp.entities.Account;
+import com.safapp.entities.Country;
 import com.safapp.entities.User;
+import com.safapp.repositories.ICountryRepository;
 import com.safapp.service.ILoginService;
+import com.safapp.utils.RepositoryRegistry;
 import com.safapp.utils.ServiceRegistry;
 import com.safapp.utils.enums.UserType;
 
@@ -39,7 +47,33 @@ public class Registration extends Activity{
 				}
 			}
 		});
-		
+		Spinner spinner = (Spinner) findViewById(R.id.register_country);
+		Cursor cursor = null;
+		try {
+			cursor = RepositoryRegistry.get(ICountryRepository.class).getAllCountries();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (cursor.getCount() > 0) {
+			String[] from = new String[] { "entityName" };
+			int[] to = new int[] { android.R.id.text1 };
+			SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_spinner_item, 
+					cursor, from, to);
+			mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			spinner.setAdapter(mAdapter);
+		}
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			public void onItemSelected(AdapterView<?> parent, View view, int pos,
+					long log) {
+				Cursor c = (Cursor) parent.getItemAtPosition(pos);
+				CountyId = UUID.fromString(c.getString(c.getColumnIndexOrThrow("_id")));
+			}
+
+			public void onNothingSelected(AdapterView<?> arg0) {
+
+			}
+		});
 	}
 	
 	public void  onSettingsClick(View view){
@@ -63,12 +97,25 @@ public class Registration extends Activity{
 			return;
 		}
 		String username = (userType == UserType.Email ? email : phoneNumber);
+		Country country = null;
+		try {
+			country = RepositoryRegistry.get(ICountryRepository.class).getById(CountyId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Date date = new Date();
-		Account account = new Account(UUID.randomUUID(), date, date, true, accoutName);
+		Account account = new Account(UUID.randomUUID(), date, date, true, accoutName, country);
 		User user = new User(UUID.randomUUID(), date, date, true, username, confirmPassword, fullName, 
 				email, phoneNumber, userType, account);
 		boolean done = ServiceRegistry.get(ILoginService.class).register(user, account);
-		if(done)
-			startActivity(new Intent(Registration.this, DashBoard.class));
+		if(done){
+			startActivity(new Intent(Registration.this, Home.class));
+			finish();
+		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+		finish();
 	}
 }

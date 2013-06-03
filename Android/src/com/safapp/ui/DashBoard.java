@@ -2,6 +2,7 @@ package com.safapp.ui;
 
 import com.safapp.androidclient.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,6 +36,7 @@ public class DashBoard extends Fragment{
 
 		@Override
 		public void onClick(View view) {
+			Intent intent = null;
 			switch (view.getId()) {
 			case R.id.dashboard_purchases:
 				
@@ -46,11 +48,14 @@ public class DashBoard extends Fragment{
 				
 				break;
 			case R.id.dashboard_admin:
-				
+				intent = new Intent(getActivity(), Admin.class);
 				break;
 			default:
 				break;
 			}
+			if(intent != null)
+				startActivity(intent);
 		}		
 	}
+
 }

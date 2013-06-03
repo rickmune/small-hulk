@@ -53,6 +53,28 @@
                         android:singleLine="true" android:textColor="#000" />
                     <TextView
                         android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:text="@string/product_bp" android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/enter_product_bp" android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" android:background="@drawable/edittext_background"
+                        android:hint="@string/product_bp" android:maxLines="1" 
+                        android:paddingBottom="4dp" android:paddingLeft="4dp"
+                        android:paddingTop="4dp" android:inputType="text"
+                        android:singleLine="true" android:textColor="#000" />
+                    <TextView
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
+                        android:text="@string/product_sp" android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/enter_product_sp" android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" android:background="@drawable/edittext_background"
+                        android:hint="@string/product_sp" android:maxLines="1" 
+                        android:paddingBottom="4dp" android:paddingLeft="4dp"
+                        android:paddingTop="4dp" android:inputType="text"
+                        android:singleLine="true" android:textColor="#000" />
+                    <TextView
+                        android:layout_width="fill_parent" android:layout_height="fill_parent"
                         android:text="@string/add_product_category" android:textColor="#FFFFFF"
                         android:textStyle="bold" />
                     <Spinner android:id="@+id/addproduct_category" android:layout_width="fill_parent"

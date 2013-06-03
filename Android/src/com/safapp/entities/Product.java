@@ -12,11 +12,9 @@ public class Product extends BaseEntity {
 	}
 	public Product(UUID id, Date createdOn, Date updatedOn, boolean isActive) {
 		super(id, createdOn, updatedOn, isActive);
-		// TODO Auto-generated constructor stub
 	}
 	public Product(UUID id) {
 		super(id);
-		// TODO Auto-generated constructor stub
 	}
 	public Product(UUID id, Date createdOn, Date updatedOn, boolean isActive,
 			String name, String description,

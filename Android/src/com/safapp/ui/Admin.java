@@ -1,18 +1,18 @@
 package com.safapp.ui;
 
+import com.safapp.androidclient.R;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.WindowManager;
 
-import com.safapp.androidclient.R;
-
-public class Home extends FragmentActivity{
+public class Admin  extends FragmentActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		setContentView(R.layout.home_view);
+		setContentView(R.layout.admin_view);
 	}
 	
 	@Override
@@ -37,7 +37,6 @@ public class Home extends FragmentActivity{
 	
 	@Override
 	public void onBackPressed() {
-		//TODO: confirm logout intention
 		finish();
 	}
 }

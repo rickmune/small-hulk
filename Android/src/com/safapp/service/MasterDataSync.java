@@ -55,7 +55,21 @@ public class MasterDataSync extends ServiceBase implements IMasterDataSync {
 
 	@Override
 	public boolean logIn(String userName, String Password) {
-		
+		String string = "";
+		Hashtable<String, String> params = new Hashtable<String, String>();
+		params.put("username", userName);
+		params.put("password", Password);
+		try {
+			string = httpUtils.GetRequest(GlobalSettings.loginWebService(), params);
+			SyncEntity<UserDto> syncEntity = JsonConverter.deserialize(string, new TypeToken<SyncEntity<UserDto>>(){}.getType());
+			Log.d(Tag, "Info: "+ syncEntity.getInfo()+" Is Success: " + syncEntity.isStatus());
+			List<UserDto> dtos = syncEntity.getData();
+			Log.d(Tag, "dtos.size(): "+ dtos.size());
+			if(!syncEntity.isStatus())return false;
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

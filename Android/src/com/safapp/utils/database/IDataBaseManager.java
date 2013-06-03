@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
+import android.database.Cursor;
+
 import com.j256.ormlite.dao.Dao;
 
 public interface IDataBaseManager {
@@ -19,4 +21,6 @@ public interface IDataBaseManager {
 	public <T> int deleteAll(Class<T> dataClass) throws Exception;
 	
 	public <T> Dao<T, UUID> getDBDao( Class<T> dataClass) throws SQLException;
+	
+	public Cursor queryDB(String query);
 }

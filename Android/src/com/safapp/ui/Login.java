@@ -1,5 +1,7 @@
 package com.safapp.ui;
 
+import java.security.NoSuchAlgorithmException;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.safapp.androidclient.R;
 import com.safapp.service.ILoginService;
 import com.safapp.utils.CloudDataHolder;
+import com.safapp.utils.MakePWD;
 import com.safapp.utils.ServiceRegistry;
 import com.safapp.utils.database.DataBaseManager;
 import com.safapp.utils.enums.CloudConstants;
@@ -74,10 +77,16 @@ public class Login extends OrmLiteBaseActivity<DataBaseManager>{
 			userName = ((EditText)login_phonenumber.findViewById(R.id.login_phone)).getText().toString().trim();
 			type = UserType.Phone;
 		}
-		if(ServiceRegistry.get(ILoginService.class).doLogin(userName, password, type))
-			startActivity(new Intent(Login.this, DashBoard.class));
+		String hashpwd = password;
+		try {
+			hashpwd = MakePWD.getMD5(password);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		if(ServiceRegistry.get(ILoginService.class).doLogin(userName, hashpwd, type))
+			startActivity(new Intent(Login.this, Home.class));
 		else
 			Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_LONG).show();
 	}
-	
+		
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -95,6 +96,28 @@ public class DataBaseManager extends OrmLiteSqliteOpenHelper implements IDataBas
 	@Override
 	public <T> int deleteAll(Class<T> dataClass) throws Exception {
 		return getDBDao(dataClass).delete(getAll(dataClass));
+	}
+
+	@Override
+	public Cursor queryDB(String query) {
+		Cursor cursor = null;
+		SQLiteDatabase database = this.getReadableDatabase();
+		while(true) {
+			try {
+				if(database == null || !database.isOpen()) {
+					database = getWritableDatabase();
+				}
+				cursor = database.rawQuery(query, null);
+			}catch(Exception e) {
+				if(e.getMessage() != null && e.getMessage().trim()
+						.equalsIgnoreCase("Getting a writable database from SQLiteOpenHelper failed")) {
+					continue;
+				}
+			}
+			
+			break;
+		}
+		return cursor;
 	}
 
 }

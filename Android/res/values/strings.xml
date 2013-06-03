@@ -37,6 +37,11 @@
     <string name="addproduct_title">Product</string>
     <string name="product_name">Name</string>
     <string name="product_desc">Desciprtion</string>
+    <string name="product_sp">Selling Price</string>
+    <string name="product_bp">Buying Price</string>
     <string name="btn_addproduct">Add</string>
     <string name="add_product_category">Product Category</string>
+    <!-- admin -->
+    <string name="admindash_categories">Add Categories</string>
+    <string name="admindash_products">Add Products</string>
 </resources>

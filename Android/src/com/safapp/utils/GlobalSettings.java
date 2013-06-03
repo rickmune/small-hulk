@@ -9,6 +9,7 @@ public class GlobalSettings {
 	private static final String countries = "countries";
 	private static final String addaccount = "addaccount";
 	private static final String adduser = "adduser";
+	private static final String login = "login";
 	
 	public static String getuserWebService(){
 		return getMasterDataController() + user;
@@ -24,6 +25,10 @@ public class GlobalSettings {
 	
 	public static String putUserWebService(){
 		return getMasterDataController() + adduser;
+	}
+	
+	public static String loginWebService(){
+		return getMasterDataController() + login;
 	}
 	
 	public static String getIP_ADDRESS() {
