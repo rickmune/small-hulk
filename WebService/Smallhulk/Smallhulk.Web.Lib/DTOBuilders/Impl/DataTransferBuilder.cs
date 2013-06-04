@@ -342,6 +342,7 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
                IsActive = s.IsActive,
                UserTypeId = (int)s.UserType,
                Username = s.Username,
+               AccountId = s.AccountId
 
            };
        }

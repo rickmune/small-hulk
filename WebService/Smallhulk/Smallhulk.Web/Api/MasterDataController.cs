@@ -91,6 +91,8 @@ namespace Smallhulk.Web.Api
         [HttpGet]
         public TranferResponse<ProductDTO> GetProducts(Guid accountid)
         {
+
+            
             var all = _dataTransferBuilder.GetProduct(accountid);
             return all;
         }

@@ -21,8 +21,8 @@ namespace Smallhulk.Web
                 );
             config.Routes.MapHttpRoute(
                 name: "Login",
-                routeTemplate: "api/phone/masterdata/login",
-                defaults: new {controller = "MasterData", action = "login"}
+                routeTemplate: "api/phone/masterdata/login/{username}/{password}",
+                defaults: new { controller = "MasterData", action = "login", username = "username", password = "password" }
                 );
             config.Routes.MapHttpRoute(
                 name: "GetCountries",
