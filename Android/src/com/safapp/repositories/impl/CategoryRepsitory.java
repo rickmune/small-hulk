@@ -1,5 +1,8 @@
 package com.safapp.repositories.impl;
 
+import java.util.List;
+import java.util.UUID;
+
 import android.database.Cursor;
 
 import com.safapp.entities.Category;
@@ -23,6 +26,12 @@ public class CategoryRepsitory extends BaseEntityRepository<Category> implements
 				" FROM Category c";
 		
 		return dataBaseManager.queryDB(sql);
+	}
+
+	@Override
+	public List<String[]> getAForSpinner(UUID fillter) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -39,4 +39,8 @@ public abstract class BaseEntityRepository<T extends BaseEntity> implements IBas
 		return dataBaseManager.deleteById(Id, dataClass);
 	}
 	
+	@Override
+	public List<String[]> getAForSpinner(UUID fillter) throws Exception {
+		return null;
+	}
 }

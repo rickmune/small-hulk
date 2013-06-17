@@ -1,5 +1,8 @@
 package com.safapp.repositories.impl;
 
+import java.util.List;
+import java.util.UUID;
+
 import android.database.Cursor;
 
 import com.safapp.entities.Country;
@@ -22,6 +25,12 @@ public class CountryRepository extends BaseEntityRepository<Country> implements 
 				" FROM Country c";
 		
 		return dataBaseManager.queryDB(sql);
+	}
+
+	@Override
+	public List<String[]> getAForSpinner(UUID fillter) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

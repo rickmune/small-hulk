@@ -17,4 +17,5 @@ public interface IBaseEntityRepository<T> {
 	
 	public void setDataClass();
 	
+	public List<String []> getAForSpinner(UUID fillter) throws Exception;
 }

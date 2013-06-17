@@ -44,4 +44,10 @@
     <!-- admin -->
     <string name="admindash_categories">Add Categories</string>
     <string name="admindash_products">Add Products</string>
+    <!-- sales -->
+    <string name="sales_summary">Summary</string>
+    <string name="sales_cancel">Cancel</string>
+    <string name="sales_quantity">Quantity: </string>
+    <string name="sales_saleprice">Price: </string>
+    
 </resources>

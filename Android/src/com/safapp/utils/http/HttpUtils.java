@@ -97,13 +97,10 @@ private static final String Tag = "HttpUtils";
 			String afterUlr = "";
 			if(table != null && !table.isEmpty()){
 				Enumeration<String> name = table.keys();
-				//int x = 0;
 				while(name.hasMoreElements()){
 					String key = name.nextElement();
 					String value = table.get(key);
 					afterUlr += "/" + URLEncoder.encode(value);
-					//afterUlr += (x == 0 ? "?" : "&") + key + "=" + URLEncoder.encode(value);
-					//x++;
 				}
 			}
 			url += afterUlr;

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+  
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipey_tab" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:paddingLeft="15dip"
+    android:paddingRight="15dip" android:focusable="true" android:singleLine="true"
+    android:textSize="25sp" android:background="@drawable/scroll_tab_indicator" />

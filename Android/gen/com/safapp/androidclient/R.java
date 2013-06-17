@@ -9,6 +9,25 @@ package com.safapp.androidclient;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bottomBarColor=0x7f010000;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bottomBarHeight=0x7f010001;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -16,7 +35,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int debugDraw=0x7f010003;
+        public static final int debugDraw=0x7f010006;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -26,7 +45,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int horizontalSpacing=0x7f010000;
+        public static final int horizontalSpacing=0x7f010003;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -36,7 +55,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int layout_horizontalSpacing=0x7f010005;
+        public static final int layout_horizontalSpacing=0x7f010008;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -44,7 +63,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int layout_newLine=0x7f010004;
+        public static final int layout_newLine=0x7f010007;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -54,7 +73,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int layout_verticalSpacing=0x7f010006;
+        public static final int layout_verticalSpacing=0x7f010009;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -65,7 +84,7 @@ containing a value of this type.
 <tr><td><code>vertical</code></td><td>1</td><td></td></tr>
 </table>
          */
-        public static final int orientation=0x7f010002;
+        public static final int orientation=0x7f010005;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -75,7 +94,17 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int verticalSpacing=0x7f010001;
+        public static final int tabIndicatorHeight=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int verticalSpacing=0x7f010004;
     }
     public static final class color {
         public static final int coalblack=0x7f050000;
@@ -103,7 +132,9 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020003;
         public static final int login_background=0x7f020004;
         public static final int page_inactive_background=0x7f020005;
-        public static final int textbox_border=0x7f020006;
+        public static final int scroll_tab_indicator=0x7f020006;
+        public static final int textbox_border=0x7f020007;
+        public static final int transparent_overlay=0x7f020008;
     }
     public static final class id {
         public static final int actionbar=0x7f040002;
@@ -119,10 +150,15 @@ containing a value of this type.
         public static final int admindashboardfragment=0x7f040014;
         public static final int app_version=0x7f040030;
         public static final int btnLogin=0x7f04002f;
-        public static final int btnRegister=0x7f04003a;
+        public static final int btnRegister=0x7f040050;
         public static final int btnaddcategory=0x7f040009;
         public static final int btnaddproduct=0x7f040012;
+        public static final int btnpurchase_cancel=0x7f04003b;
+        public static final int btnpurchase_summary=0x7f04003c;
+        public static final int btnsale_cancel=0x7f040043;
+        public static final int btnsale_summary=0x7f040044;
         public static final int categories=0x7f040015;
+        public static final int category=0x7f040032;
         public static final int colorstrip=0x7f040019;
         public static final int dashboard_admin=0x7f04001e;
         public static final int dashboard_purchases=0x7f04001d;
@@ -138,7 +174,7 @@ containing a value of this type.
         public static final int header=0x7f040003;
         public static final int horizontal=0x7f040000;
         public static final int loginPassword=0x7f04002e;
-        public static final int loginPasswordConfirm=0x7f040034;
+        public static final int loginPasswordConfirm=0x7f04004a;
         public static final int login_box=0x7f040026;
         public static final int login_email=0x7f04002d;
         public static final int login_emaillayout=0x7f04002c;
@@ -149,22 +185,40 @@ containing a value of this type.
         public static final int login_text=0x7f040024;
         public static final int logo=0x7f040020;
         public static final int main_ppp=0x7f040013;
+        public static final int price=0x7f040038;
+        public static final int product=0x7f040034;
         public static final int products=0x7f040017;
+        public static final int purchase_buttons=0x7f04003a;
+        public static final int purchase_cat=0x7f040033;
+        public static final int purchase_items=0x7f040031;
+        public static final int purchase_price=0x7f040039;
+        public static final int purchase_product=0x7f040035;
+        public static final int purchase_qnty=0x7f040037;
         public static final int purchases=0x7f04001c;
-        public static final int radio_user_type=0x7f040036;
+        public static final int quantity=0x7f040036;
+        public static final int radio_user_type=0x7f04004c;
         public static final int radioemail=0x7f040029;
-        public static final int radioemail_type=0x7f040038;
+        public static final int radioemail_type=0x7f04004e;
         public static final int radiologintype=0x7f040027;
-        public static final int radiophone_type=0x7f040037;
+        public static final int radiophone_type=0x7f04004d;
         public static final int radiophonenumber=0x7f040028;
-        public static final int register_account_name=0x7f040031;
-        public static final int register_country=0x7f040039;
-        public static final int register_email=0x7f040033;
-        public static final int register_full_name=0x7f040035;
-        public static final int register_phone_no=0x7f040032;
+        public static final int register_account_name=0x7f040047;
+        public static final int register_country=0x7f04004f;
+        public static final int register_email=0x7f040049;
+        public static final int register_full_name=0x7f04004b;
+        public static final int register_phone_no=0x7f040048;
+        public static final int sale_price=0x7f040041;
+        public static final int sale_qnty=0x7f040040;
         public static final int sales=0x7f04001a;
+        public static final int sales_buttons=0x7f040042;
+        public static final int sales_cat=0x7f04003e;
+        public static final int sales_items=0x7f04003d;
+        public static final int sales_product=0x7f04003f;
         public static final int settings=0x7f040021;
+        public static final int swipey_tab=0x7f040051;
+        public static final int swipeytabs=0x7f040045;
         public static final int vertical=0x7f040001;
+        public static final int viewpager=0x7f040046;
     }
     public static final class layout {
         public static final int actionbar=0x7f030000;
@@ -177,7 +231,13 @@ containing a value of this type.
         public static final int header_logo=0x7f030007;
         public static final int home_view=0x7f030008;
         public static final int login=0x7f030009;
-        public static final int register=0x7f03000a;
+        public static final int makepurchase=0x7f03000a;
+        public static final int makesales=0x7f03000b;
+        public static final int my_spinner_style=0x7f03000c;
+        public static final int purchasetab_activity=0x7f03000d;
+        public static final int register=0x7f03000e;
+        public static final int salestab_activity=0x7f03000f;
+        public static final int scroll_tab_indicator=0x7f030010;
     }
     public static final class string {
         public static final int add_product_category=0x7f070022;
@@ -225,6 +285,12 @@ containing a value of this type.
         public static final int reg_radio_email=0x7f070011;
         public static final int reg_radio_phone=0x7f070010;
         public static final int reg_username=0x7f070013;
+        public static final int sales_cancel=0x7f070026;
+        public static final int sales_quantity=0x7f070027;
+        public static final int sales_saleprice=0x7f070028;
+        /**  sales 
+         */
+        public static final int sales_summary=0x7f070025;
         /**  login 
          */
         public static final int user_login=0x7f070002;
@@ -265,7 +331,7 @@ containing a value of this type.
            @see #FlowLayout_verticalSpacing
          */
         public static final int[] FlowLayout = {
-            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
+            0x7f010003, 0x7f010004, 0x7f010005, 0x7f010006
         };
         /**
           <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#debugDraw}
@@ -345,7 +411,7 @@ containing a value of this type.
            @see #FlowLayout_LayoutParams_layout_verticalSpacing
          */
         public static final int[] FlowLayout_LayoutParams = {
-            0x7f010004, 0x7f010005, 0x7f010006
+            0x7f010007, 0x7f010008, 0x7f010009
         };
         /**
           <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#layout_horizontalSpacing}
@@ -393,5 +459,69 @@ containing a value of this type.
           @attr name android:layout_verticalSpacing
         */
         public static final int FlowLayout_LayoutParams_layout_verticalSpacing = 2;
+        /** Attributes that can be used with a ScrollTabs.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ScrollTabs_bottomBarColor com.safapp.androidclient:bottomBarColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollTabs_bottomBarHeight com.safapp.androidclient:bottomBarHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollTabs_tabIndicatorHeight com.safapp.androidclient:tabIndicatorHeight}</code></td><td></td></tr>
+           </table>
+           @see #ScrollTabs_bottomBarColor
+           @see #ScrollTabs_bottomBarHeight
+           @see #ScrollTabs_tabIndicatorHeight
+         */
+        public static final int[] ScrollTabs = {
+            0x7f010000, 0x7f010001, 0x7f010002
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#bottomBarColor}
+          attribute's value can be found in the {@link #ScrollTabs} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:bottomBarColor
+        */
+        public static final int ScrollTabs_bottomBarColor = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#bottomBarHeight}
+          attribute's value can be found in the {@link #ScrollTabs} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:bottomBarHeight
+        */
+        public static final int ScrollTabs_bottomBarHeight = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#tabIndicatorHeight}
+          attribute's value can be found in the {@link #ScrollTabs} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:tabIndicatorHeight
+        */
+        public static final int ScrollTabs_tabIndicatorHeight = 2;
     };
 }

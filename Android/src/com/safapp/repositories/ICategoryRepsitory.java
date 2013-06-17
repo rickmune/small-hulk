@@ -6,5 +6,6 @@ import com.safapp.entities.Category;
 
 public interface ICategoryRepsitory extends IBaseEntityRepository<Category> {
 
-	public Cursor getAllCat() throws Exception; 
+	public Cursor getAllCat() throws Exception;
+	
 }
