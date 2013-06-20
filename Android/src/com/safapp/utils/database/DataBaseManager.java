@@ -103,10 +103,10 @@ public class DataBaseManager extends OrmLiteSqliteOpenHelper implements IDataBas
 		Cursor cursor = null;
 		SQLiteDatabase database = this.getReadableDatabase();
 		while(true) {
-			try {
+			try {/*
 				if(database == null || !database.isOpen()) {
 					database = getWritableDatabase();
-				}
+				}*/
 				cursor = database.rawQuery(query, null);
 			}catch(Exception e) {
 				if(e.getMessage() != null && e.getMessage().trim()

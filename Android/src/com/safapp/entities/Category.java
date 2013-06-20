@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.safapp.dto.CategoryDTO;
 @DatabaseTable
 public class Category extends BaseEntity {
 	
@@ -47,5 +48,9 @@ public class Category extends BaseEntity {
 	}
 	public void setUser(Account account) {
 		this.Account = account;
+	}
+	
+	public CategoryDTO Map(){
+		return new CategoryDTO(getId(), isIsActive(), Name, Desciption, Account.getId());
 	}
 }

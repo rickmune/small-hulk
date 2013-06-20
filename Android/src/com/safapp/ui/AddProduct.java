@@ -3,18 +3,6 @@ package com.safapp.ui;
 import java.util.Date;
 import java.util.UUID;
 
-import com.safapp.androidclient.R;
-import com.safapp.entities.Account;
-import com.safapp.entities.Category;
-import com.safapp.entities.OutGoing;
-import com.safapp.entities.Product;
-import com.safapp.repositories.IAccountRepository;
-import com.safapp.repositories.ICategoryRepsitory;
-import com.safapp.repositories.IOutGoingRepository;
-import com.safapp.repositories.IProductRepository;
-import com.safapp.utils.JsonConverter;
-import com.safapp.utils.RepositoryRegistry;
-
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -25,6 +13,16 @@ import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.safapp.androidclient.R;
+import com.safapp.entities.Account;
+import com.safapp.entities.Category;
+import com.safapp.entities.Product;
+import com.safapp.repositories.IAccountRepository;
+import com.safapp.repositories.ICategoryRepsitory;
+import com.safapp.service.IMasterDataSync;
+import com.safapp.utils.RepositoryRegistry;
+import com.safapp.utils.ServiceRegistry;
 
 public class AddProduct extends Activity{
 
@@ -80,19 +78,12 @@ public class AddProduct extends Activity{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Product product = new Product(UUID.randomUUID(), date, date, true, product_name, product_desc, 
-				category, Float.parseFloat(product_bp), Float.parseFloat(product_sp), account);
-		int x = -100;
-		try {
-			x = RepositoryRegistry.get(IProductRepository.class).save(product);
-			if(x > 0){
-				x = RepositoryRegistry.get(IOutGoingRepository.class).save(new OutGoing(UUID.randomUUID(), JsonConverter.MapObject(product)));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if(x > 0){
-			Toast.makeText(AddProduct.this, "Category Saved", Toast.LENGTH_LONG).show();
+		boolean done = ServiceRegistry.get(IMasterDataSync.class).Addproduct(new Product(UUID.randomUUID(), 
+				date, date, true, product_name, product_desc, category, Double.parseDouble(product_bp), 
+				Double.parseDouble(product_sp), account));
+		
+		if(done){
+			Toast.makeText(AddProduct.this, "Product Saved", Toast.LENGTH_LONG).show();
 			finish();
 		}
 		Toast.makeText(AddProduct.this, "there was some error", Toast.LENGTH_LONG).show();

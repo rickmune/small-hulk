@@ -30,7 +30,7 @@ public class LoginService implements ILoginService {
 	@Override
 	public boolean register(User user, Account account) {
 		Log.d(Tag, "register");
-		if(!dataSync.getAddAccount(account) && dataSync.getAddUser(user)){
+		if(!dataSync.AddAccount(account) && dataSync.AddUser(user)){
 			return false;
 		}
 		return true;

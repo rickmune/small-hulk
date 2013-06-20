@@ -21,12 +21,15 @@ public class OutGoing extends BaseEntity{
 		super(id);
 	}
 
-	public OutGoing(UUID id, String json) {
+	public OutGoing(UUID id, String json, String controlIp) {
 		super(id);
 		this.json = json;
+		this.controlIp = controlIp;
 	}
 	@DatabaseField
 	private String json;
+	@DatabaseField
+	private String controlIp;
 
 	public String getJson() {
 		return json;
@@ -34,6 +37,14 @@ public class OutGoing extends BaseEntity{
 
 	public void setJson(String json) {
 		this.json = json;
+	}
+
+	public String getControlIp() {
+		return controlIp;
+	}
+
+	public void setControlIp(String controlIp) {
+		this.controlIp = controlIp;
 	}
 	
 }

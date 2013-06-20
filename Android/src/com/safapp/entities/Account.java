@@ -43,7 +43,7 @@ public class Account extends BaseEntity {
 		Country = country;
 	}
 
-	public AccountDTO toDTO(){
+	public AccountDTO Map(){
 		return new AccountDTO(getId(), isIsActive(), Name, Country.getId());
 	}
 }

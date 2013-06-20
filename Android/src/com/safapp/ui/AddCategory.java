@@ -12,11 +12,10 @@ import android.widget.Toast;
 import com.safapp.androidclient.R;
 import com.safapp.entities.Account;
 import com.safapp.entities.Category;
-import com.safapp.entities.OutGoing;
 import com.safapp.repositories.IAccountRepository;
-import com.safapp.repositories.IOutGoingRepository;
-import com.safapp.utils.JsonConverter;
+import com.safapp.service.IMasterDataSync;
 import com.safapp.utils.RepositoryRegistry;
+import com.safapp.utils.ServiceRegistry;
 
 public class AddCategory extends Activity{
 
@@ -39,14 +38,11 @@ public class AddCategory extends Activity{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Category category = new Category(UUID.randomUUID(), date, date, true, category_name, category_desc, account);
-		int y = -100;
-		try {
-			y = RepositoryRegistry.get(IOutGoingRepository.class).save(new OutGoing(UUID.randomUUID(), JsonConverter.MapObject(category)));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if(y > 0){
+		
+		boolean done = ServiceRegistry.get(IMasterDataSync.class).AddCategory(
+				new Category(UUID.randomUUID(), date, date, true, category_name, category_desc, account));
+		
+		if(done){
 			Toast.makeText(AddCategory.this, "Category Saved", Toast.LENGTH_LONG).show();
 			finish();
 		}

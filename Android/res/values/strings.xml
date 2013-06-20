@@ -44,6 +44,8 @@
     <!-- admin -->
     <string name="admindash_categories">Add Categories</string>
     <string name="admindash_products">Add Products</string>
+    <string name="admindash_outlets">Add Outlets</string>
+    <string name="admindash_route">Add Routes</string>
     <!-- sales -->
     <string name="sales_summary">Summary</string>
     <string name="sales_cancel">Cancel</string>

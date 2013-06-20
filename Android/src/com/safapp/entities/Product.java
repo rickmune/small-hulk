@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.safapp.dto.ProductDTO;
 @DatabaseTable
 public class Product extends BaseEntity {
 	
@@ -17,8 +18,7 @@ public class Product extends BaseEntity {
 		super(id);
 	}
 	public Product(UUID id, Date createdOn, Date updatedOn, boolean isActive,
-			String name, String description,
-			com.safapp.entities.Category category, float bPrice, float sPrice,
+			String name, String description, Category category, double bPrice, double sPrice,
 			Account account) {
 		super(id, createdOn, updatedOn, isActive);
 		Name = name;
@@ -35,9 +35,9 @@ public class Product extends BaseEntity {
 	@DatabaseField(foreign = true)
 	private Category Category;
 	@DatabaseField
-	private float BPrice;
+	private double BPrice;
 	@DatabaseField
-	private float SPrice;
+	private double SPrice;
 	@DatabaseField(foreign = true)
 	private Account Account;
 	
@@ -59,16 +59,16 @@ public class Product extends BaseEntity {
 	public void setCategory(Category category) {
 		Category = category;
 	}
-	public float getBPrice() {
+	public double getBPrice() {
 		return BPrice;
 	}
-	public void setBPrice(float bPrice) {
+	public void setBPrice(double bPrice) {
 		BPrice = bPrice;
 	}
-	public float getSPrice() {
+	public double getSPrice() {
 		return SPrice;
 	}
-	public void setSPrice(float sPrice) {
+	public void setSPrice(double sPrice) {
 		SPrice = sPrice;
 	}
 	public Account getAccount() {
@@ -76,5 +76,10 @@ public class Product extends BaseEntity {
 	}
 	public void setAccount(Account account) {
 		this.Account = account;
+	}
+	
+	public ProductDTO Map(){
+		return new ProductDTO(getId(), isIsActive(), Name, 
+				Description, Category.getId(), Account.getId(), BPrice, SPrice);
 	}
 }

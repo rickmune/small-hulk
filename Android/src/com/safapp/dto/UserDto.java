@@ -1,7 +1,12 @@
 package com.safapp.dto;
 
+import java.util.Date;
 import java.util.UUID;
 
+import com.safapp.entities.Account;
+import com.safapp.entities.User;
+import com.safapp.repositories.IAccountRepository;
+import com.safapp.utils.RepositoryRegistry;
 import com.safapp.utils.enums.UserType;
 
 public class UserDto extends BaseDTO{
@@ -67,5 +72,12 @@ public class UserDto extends BaseDTO{
 	}
 	public void setAccountId(UUID accountId) {
 		AccountId = accountId;
+	}
+	
+	public User Map() throws Exception{
+		Date date = new Date();
+		Account account = RepositoryRegistry.get(IAccountRepository.class).getById(AccountId);
+		return new User(getId(), date, date, isIsActive(), Username, Password, Fullname, Email, 
+				PhoneNumber, UserType, account);
 	}
 }

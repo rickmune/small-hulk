@@ -5,7 +5,6 @@ import java.util.UUID;
 public class BaseDTO {
 	
 	public BaseDTO(UUID id, boolean isActive) {
-		super();
 		Id = id;
 		IsActive = isActive;
 	}

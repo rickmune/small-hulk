@@ -8,7 +8,9 @@ import com.safapp.entities.BaseEntity;
 import com.safapp.entities.Category;
 import com.safapp.entities.Country;
 import com.safapp.entities.OutGoing;
+import com.safapp.entities.Outlet;
 import com.safapp.entities.Product;
+import com.safapp.entities.Route;
 import com.safapp.entities.User;
 
 public enum EntityCollection {
@@ -18,7 +20,9 @@ public enum EntityCollection {
 	COUNTRY(Country.class,  new TypeToken<Country>(){}.getType()),
 	CATEGORY(Category.class, new TypeToken<Category>(){}.getType()),
 	PRODUCT(Product.class, new TypeToken<Product>(){}.getType()),
-	OUTGOING(OutGoing.class, new TypeToken<OutGoing>(){}.getType());;
+	OUTGOING(OutGoing.class, new TypeToken<OutGoing>(){}.getType()),
+	ROUTE(Route.class, new TypeToken<Route>(){}.getType()),
+	OUTLET(Outlet.class, new TypeToken<Outlet>(){}.getType());
 	
 	public final Class<BaseEntity> value;
 	public final Type entityType;
