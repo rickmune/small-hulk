@@ -52,7 +52,9 @@
     <Compile Include="DTOS\AccountDTO.cs" />
     <Compile Include="DTOS\CategoryDTO.cs" />
     <Compile Include="DTOS\CountryDTO.cs" />
+    <Compile Include="DTOS\OutletDTO.cs" />
     <Compile Include="DTOS\ProductDTO.cs" />
+    <Compile Include="DTOS\RouteDTO.cs" />
     <Compile Include="DTOS\UserDTO.cs" />
     <Compile Include="IOC\BuilderRegistry.cs" />
     <Compile Include="IOC\StructureMapDependencyResolver.cs" />

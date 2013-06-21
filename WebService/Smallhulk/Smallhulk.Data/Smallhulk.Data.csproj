@@ -52,7 +52,9 @@
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\CountryRepository.cs" />
+    <Compile Include="Repository\OutletRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\RouteRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

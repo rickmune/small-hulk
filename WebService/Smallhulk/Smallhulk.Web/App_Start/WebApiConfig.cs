@@ -65,6 +65,26 @@ namespace Smallhulk.Web
               routeTemplate: "api/phone/masterdata/products/{accountid}",
               defaults: new { controller = "MasterData", action = "GetProducts", accountid = "accountid" }
               );
+            config.Routes.MapHttpRoute(
+             name: "GetRoutes",
+             routeTemplate: "api/phone/masterdata/routes/{accountid}",
+             defaults: new { controller = "MasterData", action = "GetRoutes", accountid = "accountid" }
+             );
+            config.Routes.MapHttpRoute(
+             name: "GetOutlets",
+             routeTemplate: "api/phone/masterdata/outlets/{accountid}",
+             defaults: new { controller = "MasterData", action = "GetOutlets", accountid = "accountid" }
+             );
+            config.Routes.MapHttpRoute(
+                name: "AddRoute",
+                routeTemplate: "api/phone/masterdata/addroute",
+                defaults: new { controller = "MasterData", action = "AddRoute" }
+                );
+            config.Routes.MapHttpRoute(
+                name: "AddOutlet",
+                routeTemplate: "api/phone/masterdata/addoutlet",
+                defaults: new { controller = "MasterData", action = "AddOutlet" }
+                );
             //config.EnableSystemDiagnosticsTracing();
         }
     }

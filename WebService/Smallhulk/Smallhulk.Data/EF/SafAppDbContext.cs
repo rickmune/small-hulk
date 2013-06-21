@@ -50,6 +50,8 @@ namespace Smallhulk.Data.EF
        public DbSet<Category> Categories { get; set; }
        public DbSet<Product> Products { get; set; }
        public DbSet<Account> Accounts { get; set; }
+       public DbSet<Route> Routes { get; set; }
+       public DbSet<Outlet> Outlets { get; set; } 
        protected override void OnModelCreating(DbModelBuilder modelBuilder)
        {
            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
@@ -186,6 +188,50 @@ namespace Smallhulk.Data.EF
                SellingPrice = 30,
            };
            context.Products.Add(product2);
+           var route = new Route()
+           {
+               CreatedOn = DateTime.Now,
+               Id = Guid.NewGuid(),
+               IsActive = true,
+               UpdatedOn = DateTime.Now,
+               Name = "Kilimani",
+               Account = account,
+               AccountId = account.Id,
+               Code = "R001"
+           };
+           context.Routes.Add(route);
+           var outlet = new Outlet()
+           {
+               CreatedOn = DateTime.Now,
+               Id = Guid.NewGuid(),
+               IsActive = true,
+               UpdatedOn = DateTime.Now,
+               Name = "Outlet Yaya",
+               Account = account,
+              AccountId = account.Id,
+              Code = "O001",
+              Latitude = 31.22,
+              Longitude = 1.22,
+              Route = route,
+              RouteId = route.Id
+           };
+           context.Outlets.Add(outlet);
+           var outlet1 = new Outlet()
+           {
+               CreatedOn = DateTime.Now,
+               Id = Guid.NewGuid(),
+               IsActive = true,
+               UpdatedOn = DateTime.Now,
+               Name = "Outlet Ronga",
+               Account = account,
+               AccountId = account.Id,
+               Code = "O002",
+               Latitude = 31.32,
+               Longitude = 1.32,
+               Route = route,
+               RouteId = route.Id
+           };
+           context.Outlets.Add(outlet1);
            context.SaveChanges();
        }
     }

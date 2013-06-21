@@ -35,6 +35,7 @@ namespace Smallhulk.Web
         }
          private void IntializeIOC()
          {
+             //Database.SetInitializer<SafAppDbContext>(null);
              ObjectFactory.Initialize(x =>
                                           {
                                               x.AddRegistry<RepositoryRegistry>();

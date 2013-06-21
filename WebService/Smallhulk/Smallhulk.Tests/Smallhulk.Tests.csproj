@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RepositoryFixtures\OutletRepositoryFixtures.cs" />
+    <Compile Include="RepositoryFixtures\RouteRepositoryFixtures.cs" />
     <Compile Include="WebAPIFixitures\BaseWebApi.cs" />
     <Compile Include="IocHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

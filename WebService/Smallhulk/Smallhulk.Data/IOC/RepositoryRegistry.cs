@@ -24,7 +24,8 @@ namespace Smallhulk.Data.IOC
           For<IAccountRepository>().Use<AccountRepository>();
           For<ICategoryRepository>().Use<CategoryRepository>();
           For<IProductRepository>().Use<ProductRepository>();
-          
+          For<IRouteRepository>().Use<RouteRepository>();
+          For<IOutletRepository>().Use<OutletRepository>();
       }
     }
 }

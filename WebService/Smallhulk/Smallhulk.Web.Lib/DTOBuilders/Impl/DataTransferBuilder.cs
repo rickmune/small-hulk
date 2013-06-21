@@ -17,16 +17,19 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
        private IAccountRepository _accountRepository;
        private IProductRepository _productRepository;
        private ICategoryRepository _categoryRepository;
+       private IRouteRepository _routeRepository;
+       private IOutletRepository _outletRepository;
 
-       public DataTransferBuilder(IUserRepository userRepository, ICountryRepository countryRepository, IAccountRepository accountRepository, IProductRepository productRepository, ICategoryRepository categoryRepository)
+       public DataTransferBuilder(IUserRepository userRepository, ICountryRepository countryRepository, IAccountRepository accountRepository, IProductRepository productRepository, ICategoryRepository categoryRepository, IRouteRepository routeRepository, IOutletRepository outletRepository)
        {
            _userRepository = userRepository;
            _countryRepository = countryRepository;
            _accountRepository = accountRepository;
            _productRepository = productRepository;
            _categoryRepository = categoryRepository;
+           _routeRepository = routeRepository;
+           _outletRepository = outletRepository;
        }
-
 
        public TranferResponse<UserDTO> GetAllUsers()
        {
@@ -218,6 +221,16 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
            return response;
        }
 
+       public BasicResponse AddRoute(RouteDTO dto)
+       {
+           throw new NotImplementedException();
+       }
+
+       public BasicResponse AddOutlet(OutletDTO dto)
+       {
+           throw new NotImplementedException();
+       }
+
        public TranferResponse<AccountDTO> GetAccount(Guid accountid)
        {
            TranferResponse<AccountDTO> response = new TranferResponse<AccountDTO>();
@@ -277,6 +290,43 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
            }
            return response;
        }
+
+       public TranferResponse<RouteDTO> GetRoute(Guid accountid)
+       {
+           TranferResponse<RouteDTO> response = new TranferResponse<RouteDTO>();
+           try
+           {
+               var data = _routeRepository.Query(new QueryMasterData { AccountId = accountid }).Result.OfType<Route>().Select(Map).ToList();
+               response.Data.AddRange(data);
+               response.Status = true;
+           }
+           catch (Exception ex)
+           {
+               response.Info = ex.Message;
+               response.Status = false;
+
+           }
+           return response;
+       }
+
+       public TranferResponse<OutletDTO> GetOutlet(Guid accountid)
+       {
+           TranferResponse<OutletDTO> response = new TranferResponse<OutletDTO>();
+           try
+           {
+               var data = _outletRepository.Query(new QueryMasterData { AccountId = accountid }).Result.OfType<Outlet>().Select(Map).ToList();
+               response.Data.AddRange(data);
+               response.Status = true;
+           }
+           catch (Exception ex)
+           {
+               response.Info = ex.Message;
+               response.Status = false;
+
+           }
+           return response;
+       }
+
        private static AccountDTO Map(Account s)
        {
            return new AccountDTO
@@ -346,7 +396,32 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
 
            };
        }
+       private static OutletDTO Map(Outlet s)
+       {
+           return new OutletDTO
+           {
+               Id = s.Id,
+               Name = s.Name,
+               Code = s.Code,
+               IsActive = s.IsActive,
+               AccountId = s.AccountId,
+               Latitude = s.Latitude,
+               Longitude = s.Longitude,
+               RouteId = s.RouteId
+           };
+       }
+       private static RouteDTO Map(Route s)
+       {
+           return new RouteDTO
+           {
+               Id = s.Id,
+               Name = s.Name,
+               Code = s.Code,
+               IsActive = s.IsActive,
+               AccountId = s.AccountId
 
+           };
+       }
     
    }
 }

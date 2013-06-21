@@ -129,6 +129,50 @@ namespace Smallhulk.Tests.RepositoryFixtures
             productRepository.Save(entity);
             return productRepository.GetById(entity.Id);
         }
+
+        protected Route AddRoute()
+        {
+            var routeRepository = IocHelper.Using<IRouteRepository>();
+            var account = AddAccount();
+            Route entity = new Route()
+            {
+                IsActive = true,
+                CreatedOn = DateTime.Now,
+                Id = Guid.NewGuid(),
+                Name = TestString(),
+                Account = account,
+                AccountId = account.Id,
+                UpdatedOn = DateTime.Now,
+                Code = TestString(),
+            };
+            routeRepository.Save(entity);
+            return routeRepository.GetById(entity.Id);
+        }
+
+        protected Outlet AddOutlet()
+        {
+            var outletRepository = IocHelper.Using<IOutletRepository>();
+            var account = AddAccount();
+            var route = AddRoute();
+            Outlet entity = new Outlet()
+            {
+                IsActive = true,
+                CreatedOn = DateTime.Now,
+                Id = Guid.NewGuid(),
+                Name = TestString(),
+                Account = account,
+                AccountId = account.Id,
+                UpdatedOn = DateTime.Now,
+                Code = TestString(),
+                Latitude = 31.2,
+                Longitude = 1.12,
+                Route = route,
+                RouteId = route.Id
+            };
+            outletRepository.Save(entity);
+            return outletRepository.GetById(entity.Id);
+        }
+
         public abstract void CanSave();
         public abstract void CanGetById();
         public abstract void CanQuery();
