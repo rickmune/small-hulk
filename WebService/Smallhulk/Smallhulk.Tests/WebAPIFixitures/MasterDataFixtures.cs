@@ -17,27 +17,15 @@ namespace Smallhulk.Tests.WebAPIFixitures
         [Test]
         public void AddAccount()
         {
-            string urlSuffix = "api/phone/masterdata/addaccount";
             HttpClient client = Client();
-
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            Guid accountId = Guid.NewGuid();
-            AccountDTO dto = new AccountDTO()
-                                 {
-                                     Name = Guid.NewGuid().ToString(),
-                                     Id = accountId,
-                                     IsActive = true,
-                                 };
-            var response = client.PostAsJsonAsync("api/phone/masterdata/addaccount", dto);
-            var _response = response.Result;
             UserDTO user = new UserDTO()
             {
                 Username = Guid.NewGuid().ToString(),
-                Id = accountId,
+                Id = Guid.NewGuid(),
                 IsActive = true,
                 UserTypeId = 1,
                 Email = "jgitau",
-                AccountId = accountId,
+                AccountId = GetAccountId(),
                 Fullname = "James Mathai",
                 Password = Guid.NewGuid().ToString(),
                 PhoneNumber = "0122222222",
@@ -55,22 +43,14 @@ namespace Smallhulk.Tests.WebAPIFixitures
             HttpClient client = Client();
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            Guid accountId = Guid.NewGuid();
-            AccountDTO dtoacount = new AccountDTO()
-            {
-                Name = Guid.NewGuid().ToString(),
-                Id = accountId,
-                IsActive = true,
-            };
-            var responseacc = client.PostAsJsonAsync("api/phone/masterdata/addaccount", dtoacount);
-            var _responseacc = responseacc.Result;
+           
             Guid categoryid = Guid.NewGuid();
             CategoryDTO dto = new CategoryDTO()
             {
                 Name = Guid.NewGuid().ToString(),
                 Id = categoryid,
                 IsActive = true,
-                AccountId = accountId,
+                AccountId = GetAccountId(),
                 Description = "noma",
 
             };
@@ -84,7 +64,7 @@ namespace Smallhulk.Tests.WebAPIFixitures
                 IsActive = true,
                 BuyingPrice = 1,
                 SellingPrice = 90,
-                AccountId = accountId,
+                AccountId = GetAccountId(),
                 CategoryId = categoryid,
                 Description = "product web api",
 
