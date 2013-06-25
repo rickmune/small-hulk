@@ -5,6 +5,7 @@ WebService/Smallhulk/Smallhulk.Core/bin
 WebService/Smallhulk/Smallhulk.Data/bin
 WebService/Smallhulk/Smallhulk.Core/obj
 WebService/Smallhulk/Smallhulk.Data/obj
+WebService/Smallhulk/Smallhulk.Web/App_Data
 *.pydevproject
 .project
 .metadata
