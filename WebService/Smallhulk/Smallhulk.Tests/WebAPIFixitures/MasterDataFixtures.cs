@@ -15,7 +15,7 @@ namespace Smallhulk.Tests.WebAPIFixitures
     class MasterDataFixtures : BaseWebApi
     {
         [Test]
-        public void AddAccount()
+        public void AddUser()
         {
             HttpClient client = Client();
             UserDTO user = new UserDTO()
