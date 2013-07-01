@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package com.safapp.androidclient;
+package com.safapp;
 
 public final class BuildConfig {
     public final static boolean DEBUG = true;

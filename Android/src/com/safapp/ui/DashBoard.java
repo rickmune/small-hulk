@@ -1,7 +1,4 @@
 package com.safapp.ui;
-
-import com.safapp.androidclient.R;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.safapp.R;
+import com.safapp.ui.activities.routes.RoutesActivity;
 
 public class DashBoard extends Fragment{
 
@@ -39,7 +39,7 @@ public class DashBoard extends Fragment{
 			Intent intent = null;
 			switch (view.getId()) {
 			case R.id.dashboard_purchases:
-				
+				intent = new Intent(getActivity(), RoutesActivity.class);
 				break;
 			case R.id.dashboard_sales:
 				

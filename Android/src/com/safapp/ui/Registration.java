@@ -17,7 +17,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.safapp.androidclient.R;
+import com.safapp.R;
 import com.safapp.entities.Account;
 import com.safapp.entities.Country;
 import com.safapp.entities.User;

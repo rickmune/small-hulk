@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.safapp.androidclient.R;
+import com.safapp.R;
 import com.safapp.repositories.ICategoryRepsitory;
 import com.safapp.ui.utils.SpinnerArrayAdapter;
 import com.safapp.utils.RepositoryRegistry;

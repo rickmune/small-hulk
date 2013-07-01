@@ -9,7 +9,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.safapp.androidclient.R;
+import com.safapp.R;
 
 public class AdminDash extends Fragment{
 

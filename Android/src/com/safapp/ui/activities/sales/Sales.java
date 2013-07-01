@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.safapp.androidclient.R;
+import com.safapp.R;
 import com.safapp.ui.utils.ScrollTab;
 import com.safapp.ui.utils.ScrollTabsAdapter;
 import com.safapp.ui.utils.TabAdaptors;

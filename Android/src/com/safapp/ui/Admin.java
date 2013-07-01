@@ -1,10 +1,10 @@
 package com.safapp.ui;
 
-import com.safapp.androidclient.R;
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.WindowManager;
+
+import com.safapp.R;
 
 public class Admin  extends FragmentActivity{
 

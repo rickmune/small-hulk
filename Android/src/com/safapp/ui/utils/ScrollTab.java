@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.safapp.androidclient.R;
+import com.safapp.R;
 
 public class ScrollTab  extends ViewGroup implements OnPageChangeListener{
 

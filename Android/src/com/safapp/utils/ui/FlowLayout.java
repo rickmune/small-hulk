@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.safapp.androidclient.R;
+import com.safapp.R;
 
 /**
  * User: Romain Guy

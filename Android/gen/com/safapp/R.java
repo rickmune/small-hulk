@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.safapp.androidclient;
+package com.safapp;
 
 public final class R {
     public static final class attr {
@@ -152,15 +152,15 @@ containing a value of this type.
         public static final int admindashboardfragment=0x7f040014;
         public static final int app_version=0x7f040034;
         public static final int btnLogin=0x7f040033;
-        public static final int btnRegister=0x7f040054;
+        public static final int btnRegister=0x7f040055;
         public static final int btnaddcategory=0x7f040009;
         public static final int btnaddproduct=0x7f040012;
-        public static final int btnpurchase_cancel=0x7f04003f;
-        public static final int btnpurchase_summary=0x7f040040;
-        public static final int btnsale_cancel=0x7f040047;
-        public static final int btnsale_summary=0x7f040048;
+        public static final int btnpurchase_cancel=0x7f040040;
+        public static final int btnpurchase_summary=0x7f040041;
+        public static final int btnsale_cancel=0x7f040048;
+        public static final int btnsale_summary=0x7f040049;
         public static final int categories=0x7f040015;
-        public static final int category=0x7f040036;
+        public static final int category=0x7f040037;
         public static final int colorstrip=0x7f04001d;
         public static final int dashboard_admin=0x7f040022;
         public static final int dashboard_purchases=0x7f040021;
@@ -176,7 +176,7 @@ containing a value of this type.
         public static final int header=0x7f040003;
         public static final int horizontal=0x7f040000;
         public static final int loginPassword=0x7f040032;
-        public static final int loginPasswordConfirm=0x7f04004e;
+        public static final int loginPasswordConfirm=0x7f04004f;
         public static final int login_box=0x7f04002a;
         public static final int login_email=0x7f040031;
         public static final int login_emaillayout=0x7f040030;
@@ -187,42 +187,43 @@ containing a value of this type.
         public static final int login_text=0x7f040028;
         public static final int logo=0x7f040024;
         public static final int main_ppp=0x7f040013;
+        public static final int map=0x7f040035;
         public static final int outlets=0x7f04001b;
-        public static final int price=0x7f04003c;
-        public static final int product=0x7f040038;
+        public static final int price=0x7f04003d;
+        public static final int product=0x7f040039;
         public static final int products=0x7f040017;
-        public static final int purchase_buttons=0x7f04003e;
-        public static final int purchase_cat=0x7f040037;
-        public static final int purchase_items=0x7f040035;
-        public static final int purchase_price=0x7f04003d;
-        public static final int purchase_product=0x7f040039;
-        public static final int purchase_qnty=0x7f04003b;
+        public static final int purchase_buttons=0x7f04003f;
+        public static final int purchase_cat=0x7f040038;
+        public static final int purchase_items=0x7f040036;
+        public static final int purchase_price=0x7f04003e;
+        public static final int purchase_product=0x7f04003a;
+        public static final int purchase_qnty=0x7f04003c;
         public static final int purchases=0x7f040020;
-        public static final int quantity=0x7f04003a;
-        public static final int radio_user_type=0x7f040050;
+        public static final int quantity=0x7f04003b;
+        public static final int radio_user_type=0x7f040051;
         public static final int radioemail=0x7f04002d;
-        public static final int radioemail_type=0x7f040052;
+        public static final int radioemail_type=0x7f040053;
         public static final int radiologintype=0x7f04002b;
-        public static final int radiophone_type=0x7f040051;
+        public static final int radiophone_type=0x7f040052;
         public static final int radiophonenumber=0x7f04002c;
-        public static final int register_account_name=0x7f04004b;
-        public static final int register_country=0x7f040053;
-        public static final int register_email=0x7f04004d;
-        public static final int register_full_name=0x7f04004f;
-        public static final int register_phone_no=0x7f04004c;
+        public static final int register_account_name=0x7f04004c;
+        public static final int register_country=0x7f040054;
+        public static final int register_email=0x7f04004e;
+        public static final int register_full_name=0x7f040050;
+        public static final int register_phone_no=0x7f04004d;
         public static final int route=0x7f040019;
-        public static final int sale_price=0x7f040045;
-        public static final int sale_qnty=0x7f040044;
+        public static final int sale_price=0x7f040046;
+        public static final int sale_qnty=0x7f040045;
         public static final int sales=0x7f04001e;
-        public static final int sales_buttons=0x7f040046;
-        public static final int sales_cat=0x7f040042;
-        public static final int sales_items=0x7f040041;
-        public static final int sales_product=0x7f040043;
+        public static final int sales_buttons=0x7f040047;
+        public static final int sales_cat=0x7f040043;
+        public static final int sales_items=0x7f040042;
+        public static final int sales_product=0x7f040044;
         public static final int settings=0x7f040025;
-        public static final int swipey_tab=0x7f040055;
-        public static final int swipeytabs=0x7f040049;
+        public static final int swipey_tab=0x7f040056;
+        public static final int swipeytabs=0x7f04004a;
         public static final int vertical=0x7f040001;
-        public static final int viewpager=0x7f04004a;
+        public static final int viewpager=0x7f04004b;
     }
     public static final class layout {
         public static final int actionbar=0x7f030000;
@@ -235,13 +236,14 @@ containing a value of this type.
         public static final int header_logo=0x7f030007;
         public static final int home_view=0x7f030008;
         public static final int login=0x7f030009;
-        public static final int makepurchase=0x7f03000a;
-        public static final int makesales=0x7f03000b;
-        public static final int my_spinner_style=0x7f03000c;
-        public static final int purchasetab_activity=0x7f03000d;
-        public static final int register=0x7f03000e;
-        public static final int salestab_activity=0x7f03000f;
-        public static final int scroll_tab_indicator=0x7f030010;
+        public static final int main=0x7f03000a;
+        public static final int makepurchase=0x7f03000b;
+        public static final int makesales=0x7f03000c;
+        public static final int my_spinner_style=0x7f03000d;
+        public static final int purchasetab_activity=0x7f03000e;
+        public static final int register=0x7f03000f;
+        public static final int salestab_activity=0x7f030010;
+        public static final int scroll_tab_indicator=0x7f030011;
     }
     public static final class string {
         public static final int add_product_category=0x7f070022;
@@ -326,10 +328,10 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FlowLayout_debugDraw com.safapp.androidclient:debugDraw}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlowLayout_horizontalSpacing com.safapp.androidclient:horizontalSpacing}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlowLayout_orientation com.safapp.androidclient:orientation}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlowLayout_verticalSpacing com.safapp.androidclient:verticalSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_debugDraw com.safapp:debugDraw}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_horizontalSpacing com.safapp:horizontalSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_orientation com.safapp:orientation}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_verticalSpacing com.safapp:verticalSpacing}</code></td><td></td></tr>
            </table>
            @see #FlowLayout_debugDraw
            @see #FlowLayout_horizontalSpacing
@@ -340,7 +342,7 @@ containing a value of this type.
             0x7f010003, 0x7f010004, 0x7f010005, 0x7f010006
         };
         /**
-          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#debugDraw}
+          <p>This symbol is the offset where the {@link com.safapp.R.attr#debugDraw}
           attribute's value can be found in the {@link #FlowLayout} array.
 
 
@@ -354,7 +356,7 @@ containing a value of this type.
         */
         public static final int FlowLayout_debugDraw = 3;
         /**
-          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#horizontalSpacing}
+          <p>This symbol is the offset where the {@link com.safapp.R.attr#horizontalSpacing}
           attribute's value can be found in the {@link #FlowLayout} array.
 
 
@@ -370,7 +372,7 @@ containing a value of this type.
         */
         public static final int FlowLayout_horizontalSpacing = 0;
         /**
-          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#orientation}
+          <p>This symbol is the offset where the {@link com.safapp.R.attr#orientation}
           attribute's value can be found in the {@link #FlowLayout} array.
 
 
@@ -387,7 +389,7 @@ containing a value of this type.
         */
         public static final int FlowLayout_orientation = 2;
         /**
-          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#verticalSpacing}
+          <p>This symbol is the offset where the {@link com.safapp.R.attr#verticalSpacing}
           attribute's value can be found in the {@link #FlowLayout} array.
 
 
@@ -408,9 +410,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_horizontalSpacing com.safapp.androidclient:layout_horizontalSpacing}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_newLine com.safapp.androidclient:layout_newLine}</code></td><td></td></tr>
-           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_verticalSpacing com.safapp.androidclient:layout_verticalSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_horizontalSpacing com.safapp:layout_horizontalSpacing}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_newLine com.safapp:layout_newLine}</code></td><td></td></tr>
+           <tr><td><code>{@link #FlowLayout_LayoutParams_layout_verticalSpacing com.safapp:layout_verticalSpacing}</code></td><td></td></tr>
            </table>
            @see #FlowLayout_LayoutParams_layout_horizontalSpacing
            @see #FlowLayout_LayoutParams_layout_newLine
@@ -420,7 +422,7 @@ containing a value of this type.
             0x7f010007, 0x7f010008, 0x7f010009
         };
         /**
-          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#layout_horizontalSpacing}
+          <p>This symbol is the offset where the {@link com.safapp.R.attr#layout_horizontalSpacing}
           attribute's value can be found in the {@link #FlowLayout_LayoutParams} array.
 
 
@@ -436,7 +438,7 @@ containing a value of this type.
         */
         public static final int FlowLayout_LayoutParams_layout_horizontalSpacing = 1;
         /**
-          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#layout_newLine}
+          <p>This symbol is the offset where the {@link com.safapp.R.attr#layout_newLine}
           attribute's value can be found in the {@link #FlowLayout_LayoutParams} array.
 
 
@@ -450,7 +452,7 @@ containing a value of this type.
         */
         public static final int FlowLayout_LayoutParams_layout_newLine = 0;
         /**
-          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#layout_verticalSpacing}
+          <p>This symbol is the offset where the {@link com.safapp.R.attr#layout_verticalSpacing}
           attribute's value can be found in the {@link #FlowLayout_LayoutParams} array.
 
 
@@ -471,9 +473,9 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ScrollTabs_bottomBarColor com.safapp.androidclient:bottomBarColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #ScrollTabs_bottomBarHeight com.safapp.androidclient:bottomBarHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #ScrollTabs_tabIndicatorHeight com.safapp.androidclient:tabIndicatorHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollTabs_bottomBarColor com.safapp:bottomBarColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollTabs_bottomBarHeight com.safapp:bottomBarHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #ScrollTabs_tabIndicatorHeight com.safapp:tabIndicatorHeight}</code></td><td></td></tr>
            </table>
            @see #ScrollTabs_bottomBarColor
            @see #ScrollTabs_bottomBarHeight
@@ -483,7 +485,7 @@ containing a value of this type.
             0x7f010000, 0x7f010001, 0x7f010002
         };
         /**
-          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#bottomBarColor}
+          <p>This symbol is the offset where the {@link com.safapp.R.attr#bottomBarColor}
           attribute's value can be found in the {@link #ScrollTabs} array.
 
 
@@ -498,7 +500,7 @@ containing a value of this type.
         */
         public static final int ScrollTabs_bottomBarColor = 0;
         /**
-          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#bottomBarHeight}
+          <p>This symbol is the offset where the {@link com.safapp.R.attr#bottomBarHeight}
           attribute's value can be found in the {@link #ScrollTabs} array.
 
 
@@ -514,7 +516,7 @@ containing a value of this type.
         */
         public static final int ScrollTabs_bottomBarHeight = 1;
         /**
-          <p>This symbol is the offset where the {@link com.safapp.androidclient.R.attr#tabIndicatorHeight}
+          <p>This symbol is the offset where the {@link com.safapp.R.attr#tabIndicatorHeight}
           attribute's value can be found in the {@link #ScrollTabs} array.
 
 
