@@ -67,7 +67,6 @@
             console.log('user render');
         });
         appRouter.on('route:register', function () {
-            appRouter.getLoggedInUser();
             var registerformView = new RegisterFormView();
             registerformView.render();
             console.log('Register render');
