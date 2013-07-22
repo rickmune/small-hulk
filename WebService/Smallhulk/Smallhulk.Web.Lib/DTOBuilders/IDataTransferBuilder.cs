@@ -4,13 +4,15 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Smallhulk.Core.Domain;
+using Smallhulk.Core.Util;
 using Smallhulk.Web.Lib.DTOS;
 
 namespace Smallhulk.Web.Lib.DTOBuilders
 {
     public interface IDataTransferBuilder
     {
-        TranferResponse<UserDTO> GetAllUsers();
+        TranferResponse<UserDTO> GetAllUsers(QueryMasterData query);
         TranferResponse<UserDTO> Login(string username, string password);
         TranferResponse<CountryDTO> GetCountry();
         BasicResponse AddAccount(AccountDTO dto);
@@ -24,6 +26,8 @@ namespace Smallhulk.Web.Lib.DTOBuilders
         TranferResponse<ProductDTO> GetProduct(Guid accountid);
         TranferResponse<RouteDTO> GetRoute(Guid accountid);
         TranferResponse<OutletDTO> GetOutlet(Guid accountid);
+        BasicResponse Register(RegisterDTO register);
+        UserDTO Map(User user);
     }
 
     public class BasicResponse
@@ -42,6 +46,7 @@ namespace Smallhulk.Web.Lib.DTOBuilders
             Data = new List<T>();
         }
 
+        public int RecordCount { get; set; }
         public List<T> Data    ;
     }
    

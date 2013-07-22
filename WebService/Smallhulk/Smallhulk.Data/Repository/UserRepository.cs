@@ -36,12 +36,12 @@ namespace Smallhulk.Data.Repository
                 tbl = new User();
                 tbl.CreatedOn = date;
                 tbl.IsActive = true;
-
+                tbl.Password = entity.Password;
                 tbl.Id = entity.Id;
                 _context.Users.Add(tbl);
             }
             tbl.Username = entity.Username;
-            tbl.Password = entity.Password;
+            
             tbl.UserType = entity.UserType;
             tbl.PhoneNumber = entity.PhoneNumber;
             tbl.Fullname = entity.Fullname;
@@ -66,14 +66,14 @@ namespace Smallhulk.Data.Repository
             var queryResult = new QueryResult();
             if (!string.IsNullOrWhiteSpace(q.Name))
             {
-                userQuery = userQuery.Where(s => s.Username.Contains(q.Name));
+                userQuery = userQuery
+                    .Where(s => s.Username.Contains(q.Name) ||
+                        s.Fullname.Contains(q.Description) || 
+                        s.Email.Contains(q.Description)) ;
             }
-            if (!string.IsNullOrWhiteSpace(q.Description))
-            {
-                userQuery = userQuery.Where(s => s.Fullname.Contains(q.Description));
-            }
+           
             queryResult.Count = userQuery.Count();
-            userQuery = userQuery.OrderByDescending(s => s.Username);
+            userQuery = userQuery.OrderBy(s => s.Username);
             if (q.Skip.HasValue && q.Take.HasValue)
                 userQuery = userQuery.Skip(q.Skip.Value).Take(q.Take.Value);
             queryResult.Result = userQuery.ToList().OfType<BaseEntity>().ToList();
@@ -84,6 +84,11 @@ namespace Smallhulk.Data.Repository
         {
             return
                 _context.Users.FirstOrDefault(s => s.Username.ToLower() == username.ToLower() && s.Password == password);
+        }
+
+        public User Get(string username)
+        {
+            return _context.Users.FirstOrDefault(s => s.Username.ToLower() == username.ToLower());
         }
     }
 }

@@ -134,18 +134,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\MasterDataController.cs" />
+    <Compile Include="Api\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\backgrid\backgrid-paginator.css" />
+    <Content Include="Content\backgrid\backgrid.css" />
     <Content Include="Content\bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
@@ -213,17 +217,38 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="js\collections\users.js" />
     <Content Include="js\app.js" />
+    <Content Include="js\apputil.js" />
+    <Content Include="js\libs\backbone\backbone-pageable.js" />
+    <Content Include="js\libs\backbone\backbone-pageable.min.js" />
     <Content Include="js\libs\backbone\backbone.js" />
     <Content Include="js\boilerplate.js" />
+    <Content Include="js\libs\backbone\backbone.stickit.js" />
+    <Content Include="Content\backgrid\backgrid-filter.css" />
+    <Content Include="js\libs\backgrid\backgrid-filter.js" />
+    <Content Include="js\libs\backgrid\backgrid-paginator.js" />
+    <Content Include="js\libs\backgrid\backgrid.js" />
     <Content Include="js\libs\bootstrap\bootstrap.min.js" />
     <Content Include="js\libs\jquery\jquery-1.8.2.min.js" />
+    <Content Include="js\libs\jquery\jquery-ui-1.8.20.js" />
+    <Content Include="js\libs\jquery\jquery-ui-1.8.20.min.js" />
+    <Content Include="js\libs\jquery\jquery-ui-1.8.24.js" />
+    <Content Include="js\libs\jquery\jquery-ui-1.8.24.min.js" />
+    <Content Include="js\libs\lunr\lunr.js" />
+    <Content Include="js\libs\lunr\lunr.min.js" />
     <Content Include="js\libs\text\text.js" />
+    <Content Include="js\libs\util\md5.js" />
     <Content Include="js\main.js" />
     <Content Include="js\libs\require\require.js" />
     <Content Include="js\router.js" />
     <Content Include="js\libs\underscore\underscore.js" />
     <Content Include="js\models\user.js" />
+    <Content Include="js\templates\register_template.html" />
+    <Content Include="js\templates\home_template.html" />
+    <Content Include="js\templates\userform_template.html" />
     <Content Include="js\templates\userslist_template.html" />
+    <Content Include="js\views\registerview.js" />
+    <Content Include="js\views\homeview.js" />
+    <Content Include="js\views\userformview.js" />
     <Content Include="js\views\userslistview.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -256,6 +281,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\Copy of _Layout.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

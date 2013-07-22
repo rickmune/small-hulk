@@ -20,6 +20,11 @@ namespace Smallhulk.Web
                 defaults: new {controller = "MasterData", action = "GetAllUsers"}
                 );
             config.Routes.MapHttpRoute(
+                name: "Test",
+                routeTemplate: "api/phone/masterdata/test",
+                defaults: new { controller = "MasterData", action = "Test" }
+                );
+            config.Routes.MapHttpRoute(
                 name: "Login",
                 routeTemplate: "api/phone/masterdata/login/{username}/{password}",
                 defaults: new { controller = "MasterData", action = "login", username = "username", password = "password" }
@@ -85,7 +90,28 @@ namespace Smallhulk.Web
                 routeTemplate: "api/phone/masterdata/addoutlet",
                 defaults: new { controller = "MasterData", action = "AddOutlet" }
                 );
+            config.Routes.MapHttpRoute(
+              name: "Register",
+              routeTemplate: "api/phone/masterdata/register",
+              defaults: new { controller = "MasterData", action = "Register" }
+              );
+            config.Routes.MapHttpRoute(
+              name: "Authenticate",
+              routeTemplate: "api/phone/user/login",
+              defaults: new { controller = "User", action = "Authenticate" }
+              );
             //config.EnableSystemDiagnosticsTracing();
+        }
+        public static void RegisterMainApp(HttpConfiguration config)
+        {
+            
+            config.Routes.MapHttpRoute(
+                name: "UserList",
+                routeTemplate: "api/main/user/index",
+                defaults: new { controller = "User", action = "Index" }
+                );
+
+            
         }
     }
 }

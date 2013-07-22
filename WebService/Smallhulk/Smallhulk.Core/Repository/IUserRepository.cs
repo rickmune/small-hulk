@@ -10,5 +10,7 @@ namespace Smallhulk.Core.Repository
    public  interface  IUserRepository:IRepository<User>
    {
        User Login(string username, string password);
+
+       User Get(string name);
    }
 }
