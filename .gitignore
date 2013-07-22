@@ -11,6 +11,7 @@ WebService/Smallhulk/Smallhulk.Web/App_Data
 .metadata
 bin/
 tmp/
+gen/
 *.tmp
 *.bak
 *.swp
