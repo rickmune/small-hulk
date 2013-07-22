@@ -7,6 +7,7 @@ using Smallhulk.Core.Domain;
 using Smallhulk.Core.Repository;
 using Smallhulk.Core.Util;
 using Smallhulk.Web.Lib.DTOS;
+using Smallhulk.Web.Lib.Util;
 
 namespace Smallhulk.Web.Lib.DTOBuilders.Impl
 {
@@ -31,13 +32,15 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
            _outletRepository = outletRepository;
        }
 
-       public TranferResponse<UserDTO> GetAllUsers()
+       public TranferResponse<UserDTO> GetAllUsers(QueryMasterData query )
        {
            TranferResponse<UserDTO> response = new TranferResponse<UserDTO>();
            try
            {
-               var data =_userRepository.Query(new QueryMasterData()).Result.OfType<User>().Select(MapUserToUserDto).ToList();
-               response.Data.AddRange(data);   
+               var data = _userRepository.Query(query);
+               var result =data.Result.OfType<User>().Select(Map).ToList();
+               response.Data.AddRange(result);
+               response.RecordCount = data.Count;
                response.Status = true;
            }
            catch (Exception ex)
@@ -60,7 +63,7 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
                var user = _userRepository.Login(username, password);
                if (user != null)
                {
-                   response.Data.Add(MapUserToUserDto(user));
+                   response.Data.Add(Map(user));
                    response.Status = true;
                    response.Info = "Success";
 
@@ -147,11 +150,21 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
                response.Info = "Success";
 
            }
+          
            catch (Exception ex)
            {
-
                response.Status = false;
-               response.Info = ex.Message;
+               if (ex is DomainValidationException)
+               {
+                   var dex = ex as DomainValidationException;
+                   response.Info = dex.FormatException();
+               }
+               else
+               {
+                   response.Status = false;
+                   response.Info = ex.Message;
+               }
+               
            }
            return response;
        }
@@ -327,6 +340,59 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
            return response;
        }
 
+       public BasicResponse Register(RegisterDTO dto)
+       {
+           BasicResponse response = new BasicResponse();
+           try
+           {
+               var account = new Account()
+               {
+                   Name = dto.Fullname,
+                   Id = dto.AccountId,
+                   IsActive = true,
+                   CreatedOn = DateTime.Now,
+                   UpdatedOn = DateTime.Now,
+               };
+               _accountRepository.Save(account);
+               var entity = new User()
+               {
+                   Username = dto.Username,
+                   Id = dto.Id,
+                   IsActive = true,
+                   CreatedOn = DateTime.Now,
+                   UpdatedOn = DateTime.Now,
+                   AccountId = dto.AccountId,
+                   Email = dto.Email,
+                   Fullname = dto.Fullname,
+                   Password = dto.Password,
+                   PhoneNumber = dto.PhoneNumber,
+                   UserType = (UserType)dto.UserTypeId,
+
+               };
+               _userRepository.Save(entity);
+               response.Status = true;
+               response.Info = "Success";
+
+           }
+
+           catch (Exception ex)
+           {
+               response.Status = false;
+               if (ex is DomainValidationException)
+               {
+                   var dex = ex as DomainValidationException;
+                   response.Info = dex.FormatException();
+               }
+               else
+               {
+                   response.Status = false;
+                   response.Info = ex.Message;
+               }
+
+           }
+           return response;
+       }
+
        private static AccountDTO Map(Account s)
        {
            return new AccountDTO
@@ -380,7 +446,7 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
 
            };
        }
-       private static UserDTO MapUserToUserDto(User s)
+       public  UserDTO Map(User s)
        {
            return new UserDTO
            {

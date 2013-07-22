@@ -7,9 +7,12 @@
     var initialize = function() {
         // Pass in our Router module and call it's initialize function
         Router.initialize();
+        console.log('Application initialized');
     };
-
+    
     return {
-        initialize: initialize
+        initialize: initialize,
+      
     };
+    
 });

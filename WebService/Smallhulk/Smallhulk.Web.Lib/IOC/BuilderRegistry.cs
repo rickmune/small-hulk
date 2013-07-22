@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Smallhulk.Web.Lib.DTOBuilders;
 using Smallhulk.Web.Lib.DTOBuilders.Impl;
+using Smallhulk.Web.Lib.Security;
 using StructureMap.Configuration.DSL;
 
 namespace Smallhulk.Web.Lib.IOC
@@ -14,6 +15,7 @@ namespace Smallhulk.Web.Lib.IOC
        public BuilderRegistry()
        {
            For<IDataTransferBuilder>().Use<DataTransferBuilder>();
+           For<IWebSecurityService>().Use<WebSecurityService>();
        }
     }
 }

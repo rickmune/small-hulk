@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Smallhulk.Core.Util;
 using Smallhulk.Web.Lib.DTOBuilders;
 using Smallhulk.Web.Lib.DTOS;
 
@@ -18,10 +20,40 @@ namespace Smallhulk.Web.Api
         }
          [HttpGet]
         public TranferResponse<UserDTO> GetAllUsers()
-        {
-            var all = _dataTransferBuilder.GetAllUsers();
+         {
+             int take;
+             int skip;
+              var parameters = this.Request.RequestUri.ParseQueryString();
+             string search = parameters["search"];
+             PagingParam(out take,out skip);
+             var query = new QueryMasterData();
+             if(take!=0)
+             {
+                 query.Skip = skip;
+                 query.Take = take;
+             }
+             if(!string.IsNullOrWhiteSpace(search))
+             {
+                 query.Name = search;
+                 query.Description = search;
+                 //query.Skip = 0;
+             }
+
+             var all = _dataTransferBuilder.GetAllUsers(query);
             return all;
         }
+
+         private void PagingParam(out int take, out int skip)
+         {
+
+             int page = 0;
+             var parameters = this.Request.RequestUri.ParseQueryString();
+             Int32.TryParse(parameters["page"], out page);
+             Int32.TryParse(parameters["per_page"], out take);
+            
+             skip = (page-1)*take;
+         }
+
         [HttpGet]
          public HttpResponseMessage Login(string username, string password)
         {
@@ -56,6 +88,12 @@ namespace Smallhulk.Web.Api
         public BasicResponse AddUser(UserDTO user)
         {
             var all = _dataTransferBuilder.AddUser(user);
+            return all;
+        }
+        [HttpPost]
+        public BasicResponse Register(RegisterDTO register)
+        {
+            var all = _dataTransferBuilder.Register(register);
             return all;
         }
         [HttpPost]

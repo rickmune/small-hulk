@@ -10,6 +10,7 @@ using Smallhulk.Data.Repository;
 
 namespace Smallhulk.Web.Controllers
 {
+   
     public class HomeController : Controller
     {
         //
@@ -20,7 +21,7 @@ namespace Smallhulk.Web.Controllers
         {
             _userRepository = userRepository;
         }
-
+         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
            
@@ -35,6 +36,13 @@ namespace Smallhulk.Web.Controllers
             return View();
            
         }
+         public ActionResult Register()
+         {
+             // SafAppDbContextInitializer initializer= new SafAppDbContextInitializer();
+             // initializer.Seed();
+             return View();
+
+         }
         public ActionResult Seed()
         {
            // SafAppDbContextInitializer initializer= new SafAppDbContextInitializer();
