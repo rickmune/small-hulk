@@ -46,8 +46,10 @@
             }
             if (attrs.Username) {
                 $.ajax({
-                    url: '/api/phone/user/checkuseravailabilty/' + attrs.Username,
+                    url: '/api/phone/user/checkuseravailabilty',
                     async: false,
+                    type: "post",
+                    data: { username: attrs.Username },
                     success: function (data) {
                         if (data)
                             errors.push({ name: 'username', message: 'Username already taken.' });
