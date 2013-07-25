@@ -19,13 +19,44 @@
                 PhoneNumber: '',
                 AccountId: '',
                 UserTypeId: 1,
-               
+                RegistrationTypeId: '2'
                 
             },
             validate: function (attrs, options) {
-                if (attrs.Username == null || attrs.Username=='') {
-                    return "enter username";
+                var errors = [];
+                var email_filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                var phone_filter = /^(\d{4}-\d{3}-\d{3})+$/;
+
+                if (!email_filter.test(attrs.Email) && attrs.RegistrationTypeId == '2') {
+                    errors.push({ name: 'email', message: 'Please fill valid email field.' });
                 }
+                if (!phone_filter.test(attrs.PhoneNumber) && attrs.RegistrationTypeId == '1') {
+                    errors.push({ name: 'phonenumber', message: 'Please fill valid mobile  number field (xxxx-xxx-xxx).' });
+                }
+                if (!attrs.Fullname) {
+                    errors.push({ name: 'fullname', message: 'Please fill Fullname field.' });
+                }
+                if (!attrs.Username) {
+                    errors.push({ name: 'username', message: 'Please fill username field.' });
+                }
+                if (!attrs.RegistrationTypeId) {
+                    errors.push({ name: 'registrationTypeId', message: 'Please Select contact type' });
+                }
+               
+                if (attrs.Username) {
+                    $.ajax({
+                        url: '/api/phone/user/checkuseravailabilty',
+                        async: false,
+                        type: "post",
+                        data: { username: attrs.Username },
+                        success: function (data) {
+                            if (data)
+                                errors.push({ name: 'username', message: 'Username already taken.' });
+                        }
+                    });
+                }
+
+                return errors.length > 0 ? errors : false;
             },
             urlRoot: "api/phone/masterdata/adduser",
             url: "api/phone/masterdata/adduser",
@@ -38,8 +69,9 @@
                 this.$el = $('#modal-userform');
                 this.template = _.template(userformtemplate);
                 this.model = new Model();
-                this.model.on("invalid", function (model, error) {
-                    alert(model.get("username") + " " + error);
+                var self = this;
+                this.model.on('change', function () {
+                    appUtil.hideErrors(self);
                 });
                 this.parent = option.parent;
                 
@@ -54,6 +86,7 @@
                 '#phonenumber': 'PhoneNumber',
                 '#accountId': 'AccountId',
                 '#usertypeId': 'UserTypeId',
+                '#registrationTypeId': 'RegistrationTypeId'
                 
             },
             refresh:function () {
@@ -64,12 +97,17 @@
                 var self = this;
                 this.$el.html(this.template()).dialog({
                     resizable: false,
-                    height: 400,
+                    height: 500,
                     width: 600,
                     modal: true,
                     title:'User Form Dialog',
                     buttons: {
                         "Save": function () {
+                            debugger;
+                            if (!self.model.isValid()) {
+                                appUtil.showErrors(self, self.model.validationError);
+                                return;
+                            }
                             var id = appUtil.Guid();
                             if(self.model.isNew) {
                                 self.model.set({ Id: id });

@@ -82,6 +82,12 @@
                  label: "Email",
                  cell: "string",
                  editable: false,
+             },
+            {
+                name: "PhoneNumber",
+                label: "PhoneNumber",
+            cell: "string",
+            editable: false,
             }
             ];
             var serverSideFilter = new backgrid.Extension.ServerSideFilter({

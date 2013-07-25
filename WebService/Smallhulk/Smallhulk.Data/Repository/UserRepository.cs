@@ -47,7 +47,7 @@ namespace Smallhulk.Data.Repository
             tbl.Fullname = entity.Fullname;
             tbl.Email = entity.Email;tbl.UpdatedOn = date;
             tbl.AccountId = entity.AccountId;
-
+            tbl.RegistrationType = entity.RegistrationType;
 
             _context.SaveChanges();
            

@@ -102,8 +102,8 @@ namespace Smallhulk.Web
               );
             config.Routes.MapHttpRoute(
               name: "CheckUserAvailabilty",
-              routeTemplate: "api/phone/user/checkuseravailabilty/{username}",
-              defaults: new { controller = "User", action = "CheckUserAvailabilty", username = "username" }
+              routeTemplate: "api/phone/user/checkuseravailabilty",
+              defaults: new { controller = "User", action = "CheckUserAvailabilty" }
               );
             //config.EnableSystemDiagnosticsTracing();
         }

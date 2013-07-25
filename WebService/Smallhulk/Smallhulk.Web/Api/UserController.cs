@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using Newtonsoft.Json.Linq;
 using Smallhulk.Core.Domain;
 using Smallhulk.Core.Repository;
 using Smallhulk.Core.Util;
@@ -43,10 +44,10 @@ namespace Smallhulk.Web.Api
             else
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
         }
-        [System.Web.Http.HttpGet]
-        public HttpResponseMessage CheckUserAvailabilty(string username)
+       
+        public HttpResponseMessage CheckUserAvailabilty(JObject data)
         {
-
+            string username = (string) data["username"];
             return Request.CreateResponse(HttpStatusCode.OK, _userRepository.CheckUserAvailability(username));
 
         }

@@ -142,6 +142,7 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
                    Password = dto.Password,
                    PhoneNumber = dto.PhoneNumber,
                    UserType =(UserType) dto.UserTypeId,
+                   RegistrationType = (RegistrationType)dto.RegistrationTypeId
                    
                };
 
@@ -367,6 +368,7 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
                    Password = dto.Password,
                    PhoneNumber = dto.PhoneNumber,
                    UserType = (UserType)dto.UserTypeId,
+                   RegistrationType = (RegistrationType)dto.RegistrationTypeId
 
                };
                _userRepository.Save(entity);
