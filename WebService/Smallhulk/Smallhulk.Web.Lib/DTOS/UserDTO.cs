@@ -19,6 +19,7 @@ namespace Smallhulk.Web.Lib.DTOS
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public Guid AccountId { get; set; }
+        public int RegistrationTypeId { get; set; }
     }
     public class RegisterDTO : BaseDTO
     {
@@ -29,5 +30,6 @@ namespace Smallhulk.Web.Lib.DTOS
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public Guid AccountId { get; set; }
+        public int RegistrationTypeId { get; set; }
     }
 }

@@ -124,7 +124,7 @@ namespace Smallhulk.Data.EF
                                PhoneNumber = "0722557538",
                                UpdatedOn = DateTime.Now,
                                Username = "gitau",
-                               UserType = UserType.Email,
+                               UserType = UserType.Admin,
                              
                                Account = account
 
@@ -141,7 +141,7 @@ namespace Smallhulk.Data.EF
                                PhoneNumber = "0000000000",
                                UpdatedOn = DateTime.Now,
                                Username = "maina",
-                               UserType = UserType.Email,
+                               UserType = UserType.Admin,
                                Account = account
                            };
            context.Users.Add(user2);

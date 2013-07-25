@@ -1,6 +1,79 @@
 ﻿<section>
     <h4>Register</h4>
-    <table width="100%">
+    <form class="form-horizontal">
+        <div class="control-group registrationTypeId">
+            <label class="control-label" for="registrationTypeId">Contact type</label>
+            <div class="controls">
+                <select id="registrationTypeId" >
+                    <option value="2">Email</option>
+                    <option value="1">Phone</option>
+                </select>
+                  <span class="help-inline"></span>
+            </div>
+           
+        </div>
+        <div class="control-group username">
+            <label class="control-label" for="username">Username</label>
+            <div class="controls">
+                <input type="text" id="username" placeholder="Email/Phone">
+                 <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="control-group email">
+            <label class="control-label" for="email">Email</label>
+            <div class="controls">
+                <input type="text" id="email" placeholder="Email">
+                <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="control-group phonenumber">
+            <label class="control-label" for="phonenumber">Mobile number</label>
+            <div class="controls">
+                <input type="text" id="phonenumber" placeholder="Mobile Number">
+                 <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="control-group fullname">
+            <label class="control-label" for="fullname">Full Name</label>
+            <div class="controls">
+                <input type="text" id="fullname" placeholder="Full Name">
+                 <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="control-group password">
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+                <input type="password" id="password" placeholder="Password">
+                 <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="control-group confirmpassword">
+            <label class="control-label" for="confirmpassword">Confirm Password</label>
+            <div class="controls">
+                <input type="password" id="confirmpassword" placeholder="Confirm Password">
+                 <span class="help-inline"></span>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                 <input class="btn btn-primary" type="button" id="btn-submit" value="Submit" />
+            </div>
+        </div>
+    </form>
+
+ <!--   <table width="100%">
+        <tr>
+            <td>Register with
+            </td>
+            <td>
+                <select id="registrationTypeId">
+                    <option value="">--------</option>
+                    <option value="1">Phone</option>
+                    <option value="2">Email</option>
+                </select>
+
+            </td>
+        </tr>
         <tr>
             <td>Username
             </td>
@@ -33,7 +106,13 @@
             <td>Email
             </td>
             <td>
-                <input type="text" id="email" />
+                <div class="control-group">
+                    <label class="control-label" for="email">Email</label>
+                    <div class="controls">
+                        <input type="text" id="email" placeholder="Email">
+                    </div>
+                </div>
+
             </td>
         </tr>
         <tr>
@@ -49,5 +128,5 @@
                 <input class="btn btn-primary" type="button" id="btn-submit" value="Submit" />
             </td>
         </tr>
-    </table>
+    </table>-->
 </section>

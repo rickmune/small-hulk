@@ -100,6 +100,11 @@ namespace Smallhulk.Web
               routeTemplate: "api/phone/user/login",
               defaults: new { controller = "User", action = "Authenticate" }
               );
+            config.Routes.MapHttpRoute(
+              name: "CheckUserAvailabilty",
+              routeTemplate: "api/phone/user/checkuseravailabilty/{username}",
+              defaults: new { controller = "User", action = "CheckUserAvailabilty", username = "username" }
+              );
             //config.EnableSystemDiagnosticsTracing();
         }
         public static void RegisterMainApp(HttpConfiguration config)

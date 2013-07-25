@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Smallhulk.Core.Domain
 {
-   public enum  UserType{Phone=1,Email=2}
+   public enum  UserType{Admin=1,User=2}
+   public enum RegistrationType { Phone = 1, Email = 2 }
 
     public class User : BaseEntity
     {
@@ -28,6 +29,9 @@ namespace Smallhulk.Core.Domain
         public string Email { get; set; }
 
         public string PhoneNumber { get; set; }
+        [Required]
+        public RegistrationType RegistrationType { get; set; }
+
 
        
 

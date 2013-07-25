@@ -43,6 +43,13 @@ namespace Smallhulk.Web.Api
             else
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
         }
+        [System.Web.Http.HttpGet]
+        public HttpResponseMessage CheckUserAvailabilty(string username)
+        {
+
+            return Request.CreateResponse(HttpStatusCode.OK, _userRepository.CheckUserAvailability(username));
+
+        }
 
     }
 }

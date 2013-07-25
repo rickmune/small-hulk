@@ -12,5 +12,6 @@ namespace Smallhulk.Core.Repository
        User Login(string username, string password);
 
        User Get(string name);
+       bool CheckUserAvailability(string username);
    }
 }

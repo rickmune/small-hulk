@@ -41,7 +41,8 @@
                     }                    
                 });
             }
-        }
+        },
+        
     });
     var User = Backbone.Model.extend({
         url: "/api/phone/user/login",

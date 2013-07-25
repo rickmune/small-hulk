@@ -90,5 +90,10 @@ namespace Smallhulk.Data.Repository
         {
             return _context.Users.FirstOrDefault(s => s.Username.ToLower() == username.ToLower());
         }
+
+        public bool CheckUserAvailability(string username)
+        {
+            return _context.Users.Any(s => s.Username.ToLower() == username.ToLower());
+        }
     }
 }

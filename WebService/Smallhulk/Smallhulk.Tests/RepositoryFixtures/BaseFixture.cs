@@ -78,7 +78,7 @@ namespace Smallhulk.Tests.RepositoryFixtures
               
                 Email = TestString(),
                 Fullname = TestString(),
-                UserType = UserType.Email,
+                UserType = UserType.Admin,
 
             };
             userRepository.Save(entity);

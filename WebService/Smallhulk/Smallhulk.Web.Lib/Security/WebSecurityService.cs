@@ -29,11 +29,12 @@ namespace Smallhulk.Web.Lib.Security
             var ci = new CustomIdentity(userInfo.Username, identity.IsAuthenticated, identity.AuthenticationType);
             switch (userInfo.UserType)
             {
-                case UserType.Email:
+                case UserType.Admin:
                     ci.Roles.Add("Admin");
+                    ci.Roles.Add("User");
                     break;
-                case UserType.Phone:
-                    ci.Roles.Add("Admin");
+                case UserType.User:
+                    ci.Roles.Add("User");
                     break;
             }
             return new CustomPrincipal(ci, userInfo);

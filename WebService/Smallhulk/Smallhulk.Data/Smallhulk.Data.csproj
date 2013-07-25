@@ -48,6 +48,15 @@
   <ItemGroup>
     <Compile Include="EF\SafAppDbContext.cs" />
     <Compile Include="IOC\RepositoryRegistry.cs" />
+    <Compile Include="Migrations\201307021525186_InitialCreate.cs" />
+    <Compile Include="Migrations\201307021525186_InitialCreate.Designer.cs">
+      <DependentUpon>201307021525186_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307230456028_AddRegitrationType.cs" />
+    <Compile Include="Migrations\201307230456028_AddRegitrationType.Designer.cs">
+      <DependentUpon>201307230456028_AddRegitrationType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
@@ -61,7 +70,14 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201307021525186_InitialCreate.resx">
+      <DependentUpon>201307021525186_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201307230456028_AddRegitrationType.resx">
+      <DependentUpon>201307230456028_AddRegitrationType.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Smallhulk.Core\Smallhulk.Core.csproj">
       <Project>{982cabc3-0d51-4f7b-b581-d3d3808450d4}</Project>
