@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginLeft="10dip"
+    android:orientation="vertical" android:layout_marginRight="10dip" android:layout_marginTop="10dip">
+    <TextView android:id="@+id/appname" android:layout_width="fill_parent" android:layout_height="wrap_content"
+        android:text="Form App" android:textIsSelectable="false" android:textSize="24sp"
+        android:layout_alignParentTop="true"/>
+    <TextView android:id="@+id/line" android:layout_width="fill_parent" android:layout_height="2dip"
+        android:textIsSelectable="false" android:background="@color/orange" android:layout_below="@+id/appname"/>
+    <TextView android:id="@+id/username_l" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="UserName: " android:textIsSelectable="false" android:textSize="20sp"
+        android:layout_below="@+id/line" android:layout_alignParentLeft="true"
+        android:layout_alignBaseline="@+id/username_f" android:layout_marginRight="5dip"/>
+    <TextView android:id="@+id/password_l" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Password: " android:textIsSelectable="false" android:textSize="20sp"
+        android:layout_below="@+id/username_l" android:layout_alignParentLeft="true"
+        android:layout_alignBaseline="@+id/password_f" android:layout_marginRight="5dip"/>
+    <EditText android:id="@+id/username_f" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_below="@+id/line" android:layout_alignParentRight="true" android:hint="username or email"
+        android:layout_marginTop="10dip"/>
+    <EditText android:id="@+id/password_f" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_below="@+id/username_f" android:layout_alignParentRight="true" android:hint="password"
+        android:layout_alignLeft="@+id/username_f"/>
+    
+    <Button android:id="@+id/login_btn" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:background="@drawable/button_blue" android:text="Login" android:textSize="24dp"
+        android:layout_below="@+id/password_f" android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"/>
+</RelativeLayout>
