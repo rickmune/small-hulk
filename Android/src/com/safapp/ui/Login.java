@@ -59,7 +59,7 @@ public class Login extends OrmLiteBaseActivity<DataBaseManager>{
 	}
 	
 	public void onLoginClick(View view) {
-		startActivity(new Intent(Login.this, Home.class));return;		
+		startActivity(new Intent(Login.this, Home.class));	
 		/*String password = loginPassword.getText().toString().trim();
 		String userName = "";
 		UserType type = null;

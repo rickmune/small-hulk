@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.safapp.R;
+import com.safapp.ui.activities.routes.RoutesActivity;
 
 public class AdminDash extends Fragment{
 
@@ -28,6 +29,7 @@ public class AdminDash extends Fragment{
 		super.onActivityCreated(savedInstanceState);
 		((Button)getActivity().findViewById(R.id.admin_dashboard_categories)).setOnClickListener(new AdminDashButtonListener());
 		((Button)getActivity().findViewById(R.id.admin_dashboard_products)).setOnClickListener(new AdminDashButtonListener());
+		((Button)getActivity().findViewById(R.id.admin_dashboard_route)).setOnClickListener(new AdminDashButtonListener());
 	}
 	
 	class AdminDashButtonListener implements OnClickListener{
@@ -41,6 +43,9 @@ public class AdminDash extends Fragment{
 				break;
 			case R.id.admin_dashboard_products:
 				intent = new Intent(getActivity(), AddProduct.class);
+				break;
+			case R.id.admin_dashboard_route:
+				intent = new Intent(getActivity(), RoutesActivity.class);
 				break;
 			default:
 				break;
