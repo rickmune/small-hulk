@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDR", "TDR\TDR.csproj", "{CE0C4D22-D467-4A7F-87A9-639A8DF423AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDR.Core", "TDR.Core\TDR.Core.csproj", "{20F892D6-AE0C-4F0D-A8D1-B6CA6AF2F45C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDR.Core.Data", "TDR.Core.Data\TDR.Core.Data.csproj", "{290F177E-25DD-434F-8472-1D947A8439EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDR.WEB.LIB", "TDR.WEB.LIB\TDR.WEB.LIB.csproj", "{F469F816-8828-49C6-B309-1400FF03CE42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE0C4D22-D467-4A7F-87A9-639A8DF423AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE0C4D22-D467-4A7F-87A9-639A8DF423AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE0C4D22-D467-4A7F-87A9-639A8DF423AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE0C4D22-D467-4A7F-87A9-639A8DF423AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20F892D6-AE0C-4F0D-A8D1-B6CA6AF2F45C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20F892D6-AE0C-4F0D-A8D1-B6CA6AF2F45C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20F892D6-AE0C-4F0D-A8D1-B6CA6AF2F45C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20F892D6-AE0C-4F0D-A8D1-B6CA6AF2F45C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{290F177E-25DD-434F-8472-1D947A8439EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{290F177E-25DD-434F-8472-1D947A8439EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{290F177E-25DD-434F-8472-1D947A8439EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{290F177E-25DD-434F-8472-1D947A8439EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F469F816-8828-49C6-B309-1400FF03CE42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F469F816-8828-49C6-B309-1400FF03CE42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F469F816-8828-49C6-B309-1400FF03CE42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F469F816-8828-49C6-B309-1400FF03CE42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

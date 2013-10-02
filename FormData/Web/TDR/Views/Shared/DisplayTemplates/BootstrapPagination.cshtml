@@ -1,0 +1,67 @@
+﻿@model PaginationModel
+
+	<ul class="pagination">
+		@foreach (var link in Model.PaginationLinks)
+		{
+			@BuildLink(link)
+		}
+	</ul>
+
+
+@helper BuildLink(PaginationLink link)
+{
+	var liBuilder = new TagBuilder("li");
+    var aBuilder = new TagBuilder("a");
+    string text = "";
+	if (link.IsCurrent)
+	{
+		liBuilder.MergeAttribute("class", "active");
+        text = @" <span class=""sr-only"">(current)</span>";
+       
+	}
+	if (! link.Active)
+	{
+		liBuilder.MergeAttribute("class", "disabled");
+	}
+	
+	
+	if (link.Url == null)
+	{
+		aBuilder.MergeAttribute("href", "#");
+	}
+	else
+	{
+		aBuilder.MergeAttribute("href", link.Url);
+	}
+	
+	// Ajax support
+	if (Model.AjaxOptions != null)
+        {
+            foreach (var ajaxOption in Model.AjaxOptions.ToUnobtrusiveHtmlAttributes())
+            {
+                aBuilder.MergeAttribute(ajaxOption.Key, ajaxOption.Value.ToString(), true);
+            }
+        }
+	
+	
+	if (link.DisplayText == "«")
+	{
+       
+	   // aBuilder.SetInnerText("←");
+        aBuilder.InnerHtml = @"<span class=""glyphicon glyphicon-chevron-left""></span>";
+       
+	}
+	else if (link.DisplayText == "»")
+	{
+	//aBuilder.SetInnerText("→");
+        aBuilder.InnerHtml = @"<span class=""glyphicon glyphicon-chevron-right""></span>";
+	}
+	else
+	{
+       
+		aBuilder.InnerHtml=link.DisplayText+text;		
+	}
+	liBuilder.InnerHtml = aBuilder.ToString();
+	
+	@Html.Raw(liBuilder.ToString())
+}

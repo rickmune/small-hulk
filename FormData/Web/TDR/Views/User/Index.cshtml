@@ -1,0 +1,88 @@
+﻿
+@using MvcPaging
+@model IPagedList<TDR.WEB.LIB.DTOS.Users.UserDTO>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="page-header">
+    <h1>Users </h1>
+</div>
+
+    <div class="row">
+        <div class="col-xs-6 ">
+            <div class="form-group">
+                  @Html.ActionLink("New", "Create",null,new { @class="btn btn-primary"})
+              
+            </div>
+        </div>
+        <div class="col-xs-6 ">
+            <div class="col-lg-offset-4">
+                <div class="col-lg-9">
+                    <input type="text" name="search" class="form-control" id="inputSearch" placeholder="Search">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <table class="table table-bordered table-hover ">
+        <thead>
+            <tr>
+                <th>Username
+                </th>
+            <th>Full name
+            </th>
+            <th>Email
+            </th>
+                 <th>Phone No.
+            </th>
+            <th>Type
+            </th>
+                 <th>Client 
+            </th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            { 
+                <tr>
+                    <td>
+                        @item.Username
+                    </td>
+                    <td>
+                        @item.Fullname
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.PhoneNumber
+                    </td>
+                     <td>
+                        @item.UserType
+                    </td>
+                    <td>
+                        @item.ClientName
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Create", "User")"> <span class="glyphicon glyphicon-pencil"></span></a>
+                       
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+ 
+      @Html.Pager(Model.PageSize,Model.PageNumber, Model.TotalItemCount).Options(o => o
+			.DisplayTemplate("BootstrapPagination")
+			.MaxNrOfPages(14)
+			.AlwaysAddFirstPageNumber()
+		)
+       
+
+  
+	
+   

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TDR.Core.Domain.Forms.DformResultItemEntity>
+
+@{
+    ViewBag.Title = "FormDetails";
+}
+<div class="page-header">
+    <h1>Home    </h1>
+</div>
+
+
+<table  class="table table-bordered table-hover " >
+    <tr>
+        <th>
+            Order
+        </th>
+        <th>
+            Label
+        </th>
+       
+        <th>
+            Answer
+        </th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+         <td>
+            @Html.DisplayFor(modelItem => item.FormItem.Order)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormItem.Label)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.FormItemAnswer)
+        </td>
+       
+    </tr>
+}
+
+</table>

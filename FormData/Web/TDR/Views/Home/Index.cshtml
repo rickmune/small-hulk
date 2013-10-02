@@ -1,0 +1,38 @@
+﻿@model List<TDR.Core.Domain.Forms.DformResultEntity>
+    
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="page-header">
+    <h1>Home    </h1>
+</div>
+
+<table class="table table-bordered table-hover ">
+    <tr>
+        <th>
+          Result
+        </th>
+        <th>
+          DateTime
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Form.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateInserted)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "FormDetails", new { id=item.Id }) 
+            
+        </td>
+    </tr>
+}
+
+</table>

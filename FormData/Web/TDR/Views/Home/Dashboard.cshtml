@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+
+<div class="page-header">
+    <h1>Dashboard    </h1>
+</div>
+<script type="text/javascript">
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(drawStackedBarChart);
+    function drawStackedBarChart() {
+       
+        $.get('/api/client/dashboard/outletstatus', {},
+            function (data) {
+                debugger;
+                //var table = $.toJSON(data);
+                var tdata = new google.visualization.DataTable(data, 0.5);
+        
+                var options = {
+                    title: "Outlet Status",
+                    vAxis: { title: 'Count' },
+                    hAxis: { title: 'RespondentType' },
+                    legend: {position: 'right', textStyle: {color: 'blue', fontSize: 8}},
+                    isStacked:true,
+                    
+
+                };
+
+                var chart = new google.visualization.ColumnChart(document.getElementById('chart_StackedBar_div'));
+                chart.draw(tdata, options);
+            });
+    }
+</script>
+<script type="text/javascript">
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(drawStackedBarChart);
+    function drawStackedBarChart() {
+
+        $.get('/api/clinet/dashboard/outletstatus', {},
+    function (data) {
+        debugger;
+        //var table = $.toJSON(data);
+        var tdata = new google.visualization.DataTable(data, 0.5);
+
+        var options = {
+            title: "Outlet Status",
+            vAxis: { title: 'Count' },
+            hAxis: { title: 'RespondentType' },
+            legend: { position: 'right', textStyle: { color: 'blue', fontSize: 8 } },
+           
+
+
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(tdata, options);
+    });
+    }
+</script>
+<table>
+    <tr>
+        <td>
+            <div id="chart_StackedBar_div" style="width: 500px; height: 300px;">
+            </div>
+            
+        </td>
+        <td>
+        <div id="chart_div" style="width: 500px; height: 300px;">
+            </div>
+        
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="chart_line_div" style="width: 500px; height: 300px;">
+            </div>
+        </td>
+        <td>
+        <div id="chart_bar_div" style="width: 500px; height: 300px;">
+            </div>
+        </td>
+    </tr>
+</table>
