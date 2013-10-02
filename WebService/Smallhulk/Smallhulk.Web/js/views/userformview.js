@@ -103,7 +103,7 @@
                     title:'User Form Dialog',
                     buttons: {
                         "Save": function () {
-                            debugger;
+                           
                             if (!self.model.isValid()) {
                                 appUtil.showErrors(self, self.model.validationError);
                                 return;
@@ -114,7 +114,7 @@
                             }
                            
                             var password = appUtil.md5("1234").toString();
-                            debugger;
+                           
                             var loggedinuser = appUtil.getUser();
                             self.model.set({ Password: password, AccountId: loggedinuser.AccountId });
                             var dialog = $(this);
@@ -130,7 +130,7 @@
                                     }
                                 },
                                 error: function (model, response) {
-                                    debugger;
+                                    
                                     alert("fail");
                                 }
                             });

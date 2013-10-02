@@ -43,6 +43,7 @@ namespace Smallhulk.Data.Repository
             tbl.Name = entity.Name;
             tbl.AccountId = entity.AccountId;
             tbl.UpdatedOn = date;
+            tbl.Description = entity.Description;
             _context.SaveChanges();
         }
 
@@ -53,6 +54,7 @@ namespace Smallhulk.Data.Repository
 
         public QueryResult Query(QueryBase query)
         {
+         // var da=  _context.Database.SqlQuery<TestClass>("Select Id,Name from Categories");
             var userQuery = _context.Categories.AsQueryable();
             var q = query as QueryMasterData;
             var queryResult = new QueryResult();
@@ -71,5 +73,11 @@ namespace Smallhulk.Data.Repository
             queryResult.Result = userQuery.ToList().OfType<BaseEntity>().ToList();
             return queryResult;
         }
+    }
+    public class  TestClass
+    {
+        public string Name { get; set; }
+        public Guid Id { get; set; }
+        
     }
 }

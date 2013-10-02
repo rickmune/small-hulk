@@ -19,5 +19,7 @@ namespace Smallhulk.Core.Domain
        public virtual Account Account { get; set; }
        [Required]
        public Guid AccountId { get; set; }
+
+     
     }
 }

@@ -22,7 +22,7 @@ namespace Smallhulk.Web.Lib.DTOBuilders
         BasicResponse AddRoute(RouteDTO dto);
         BasicResponse AddOutlet(OutletDTO dto);
         TranferResponse<AccountDTO> GetAccount(Guid accountid);
-        TranferResponse<CategoryDTO> GetCategory(Guid accountid);
+        TranferResponse<CategoryDTO> GetCategory(QueryMasterData query);
         TranferResponse<ProductDTO> GetProduct(Guid accountid);
         TranferResponse<RouteDTO> GetRoute(Guid accountid);
         TranferResponse<OutletDTO> GetOutlet(Guid accountid);

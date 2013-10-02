@@ -117,7 +117,26 @@ namespace Smallhulk.Web.Api
         [HttpGet]
         public TranferResponse<CategoryDTO> GetCategories(Guid accountid)
         {
-            var all = _dataTransferBuilder.GetCategory(accountid);
+            int take;
+            int skip;
+            var parameters = this.Request.RequestUri.ParseQueryString();
+            string search = parameters["search"];
+            PagingParam(out take, out skip);
+            var query = new QueryMasterData();
+            query.AccountId = accountid;
+            if (take != 0)
+            {
+                query.Skip = skip;
+                query.Take = take;
+            }
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query.Name = search;
+                query.Description = search;
+                //query.Skip = 0;
+            }
+
+            var all = _dataTransferBuilder.GetCategory(query);
             return all;
         }
         [HttpGet]

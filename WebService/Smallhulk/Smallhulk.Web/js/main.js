@@ -62,6 +62,12 @@
         homeviewmodel: 'views/homeview',
         userformview: 'views/userformview',
         registerformview: 'views/registerview',
+        categorylistviewmodel: 'views/categorylistview',
+        productlistviewmodel: 'views/productlistview',
+        routelistviewmodel: 'views/routelistview',
+        customerlistviewmodel: 'views/customerlistview',
+        categoryformview: 'views/categoryformview',
+        
         
     }
 
@@ -70,7 +76,7 @@
 require(['app'], function (App) {
     // The "app" dependency is passed in as "App"
     App.initialize();
-    var Common = App;
+    //var Common = App;
     console.log("Application started.....");
     window.pageload();
 });

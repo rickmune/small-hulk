@@ -269,14 +269,16 @@ namespace Smallhulk.Web.Lib.DTOBuilders.Impl
            return response;
        }
 
-       public TranferResponse<CategoryDTO> GetCategory(Guid accountid)
+       public TranferResponse<CategoryDTO> GetCategory(QueryMasterData query)
        {
            TranferResponse<CategoryDTO> response = new TranferResponse<CategoryDTO>();
            try
            {
-               var data = _categoryRepository.Query(new QueryMasterData{AccountId = accountid}).Result.OfType<Category>().Select(Map).ToList();
-               response.Data.AddRange(data);
+               var data = _categoryRepository.Query(query);
+               var result=data.Result.OfType<Category>().Select(Map).ToList();
+               response.Data.AddRange(result);
                response.Status = true;
+               response.RecordCount = data.Count;
            }
            catch (Exception ex)
            {

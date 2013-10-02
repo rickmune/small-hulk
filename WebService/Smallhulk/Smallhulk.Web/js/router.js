@@ -5,18 +5,33 @@
     'apputil',
    'homeviewmodel',
   'userlistviewmodel',
-  'registerformview'
-  
-], function ($, _, Backbone,appUtil, HomeViewModel, UserListViewModel, RegisterFormView) {
+  'registerformview',
+  'categorylistviewmodel',
+   'productlistviewmodel',
+  'routelistviewmodel',
+  'customerlistviewmodel'
+], function ($,
+    _, Backbone,
+    appUtil,
+    HomeViewModel,
+    UserListViewModel,
+    RegisterFormView,
+    CategoryListview,
+    ProductListView,
+    RouteListView,
+    CustomerListView
+) {
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'index',
             'users': 'showUsers',
             'register': 'register',
+            'categories': 'categories',
+            'products': 'products',
+            'listroutes': 'listroutes',
+            'customers':'customers'
 
-
-            // Default
-            '*actions': 'defaultAction'
+           
         },
         initialize: function () {
             
@@ -53,8 +68,10 @@
         var appRouter = new AppRouter;
        
         // 'views/users/list'
+       
       
         appRouter.on("route:index", function () {
+           // debugger;
             appRouter.getLoggedInUser();
             var homeViewModel = new HomeViewModel();
             homeViewModel.render();
@@ -71,6 +88,35 @@
             var registerformView = new RegisterFormView();
             registerformView.render();
             console.log('Register render');
+        });
+        
+        appRouter.on('route:categories', function () {
+            
+            appRouter.getLoggedInUser();
+            var categoryListview = new CategoryListview();
+            categoryListview.render();
+            console.log('Category list render');
+        });
+        appRouter.on('route:products', function () {
+            
+            appRouter.getLoggedInUser();
+            var productListView = new ProductListView();
+            productListView.render();
+            console.log('Product list render');
+        });
+        appRouter.on('route:listroutes', function () {
+            debugger;
+            appRouter.getLoggedInUser();
+            var routeListView = new RouteListView();
+            routeListView.render();
+            console.log('routes list render');
+        });
+        appRouter.on('route:customers', function () {
+            debugger;
+            appRouter.getLoggedInUser();
+            var customerListView = new CustomerListView();
+            customerListView.render();
+            console.log('customers list render');
         });
         
         appRouter.on('defaultAction', function (actions) {
