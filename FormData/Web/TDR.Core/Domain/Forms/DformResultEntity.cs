@@ -17,7 +17,7 @@ namespace TDR.Core.Domain.Forms
         public Guid FormId { set; get; }
         public virtual DformEntity Form { set; get; }
         public DateTime DateInserted { set; get; }
-       
+        public string Username { set; get; }
         public double? Longitude { get; set; }
         public double? Latitude { get; set; }
         public virtual ICollection<DformResultItemEntity> FormItemResultItems { set; get; }

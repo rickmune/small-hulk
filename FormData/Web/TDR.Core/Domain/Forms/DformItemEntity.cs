@@ -13,6 +13,9 @@ namespace TDR.Core.Domain.Forms
         public int Order { get; set; }
         public string Label { set; get; }
         public string IdCode { set; get; }
+        public string HelpText { set; get; }
+        public string Section { set; get; }
+       
         public DformItemType FormItemType { set; get; }
        
         public virtual ICollection<DformItemAnswerEntity> FormItemAnswers { set; get; }

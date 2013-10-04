@@ -65,6 +65,7 @@ namespace TDR.Core.Domain
     {
         public Guid RespondentTypeId { set; get; }
         public Guid FormId { set; get; }
+        public string Username { set; get; }
         public List<DformResultItem> FormResultItem { set; get; }
         public double? Longitude { get; set; }
         public double? Latitude { get; set; }

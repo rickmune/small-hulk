@@ -99,7 +99,7 @@ namespace TDR.Core.Data.Services
           return respondentType.Id;
       }
 
-      protected Guid CreateFormItem(Guid formid, string idcode, string label, DformItemType type, int order, bool isRequired, string validationText = "", string validationRegex = "")
+      protected Guid CreateFormItem(Guid formid, string idcode, string label, DformItemType type, int order, bool isRequired, string validationText = "", string validationRegex = "", string section = "", int sectionorder = 0, string helptext = "")
       {
           var item1 = _context.FormItems.FirstOrDefault(s => s.IdCode == idcode);
           if (item1 == null)
@@ -118,10 +118,36 @@ namespace TDR.Core.Data.Services
           item1.IdCode = idcode;
           item1.ValidationRegex = validationRegex;
           item1.ValidationText = validationText;
-        
+          item1.HelpText = helptext;
+          item1.Section = section;
+          //item1.SectionOrder = sectionorder;
           _context.SaveChanges();
           return item1.Id;
       }
-   
+      protected Guid CreateFormItem(DformItemEntity entity)
+      {
+          var item1 = _context.FormItems.FirstOrDefault(s => s.IdCode == entity.IdCode);
+          if (item1 == null)
+          {
+              item1 = new DformItemEntity
+              {
+                  Id = Guid.NewGuid(),
+              };
+              _context.FormItems.Add(item1);
+          }
+          item1.FormId = entity.FormId;
+          item1.Label = entity.Label;
+          item1.IsRequired = entity.IsRequired;
+          item1.FormItemType = entity.FormItemType;
+          item1.Order = entity.Order;
+          item1.IdCode = entity.IdCode;
+          item1.ValidationRegex = entity.ValidationRegex;
+          item1.ValidationText = entity.ValidationText;
+          item1.HelpText = entity.HelpText;
+          item1.Section = entity.Section;
+         // item1.SectionOrder = 0;
+          _context.SaveChanges();
+          return item1.Id;
+      }
     }
 }

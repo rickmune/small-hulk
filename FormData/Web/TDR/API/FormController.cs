@@ -123,6 +123,7 @@ namespace TDR.API
                     save.DateInserted = DateTime.UtcNow;
                     save.Latitude = formresult.Latitude;
                     save.Longitude = formresult.Longitude;
+                    save.Username = formresult.Username;
                     _context.FormResult.Add(save);
                     foreach (var dformResultItem in formresult.FormResultItem)
                     {

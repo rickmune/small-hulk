@@ -12,10 +12,14 @@
 <table class="table table-bordered table-hover ">
     <tr>
         <th>
-          Result
+            Result
         </th>
+
         <th>
-          DateTime
+            DateTime
+        </th>
+         <th>
+          Username
         </th>
         <th></th>
     </tr>
@@ -27,6 +31,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateInserted)
+        </td>
+         <td>
+            @Html.DisplayFor(modelItem => item.Username)
         </td>
         <td>
             @Html.ActionLink("Details", "FormDetails", new { id=item.Id }) 

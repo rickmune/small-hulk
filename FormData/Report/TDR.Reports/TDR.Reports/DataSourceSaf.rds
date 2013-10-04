@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DataSourceSaf">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=barberry.arvixe.com;Initial Catalog=tdrdb</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>8eeafea7-c405-4e64-9b31-2222e044ab9d</DataSourceID>
+</RptDataSource>
