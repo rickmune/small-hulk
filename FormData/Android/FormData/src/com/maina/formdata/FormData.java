@@ -93,6 +93,7 @@ public class FormData extends BaseActivity{
 			Bundle bundle = new Bundle();
 			bundle.putString(CLIENTID, dto.getClientId().toString());
 			bundle.putString(USERID, dto.getId().toString());
+			bundle.putString(FormListActivity.USERNAME, dto.getUsername());
 			Intent intent = new Intent(FormData.this, FormListActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);

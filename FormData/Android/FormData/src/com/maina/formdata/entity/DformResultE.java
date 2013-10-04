@@ -13,13 +13,15 @@ public class DformResultE extends DBaseE {
 	}
 	
 	public DformResultE(UUID id, UUID respondentTypeId, UUID formId,
-			List<DformResultItemE> formResultItem, boolean done, boolean sent) {
+			List<DformResultItemE> formResultItem, boolean done, boolean sent,
+			String username) {
 		super(id);
 		RespondentTypeId = respondentTypeId;
 		FormId = formId;
 		FormResultItem = formResultItem;
 		Done = done;
 		Sent = sent;
+		Username = username;
 	}
 	@DatabaseField
 	private UUID RespondentTypeId;
@@ -34,6 +36,8 @@ public class DformResultE extends DBaseE {
 	private double Longitude;
 	@DatabaseField
     private double Latitude;
+	@DatabaseField
+	private String Username;
 	
 	public UUID getRespondentTypeId() {
 		return RespondentTypeId;
@@ -94,5 +98,13 @@ public class DformResultE extends DBaseE {
 
 	public void setLatitude(double latitude) {
 		Latitude = latitude;
+	}
+
+	public String getUsername() {
+		return Username;
+	}
+
+	public void setUsername(String username) {
+		Username = username;
 	}
 }

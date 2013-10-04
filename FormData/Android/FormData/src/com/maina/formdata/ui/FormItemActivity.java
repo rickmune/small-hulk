@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.app.ProgressDialog;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,6 +53,7 @@ public class FormItemActivity extends FormItemBase {
 		Bundle bundle = getIntent().getExtras();
 		String formId = bundle.getString(FormListActivity.FORMID);
 		String formName = bundle.getString(FormListActivity.FORMNAME);
+		String userName = bundle.getString(FormListActivity.USERNAME);
 		RespondentId = UUID.fromString( bundle.getString(FormListActivity.RESPONDENTTYPE));
 		dynamicView = (LinearLayout)findViewById(R.id.dynamicView);
 		btnSpinner = (Button)findViewById(R.id.pop_up);
@@ -69,7 +69,7 @@ public class FormItemActivity extends FormItemBase {
 		new GetFormItems().execute(UUID.fromString(formId));
 		
 		dformResultE = new DformResultE(UUID.randomUUID(), RespondentId, UUID.fromString(formId), 
-				resultItemEs, false, false);
+				resultItemEs, false, false, userName);
 	}
 	
 	@Override
@@ -179,7 +179,7 @@ public class FormItemActivity extends FormItemBase {
 			makeRadioButton(list);
 		}
 	}
-
+	
 	private class BtnClicked implements Button.OnClickListener{
 
 		@Override

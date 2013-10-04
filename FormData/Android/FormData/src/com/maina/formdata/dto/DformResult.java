@@ -23,6 +23,7 @@ public class DformResult extends DBase {
 	private UUID FormId;
 	private double Longitude;
     private double Latitude;
+    private String Username;
 	
 	private List<DformResultItemE> FormResultItem;
 	
@@ -64,5 +65,13 @@ public class DformResult extends DBase {
 
 	public void setLatitude(double latitude) {
 		Latitude = latitude;
+	}
+
+	public String getUsername() {
+		return Username;
+	}
+
+	public void setUsername(String username) {
+		Username = username;
 	}
 }

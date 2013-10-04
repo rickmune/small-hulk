@@ -60,19 +60,19 @@ public class FormItemBase extends BaseActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if(resultCode == RESULT_OK){
 			if (requestCode == DROPDOWNRESULT){
-				String result = data.getStringExtra(ListDialog.RESULTID);
-				AnswerText = data.getStringExtra(ListDialog.RESULTNAME);
+				AnswerText = data.getStringExtra(ListDialog.RESULTID);
+				String result = data.getStringExtra(ListDialog.RESULTNAME);
 				Log.d("FormItemBase","from Dropdown formItemId: "+result+ " resultName AnswerText: "+AnswerText);
 				List<String> results = new ArrayList<String>();
 				results.add(AnswerText);
-				btnSpinner.setText(AnswerText);
+				btnSpinner.setText(result);
 				itemE = new DformResultItemE(UUID.randomUUID(), formItemId, results, dformResultE,
 						AnswerText+",");
 			}else if (requestCode == MULTICHOICERESULT){
-				String result = data.getStringExtra(ListDialog.RESULTID);
-				AnswerText = data.getStringExtra(ListDialog.RESULTNAME);
+				AnswerText = data.getStringExtra(ListDialog.RESULTID);
+				String result = data.getStringExtra(ListDialog.RESULTNAME);
 				Log.d("FormItemBase","from multichoice formItemId: "+result+ " resultName AnswerText: "+AnswerText);
-				btnSpinner.setText(AnswerText);				
+				btnSpinner.setText(result);				
 				String [] r = AnswerText.split(",");
 				List<String> results = new ArrayList<String>();
 				for(int t = 0; t < r.length; t++){
@@ -158,7 +158,7 @@ public class FormItemBase extends BaseActivity {
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				Pair<String, String> pair = (Pair<String, String>) group.findViewById(checkedId).getTag();
-				AnswerText = pair.first;
+				AnswerText = pair.second;
 				System.out.println("onCheckedChanged ... "+AnswerText);
 				Log.d(Tag, "onCheckedChanged ... "+AnswerText);
 			}

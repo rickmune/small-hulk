@@ -31,7 +31,7 @@ public class DFormItemAnswerRepository extends RepositoryBase implements IDFormI
 
 	@Override
 	public Cursor getAnswerItem(List<String> params) throws Exception {
-		String sql = "SELECT id as _id, Text as name FROM DformItemAnswerE dfi";
+		String sql = "SELECT Value as _id, Text as name FROM DformItemAnswerE dfi";
 		return executeQuery(sql, params, "dfi");
 	}
 
