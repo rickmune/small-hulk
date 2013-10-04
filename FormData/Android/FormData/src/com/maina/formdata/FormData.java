@@ -39,7 +39,7 @@ import com.maina.formdata.utils.CloudManager;
 import com.maina.formdata.utils.MakePWD;
 import com.maina.formdata.utils.SyncEntity;
 
-public class LoginActivity extends BaseActivity{
+public class FormData extends BaseActivity{
 	private static final String TAG = "LoginActivity";
 	public static final String USERID = "USERID";
 	public static final String CLIENTID = "CLIENTID";
@@ -77,7 +77,7 @@ public class LoginActivity extends BaseActivity{
 				if(entity.getStatus()){
 					moveToNext(entity);
 				}else{
-					Toast.makeText(LoginActivity.this, entity.getInfo(), Toast.LENGTH_LONG).show();
+					Toast.makeText(FormData.this, entity.getInfo(), Toast.LENGTH_LONG).show();
 					remoteRequest(entity.getInfo());
 					System.out.println("after remoteRequest");
 				}
@@ -93,7 +93,7 @@ public class LoginActivity extends BaseActivity{
 			Bundle bundle = new Bundle();
 			bundle.putString(CLIENTID, dto.getClientId().toString());
 			bundle.putString(USERID, dto.getId().toString());
-			Intent intent = new Intent(LoginActivity.this, FormListActivity.class);
+			Intent intent = new Intent(FormData.this, FormListActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}else{
@@ -131,7 +131,7 @@ public class LoginActivity extends BaseActivity{
 			else
 				remoteRequest(entity.getInfo());
 		}else{
-			Toast.makeText(LoginActivity.this, Error, Toast.LENGTH_LONG).show();
+			Toast.makeText(FormData.this, Error, Toast.LENGTH_LONG).show();
 		}
 	}
 	
@@ -149,7 +149,7 @@ public class LoginActivity extends BaseActivity{
 				e.printStackTrace();
 			}
 		}else{
-			Toast.makeText(LoginActivity.this, Error, Toast.LENGTH_LONG).show();
+			Toast.makeText(FormData.this, Error, Toast.LENGTH_LONG).show();
 			dUserE = new SyncEntity<UserDto>();
 			dUserE.setInfo(Error);dUserE.setStatus(false);
 		}
@@ -161,7 +161,7 @@ public class LoginActivity extends BaseActivity{
 
 		@Override
 		protected void onPreExecute() {
-			dialog = new ProgressDialog(LoginActivity.this);
+			dialog = new ProgressDialog(FormData.this);
 			dialog.setMessage("Starting");
 			dialog.setIndeterminate(true);
 			dialog.setCancelable(true);
@@ -211,7 +211,7 @@ public class LoginActivity extends BaseActivity{
 
 		@Override
 		protected void onPreExecute() {
-			dialog = new ProgressDialog(LoginActivity.this);
+			dialog = new ProgressDialog(FormData.this);
 			dialog.setMessage("Fetching data...");
 			dialog.setIndeterminate(true);
 			dialog.setCancelable(true);
@@ -268,8 +268,8 @@ public class LoginActivity extends BaseActivity{
 	}
 
 	private void remoteRequest(String msg){
-		final Dialog dialog = new Dialog(LoginActivity.this);
-		LayoutInflater infalInflater = (LayoutInflater) LoginActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		final Dialog dialog = new Dialog(FormData.this);
+		LayoutInflater infalInflater = (LayoutInflater) FormData.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = infalInflater.inflate(R.layout.remote_request, null);
 		dialog.setContentView(view);
 		dialog.setTitle("Info");
