@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DataSourceSafaricom">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=barberry.arvixe.com;Initial Catalog=tdrdb</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>c10b25f1-6f40-4fd0-bcb6-6187abe55b07</DataSourceID>
+</RptDataSource>

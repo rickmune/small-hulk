@@ -13,6 +13,10 @@
       <Name>Report1.rdl</Name>
       <FullPath>Report1.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Report2.rdl</Name>
+      <FullPath>Report2.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>
@@ -22,10 +26,11 @@
         <OutputPath>bin\Debug</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
         <TargetServerURL>http://barberry.arvixe.com/ReportServer_SQLExpress</TargetServerURL>
-        <TargetFolder>saf/TDR.Reports</TargetFolder>
-        <TargetDataSourceFolder>saf/Data Sources</TargetDataSourceFolder>
+        <TargetFolder>gitau/TDR.Reports</TargetFolder>
+        <TargetDataSourceFolder>gitau/Data Sources</TargetDataSourceFolder>
+        <OverwriteDataSources>true</OverwriteDataSources>
         <TargetDatasetFolder>Datasets</TargetDatasetFolder>
-        <TargetReportPartFolder>gitau</TargetReportPartFolder>
+        <TargetReportPartFolder>gitau/TDR.Reports</TargetReportPartFolder>
       </Options>
     </Configuration>
     <Configuration>
