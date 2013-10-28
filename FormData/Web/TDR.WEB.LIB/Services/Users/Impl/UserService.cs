@@ -63,8 +63,9 @@ namespace TDR.WEB.LIB.Services.Users.Impl
                 Username = s.Username,
                 ClientId = s.ClientId,
                 ClientName = s.ClientId.HasValue?s.Client.Name:"",
-                UserType = s.UserType.ToString()
-
+                UserType = s.UserType.ToString(),
+                LocationId = s.LocationId,
+                LocationName = s.LocationId.HasValue? s.Location.Name:""
             };
         }
         public BasicResponse Save(UserDTO dto)
@@ -83,7 +84,9 @@ namespace TDR.WEB.LIB.Services.Users.Impl
                     Password = dto.Password,
                     PhoneNumber = dto.PhoneNumber,
                     UserType = (UserType)dto.UserTypeId,
-                    ClientId = dto.ClientId
+                    ClientId = dto.ClientId,
+                    LocationId = dto.LocationId,
+                   
 
                 };
                 _userRepository.Save(entity);

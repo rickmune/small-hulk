@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using StructureMap.Configuration.DSL;
 using TDR.Core.Data.EF;
+using TDR.Core.Data.Repository.BI;
 using TDR.Core.Data.Repository.Clients;
+using TDR.Core.Data.Repository.Locations;
+using TDR.Core.Data.Repository.Settings;
 using TDR.Core.Data.Repository.Users;
 using TDR.Core.Data.Services;
 using TDR.Core.Repository;
@@ -25,6 +28,10 @@ namespace TDR.Core.Data.IOC
                     .Is("TDRContextConnection");
             For<IUserRepository>().Use<UserRepository>();
             For<IClientRepository>().Use<ClientRepository>();
+            For<ILocationRepository>().Use<LocationRepository>();
+            For<IReportGroupItemRepository>().Use<ReportGroupItemRepository>();
+            For<IReportGroupRepository>().Use<ReportGroupRepository>();
+            For<IConfigRepository>().Use<ConfigRepository>();
 
         }
     }

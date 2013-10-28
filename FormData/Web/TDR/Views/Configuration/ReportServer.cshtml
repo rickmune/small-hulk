@@ -1,0 +1,54 @@
+﻿
+@model TDR.WEB.LIB.DTOS.Configurations.ReportServerConfigDTO
+
+@{
+    ViewBag.Title = "Report Server";
+}
+
+<div class="page-header">
+    <h1>Report Server Configuration  </h1>
+</div>
+
+@using (Html.BeginForm("ReportServer", "Configuration", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+{
+     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        <label for="ReportServerUri" class="col-lg-2 control-label">ReportServerUri</label>
+        <div class="col-lg-5">
+              @Html.TextBoxFor(model => model.ReportServerUri,new {@placeholder="ReportServerUri",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.ReportServerUri )
+          
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ReportServerUsername" class="col-lg-2 control-label">Username</label>
+        <div class="col-lg-5">
+            @Html.TextBoxFor(model => model.ReportServerUsername,new {@placeholder="Username",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.ReportServerUsername )
+            @*<input type="text" class="form-control" id="inputFullname" placeholder="Full Name">*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ReportServerPassword" class="col-lg-2 control-label">Password</label>
+        <div class="col-lg-5">
+            @Html.PasswordFor(model => model.ReportServerPassword,new {@placeholder="Password",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.ReportServerPassword )
+            @*<input type="text" class="form-control" id="inputFullname" placeholder="Full Name">*@
+        </div>
+    </div>
+   
+    <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-default">Save</button>
+    </div>
+  </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

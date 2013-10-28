@@ -39,16 +39,18 @@ namespace TDR.Core.Data.Repository.Users
                 _context.Users.Add(tbl);
             }
             tbl.Username = entity.Username;
-            
+
             tbl.UserType = entity.UserType;
             tbl.PhoneNumber = entity.PhoneNumber;
             tbl.Fullname = entity.Fullname;
-            tbl.Email = entity.Email;tbl.UpdatedOn = date;
-            tbl.ClientId = entity.ClientId;
-          
+            tbl.Email = entity.Email;
+            tbl.UpdatedOn = date;
+            if (entity.ClientId.HasValue)
+                tbl.ClientId = entity.ClientId;
+            if (entity.LocationId.HasValue)
+                tbl.LocationId = entity.LocationId.Value;
             _context.SaveChanges();
-           
-          
+
         }
 
         public User GetById(Guid id)

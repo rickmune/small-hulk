@@ -56,5 +56,15 @@ namespace TDR.WEB.LIB.Util
             modelState.AddModelError("", dve);
         }
 
+        public static MvcHtmlString MyResource(this HtmlHelper helper, string resource)
+        {
+            string authority = helper.ViewContext.HttpContext.Request.Url.Authority;
+            string scheme = helper.ViewContext.HttpContext.Request.Url.Scheme;
+            var urlHelper = new UrlHelper(helper.ViewContext.RequestContext);
+            string webroot = urlHelper.Content("~");
+            string urlformat = string.Format("{0}://{1}{2}{3}", scheme, authority, webroot, resource);
+            return MvcHtmlString.Create(urlformat);
+        }
+
     }
 }

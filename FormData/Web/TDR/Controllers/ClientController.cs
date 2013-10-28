@@ -13,6 +13,7 @@ using TDR.WEB.LIB.Util;
 
 namespace TDR.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ClientController : Controller
     {
         //

@@ -1,0 +1,85 @@
+﻿@model TDR.WEB.LIB.DTOS.Users.UserDTO
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="page-header">
+    <h1>User Form </h1>
+</div>
+
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+{
+     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model=>model.Id)
+    <div class="form-group">
+        <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+        <div class="col-lg-5">
+              @Html.TextBoxFor(model => model.Username,new {@placeholder="Username",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.Username )
+           @* <input type="text" class="form-control" id="inputUsername" placeholder="Username">*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputFullname" class="col-lg-2 control-label">Full Name</label>
+        <div class="col-lg-5">
+            @Html.TextBoxFor(model => model.Fullname,new {@placeholder="Fullname",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.Fullname )
+            @*<input type="text" class="form-control" id="inputFullname" placeholder="Full Name">*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+        <div class="col-lg-5">
+             @Html.TextBoxFor(model => model.Email,new {@placeholder="Email",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.Email )
+           @* <input type="email" class="form-control" id="inputEmail" placeholder="Email">*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPhoneNo" class="col-lg-2 control-label">Phone No.</label>
+        <div class="col-lg-5">
+             @Html.TextBoxFor(model => model.PhoneNumber,new {@placeholder="PhoneNumber",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.PhoneNumber )
+            @*<input type="text" class="form-control" id="inputPhoneNo" placeholder="Phone No.">*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputUserType" class="col-lg-2 control-label">UserType</label>
+        <div class="col-lg-5">
+              @Html.DropDownListFor(model => model.UserTypeId, new SelectList(ViewBag.UserTypeList,"Value","Text"),"-----------",new {@placeholder="UserTypeId",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.UserTypeId )
+           @* <input type="text" class="form-control" id="inputUserType" placeholder="User Type">*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputClientId" class="col-lg-2 control-label">Client</label>
+        <div class="col-lg-5">
+            @Html.DropDownListFor(model => model.ClientId, new SelectList(ViewBag.ClientList,"Value","Text"),"-----------",new {@placeholder="Client",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.ClientId )
+            @* <input type="text" class="form-control" id="inputUserType" placeholder="User Type">*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="LocationId" class="col-lg-2 control-label">Location</label>
+        <div class="col-lg-5">
+              @Html.DropDownListFor(model => model.LocationId, new SelectList(ViewBag.LocationList,"Value","Text"),"-----------",new {@placeholder="Location",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.LocationId )
+           @* <input type="text" class="form-control" id="inputUserType" placeholder="User Type">*@
+        </div>
+    </div>
+    <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-default">Save</button>
+    </div>
+  </div>
+}
+
+<div>
+    @Html.ActionLink("Back", "Index",null,new { @class="btn btn-default"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -12,11 +12,13 @@ using TDR.Core.Util;
 using TDR.WEB.LIB.DTOS.Clients;
 using TDR.WEB.LIB.DTOS.Users;
 using TDR.WEB.LIB.Services.Clients;
+using TDR.WEB.LIB.Services.Locations;
 using TDR.WEB.LIB.Services.Users;
 using TDR.WEB.LIB.Util;
 
 namespace TDR.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         //
@@ -24,11 +26,13 @@ namespace TDR.Controllers
 
         private IUserService _userService;
         private IClientService _clientService;
+        public ILocationService _locationService;
 
-        public UserController(IUserService userService, IClientService clientService)
+        public UserController(IUserService userService, IClientService clientService, ILocationService locationService)
         {
             _userService = userService;
             _clientService = clientService;
+            _locationService = locationService;
         }
 
         public ActionResult Index(int? page)
@@ -58,6 +62,9 @@ namespace TDR.Controllers
             ViewBag.ClientList =
                 _clientService.Query(new QueryMasterData()).Data.Select(
                     s => new SelectListItem {Value = s.Id.ToString(), Text = s.Name});
+            ViewBag.LocationList =
+               _locationService.Query(new QueryMasterData()).Data.Select(
+                   s => new SelectListItem { Value = s.Id.ToString(), Text = s.Name });
             ViewBag.UserTypeList = new List<SelectListItem>
                                        {
                                            new SelectListItem {Value = ((int) UserType.Admin).ToString(), Text = "Admin"},
@@ -76,9 +83,53 @@ namespace TDR.Controllers
                     bind();
                     return View();
                 }
+                if (model.UserTypeId==(int)UserType.TDR && !model.LocationId.HasValue)
+                {
+                    ModelState.AddModelError("", "Location is required for User type TDR ");
+                    bind();
+                    return View();
+                }
                 model.Id = Guid.NewGuid();
+                model.Password = Md5Hash.GetMd5Hash("1234");
                 _userService.Save(model);
                
+                return RedirectToAction("Index");
+            }
+            catch (DomainValidationException ve)
+            {
+                ve.DomainValidationErrors(ModelState);
+                bind();
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                bind();
+                return View();
+            }
+            return View();
+        }
+        public ActionResult Edit(Guid id)
+        {
+            bind();
+            var model = _userService.GetById(id);
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Edit(UserDTO model)
+        {
+            try
+            {
+               
+                if (model.UserTypeId == (int)UserType.TDR && !model.LocationId.HasValue)
+                {
+                    ModelState.AddModelError("", "Location is required for User type TDR ");
+                    bind();
+                    return View();
+                }
+               
+                _userService.Save(model);
+
                 return RedirectToAction("Index");
             }
             catch (DomainValidationException ve)

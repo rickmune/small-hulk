@@ -19,7 +19,7 @@
 <body>
 
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top bs-docs-nav " role="banner">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,7 +27,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">I-eReporter</a>
+                <img class="navbar-brand" src="~/Content/Images/FormdataBI_logo.png" />
+              @*  <a class="navbar-brand" href="#">I-eReporter</a>*@
             </div>
             
             <div class="navbar-collapse collapse">
@@ -43,15 +44,23 @@
                                  <li class="divider"></li>
                                 
                                  <li><a href="/User">Users</a></li>
+                                 <li><a href="@Url.Content("~/Location")">Locations</a></li>
                                  
+                             </ul>
+                         </li>
+                         <li class="dropdown">
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+                             <ul class="dropdown-menu">
+                                <li><a href="@Url.Content("~/ReportGroup")">Report Groups</a></li>
+                                 <li><a href="@Url.Content("~/ReportGroupItem")">Report Groups Item</a></li>
+                                  <li><a href="@Url.Content("~/Configuration/ReportServer")">Report Server </a></li>
                              </ul>
                          </li>
                          <li class="dropdown">
                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
                              <ul class="dropdown-menu">
-                                 <li><a href="#">Safaricom Daily Data</a></li>
-                                 <li><a href="#">Safaricom Daily Sales</a></li>
-                                 <li><a href="#">Safaricom Daily Training</a></li>
+                                <li><a href="@Url.Content("~/ReportMenu")">Safaricom Report </a></li>
+                                
                                 
                              </ul>
                          </li>

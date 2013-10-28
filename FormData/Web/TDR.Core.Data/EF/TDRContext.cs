@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
+using TDR.Core.Domain.BI;
 using TDR.Core.Domain.Clients;
 using TDR.Core.Domain.Forms;
+
+using TDR.Core.Domain.Locations;
+using TDR.Core.Domain.Settings;
 using TDR.Core.Domain.Users;
 
 namespace TDR.Core.Data.EF
@@ -27,6 +31,11 @@ namespace TDR.Core.Data.EF
          public DbSet<DformResultItemEntity> FormResultItem { get; set; }
          public DbSet<User> Users { get; set; }
          public DbSet<Client> Clients { get; set; }
+         public DbSet<Location> Locations { get; set; }
+         public DbSet<ReportGroup> ReportGroups { get; set; }
+         public DbSet<ReportGroupItem> ReportGroupItems { get; set; }
+         public DbSet<Config> Configurations { get; set; }
+        
 
 
          protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -86,11 +95,30 @@ namespace TDR.Core.Data.EF
               .HasForeignKey(x => x.ClientId)
               .WillCascadeOnDelete(false);
 
+             modelBuilder.Entity<User>()
+             .HasOptional(x => x.Location)
+             .WithMany(x => x.Users)
+             .HasForeignKey(x => x.LocationId)
+             .WillCascadeOnDelete(false);
+
              modelBuilder.Entity<DformEntity>()
              .HasRequired(x => x.Client)
              .WithMany(x => x.Forms)
              .HasForeignKey(x => x.ClientId)
              .WillCascadeOnDelete(false);
+
+             modelBuilder.Entity<ReportGroup>()
+            .HasRequired(x => x.Client)
+            .WithMany(x => x.GroupReports)
+            .HasForeignKey(x => x.ClientId)
+            .WillCascadeOnDelete(false);
+
+             modelBuilder.Entity<ReportGroupItem>()
+          .HasRequired(x => x.Group)
+          .WithMany(x => x.Reports)
+          .HasForeignKey(x => x.GroupId)
+          .WillCascadeOnDelete(false);
+
 
 
          }

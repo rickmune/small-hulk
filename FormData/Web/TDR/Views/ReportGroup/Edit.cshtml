@@ -1,0 +1,54 @@
+﻿@model TDR.WEB.LIB.DTOS.BI.ReportGroupDTO
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="page-header">
+    <h1>Report Group Form </h1>
+</div>
+
+@using (Html.BeginForm("Edit", "ReportGroup", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+{
+     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        <label for="Username" class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-5">
+              @Html.TextBoxFor(model => model.Name,new {@placeholder="Name",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.Name )
+           @* <input type="text" class="form-control" id="inputUsername" placeholder="Username">*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Description" class="col-lg-2 control-label">Description</label>
+        <div class="col-lg-5">
+            @Html.TextBoxFor(model => model.Description,new {@placeholder="Description",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.Description )
+            @*<input type="text" class="form-control" id="inputFullname" placeholder="Full Name">*@
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <label for="ClientId" class="col-lg-2 control-label">Client</label>
+        <div class="col-lg-5">
+              @Html.DropDownListFor(model => model.ClientId, new SelectList(ViewBag.ClientList,"Value","Text"),"-----------",new {@placeholder="Client",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.ClientId )
+           @* <input type="text" class="form-control" id="inputUserType" placeholder="User Type">*@
+        </div>
+    </div>
+    <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-default">Save</button>
+    </div>
+  </div>
+}
+
+<div>
+    @Html.ActionLink("Back", "Index",null,new { @class="btn btn-default"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

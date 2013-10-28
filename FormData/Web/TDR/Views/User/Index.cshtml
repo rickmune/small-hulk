@@ -40,7 +40,11 @@
             </th>
             <th>Type
             </th>
-                 <th>Client 
+            <th>Client 
+            </th>
+                 <th>Location 
+            </th>
+                    <th> 
             </th>
         </thead>
         <tbody>
@@ -65,8 +69,11 @@
                     <td>
                         @item.ClientName
                     </td>
+                     <td>
+                        @item.LocationName
+                    </td>
                     <td>
-                        <a href="@Url.Action("Create", "User")"> <span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="@Url.Action("Edit", "User",new {id=item.Id})"> <span class="glyphicon glyphicon-pencil"></span></a>
                        
                         
                     </td>

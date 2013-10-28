@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Smallhulk.Core.Domain;
 using TDR.Core.Domain.Clients;
+using TDR.Core.Domain.Locations;
+
 
 namespace TDR.Core.Domain.Users
 {
@@ -31,6 +33,10 @@ namespace TDR.Core.Domain.Users
         public virtual Client Client { get; set; }
 
         public Guid? ClientId { get; set; }
+
+        public virtual Location Location { get; set; }
+
+        public Guid? LocationId { get; set; }
 
 
     }

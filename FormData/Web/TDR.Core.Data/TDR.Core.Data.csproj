@@ -51,17 +51,12 @@
     <Compile Include="EF\TDRContext.cs" />
     <Compile Include="IOC\RepositoryRegistry.cs" />
     <Compile Include="IOC\ServicesRegistry.cs" />
-    <Compile Include="Migrations\201310011353058_addvalidationatrributes.cs" />
-    <Compile Include="Migrations\201310011353058_addvalidationatrributes.Designer.cs">
-      <DependentUpon>201310011353058_addvalidationatrributes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201310011555510_geolocationcoodinate.cs" />
-    <Compile Include="Migrations\201310011555510_geolocationcoodinate.Designer.cs">
-      <DependentUpon>201310011555510_geolocationcoodinate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BI\ReportGroupItemRepository.cs" />
+    <Compile Include="Repository\BI\ReportGroupRepository.cs" />
     <Compile Include="Repository\Clients\ClientRepository.cs" />
+    <Compile Include="Repository\Locations\LocationRepository.cs" />
+    <Compile Include="Repository\Settings\ConfigRepository.cs" />
     <Compile Include="Repository\Users\UserRepository.cs" />
     <Compile Include="Services\FormServiceBase.cs" />
     <Compile Include="Services\SafaricomFormService.cs" />
@@ -76,14 +71,7 @@
       <Name>TDR.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201310011353058_addvalidationatrributes.resx">
-      <DependentUpon>201310011353058_addvalidationatrributes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201310011555510_geolocationcoodinate.resx">
-      <DependentUpon>201310011555510_geolocationcoodinate.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

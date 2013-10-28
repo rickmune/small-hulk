@@ -20,6 +20,7 @@ namespace TDR.Core.Domain.Forms
         public string Username { set; get; }
         public double? Longitude { get; set; }
         public double? Latitude { get; set; }
+        public Guid? LocationId { set; get; }
         public virtual ICollection<DformResultItemEntity> FormItemResultItems { set; get; }
     }
 }

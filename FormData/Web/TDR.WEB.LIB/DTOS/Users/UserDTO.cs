@@ -22,6 +22,8 @@ namespace TDR.WEB.LIB.DTOS.Users
         [Required]
         public Guid? ClientId { get; set; }
         public string ClientName { get; set; }
+        public Guid? LocationId { get; set; }
+        public string LocationName { get; set; }
        
     }
 }

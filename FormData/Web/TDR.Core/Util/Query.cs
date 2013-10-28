@@ -28,4 +28,18 @@ namespace TDR.Core.Util
         public string Description { get; set; }
         public Guid AccountId { get; set; }
     }
+    public class QueryReportItem : QueryBase
+    {
+
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Guid? GroupId { get; set; }
+    }
+    public class QueryReport : QueryBase
+    {
+
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Guid? ClientId { get; set; }
+    }
 }

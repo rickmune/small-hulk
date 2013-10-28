@@ -113,9 +113,6 @@ namespace TDR.API
             {
                 if (formresult != null)
                 {
-                    
-
-
                     DformResultEntity save = new DformResultEntity();
                     save.Id = formresult.Id;
                     save.FormId = formresult.FormId;
@@ -124,6 +121,8 @@ namespace TDR.API
                     save.Latitude = formresult.Latitude;
                     save.Longitude = formresult.Longitude;
                     save.Username = formresult.Username;
+                    if (formresult.LocationId.HasValue)
+                        save.LocationId = formresult.LocationId.Value;
                     _context.FormResult.Add(save);
                     foreach (var dformResultItem in formresult.FormResultItem)
                     {
