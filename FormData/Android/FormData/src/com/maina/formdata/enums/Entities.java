@@ -8,6 +8,7 @@ import com.maina.formdata.entity.DformItemRespondentTypeE;
 import com.maina.formdata.entity.DformRespondentTypeE;
 import com.maina.formdata.entity.DformResultE;
 import com.maina.formdata.entity.DformResultItemE;
+import com.maina.formdata.entity.PhonConfig;
 
 public enum Entities {
 
@@ -18,7 +19,8 @@ public enum Entities {
 	DFORMRESPONDENTTYPE(DformRespondentTypeE.class),
 	DFORMRESULT(DformResultE.class),
 	DFORMRESULTITEM(DformResultItemE.class),
-	DUSERE(DUserE.class);
+	DUSERE(DUserE.class),
+	CONFIG(PhonConfig.class);
 	
 	@SuppressWarnings("rawtypes")
 	public final Class Value;

@@ -3,6 +3,7 @@ package com.maina.formdata;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.maina.formdata.datamanager.IDataManager;
 import com.maina.formdata.dto.UserDto;
+import com.maina.formdata.entity.PhonConfig;
 import com.maina.formdata.htttputil.HttpUtils;
 import com.maina.formdata.repository.IDFormItemAnswerRepository;
 import com.maina.formdata.repository.IDFormItemRepository;
@@ -30,6 +32,7 @@ import com.maina.formdata.repository.IDFormItemRespondentTypeRepository;
 import com.maina.formdata.repository.IDFormRepository;
 import com.maina.formdata.repository.IDFormRespondentTypeRepository;
 import com.maina.formdata.repository.IDUserRepository;
+import com.maina.formdata.repository.IPhonConfig;
 import com.maina.formdata.repository.Repositoryregistry;
 import com.maina.formdata.service.ILoginService;
 import com.maina.formdata.service.LoginService;
@@ -38,6 +41,7 @@ import com.maina.formdata.utils.CloudConstants;
 import com.maina.formdata.utils.CloudManager;
 import com.maina.formdata.utils.MakePWD;
 import com.maina.formdata.utils.SyncEntity;
+import com.maina.formdata.utils.ui.GenUtils;
 
 public class FormData extends BaseActivity{
 	private static final String TAG = "LoginActivity";
@@ -53,6 +57,7 @@ public class FormData extends BaseActivity{
 	private UserDto dto;
 	private String Error = "";
 	boolean pass = false;
+	PhonConfig config = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +78,17 @@ public class FormData extends BaseActivity{
 			
 			@Override
 			public void onClick(View v) {
-				SyncEntity<UserDto> entity = Login();
-				if(entity.getStatus()){
-					moveToNext(entity);
+				if(GenUtils.getUrl(dataManager) == null){
+					
 				}else{
-					Toast.makeText(FormData.this, entity.getInfo(), Toast.LENGTH_LONG).show();
-					remoteRequest(entity.getInfo());
-					System.out.println("after remoteRequest");
+					SyncEntity<UserDto> entity = Login();
+					if(entity.getStatus()){
+						moveToNext(entity);
+					}else{
+						Toast.makeText(FormData.this, entity.getInfo(), Toast.LENGTH_LONG).show();
+						remoteRequest(entity.getInfo());
+						System.out.println("after remoteRequest");
+					}
 				}
 			}
 		});
@@ -94,6 +103,7 @@ public class FormData extends BaseActivity{
 			bundle.putString(CLIENTID, dto.getClientId().toString());
 			bundle.putString(USERID, dto.getId().toString());
 			bundle.putString(FormListActivity.USERNAME, dto.getUsername());
+			bundle.putString(FormListActivity.LOCATIONID, dto.getLocationId().toString());
 			Intent intent = new Intent(FormData.this, FormListActivity.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
@@ -118,6 +128,7 @@ public class FormData extends BaseActivity{
 			return true;
 		}else if(itemId == R.id.action_settings){
 			Log.d(TAG, "onOptionsItemSelected action_settings");
+			setURL();
 			return true;
 		}else{
 			return super.onOptionsItemSelected(item);
@@ -227,7 +238,7 @@ public class FormData extends BaseActivity{
 					Repositoryregistry.get(IDFormItemRepository.class, dataManager), 
 					Repositoryregistry.get(IDFormItemAnswerRepository.class, dataManager), 
 					Repositoryregistry.get(IDFormItemRespondentTypeRepository.class, dataManager),
-					Repositoryregistry.get(IDUserRepository.class, dataManager));
+					Repositoryregistry.get(IDUserRepository.class, dataManager), dataManager);
 			try {
 				Log.d("SyncService", "SyncForm() called with params.length: "+ params.length);
 				loginService.SyncForm(params);
@@ -298,6 +309,55 @@ public class FormData extends BaseActivity{
 				} catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
 				new SyncAsyncTask().execute(new String[]{username.getText().toString(), pwd});
 			};
+		});
+		dialog.show();
+	}
+	
+	private void setURL(){
+		final Dialog dialog = new Dialog(FormData.this);
+		LayoutInflater infalInflater = (LayoutInflater) FormData.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View view = infalInflater.inflate(R.layout.url_settings, null);
+		dialog.setContentView(view);
+		dialog.setTitle("Settings");
+		final IPhonConfig phonConfig = Repositoryregistry.get(IPhonConfig.class, dataManager);
+		try {
+			config = phonConfig.getConfig();
+			if(config != null && config.getURL() != null && !config.getURL().equals("")){
+				Log.d("setURL", "config != null: "+config.getURL());
+				((TextView)view.findViewById(R.id.url_text)).setText(config.getURL());
+			}else {
+				Log.d("setURL", "config == null");
+				((TextView)view.findViewById(R.id.url_text)).setText("Not Set");
+			}
+		} catch (Exception e) { e.printStackTrace(); }
+		final EditText urlEdit = (EditText)view.findViewById(R.id.url_input);
+		((Button)view.findViewById(R.id.btn_cancel)).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		((Button)view.findViewById(R.id.btn_ok)).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Object object = urlEdit.getText();
+				if(object == null || object.toString().equals("")){
+					Toast.makeText(FormData.this, "Must enter url", Toast.LENGTH_LONG).show();
+				}else{
+					Log.d("setURL", "config != null: " + object.toString());
+					dialog.dismiss();					
+					if(config == null){
+						config = new PhonConfig();
+						config.setId(UUID.randomUUID());
+					}
+					config.setURL(object.toString());
+					try {
+						phonConfig.save(config);
+					} catch (Exception e) { e.printStackTrace(); }
+				}
+			}
 		});
 		dialog.show();
 	}

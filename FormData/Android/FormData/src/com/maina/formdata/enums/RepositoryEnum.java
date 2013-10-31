@@ -7,6 +7,7 @@ import com.maina.formdata.repository.IDFormRepository;
 import com.maina.formdata.repository.IDFormRespondentTypeRepository;
 import com.maina.formdata.repository.IDFormResultItemRepository;
 import com.maina.formdata.repository.IDUserRepository;
+import com.maina.formdata.repository.IPhonConfig;
 import com.maina.formdata.repository.impl.*;
 
 public enum RepositoryEnum {
@@ -18,7 +19,8 @@ public enum RepositoryEnum {
 	DForm(IDFormRepository.class, DFormRepository.class),
 	DFormResultItem(IDFormResultItemRepository.class, DFormResultItemRepository.class),
 	DFormResult(IDFormResultItemRepository.class, DFormResultItemRepository.class),
-	DUserRepository(IDUserRepository.class, DUserRepository.class);
+	DUserRepository(IDUserRepository.class, DUserRepository.class),
+	PhonConfig(IPhonConfig.class, PhoneConfigRepository.class);
 	
 	@SuppressWarnings("rawtypes")
 	public final Class IRepo;

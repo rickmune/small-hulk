@@ -40,7 +40,7 @@ public class DUserRepository extends RepositoryBase implements IDUserRepository 
 					List<UserDto> t = new ArrayList<UserDto>();
 					t.add(new UserDto(user.getId(), true, user.getUsername(), user.getPassword(), 
 							user.getFullname(), user.getUserTypeId().value, user.getEmail(), user.getPhoneNumber(), 
-							user.getClientId()));
+							user.getClientId(), user.getLocationId()));
 					entity.setInfo("success");
 					entity.Status = true;
 					entity.setData(t);

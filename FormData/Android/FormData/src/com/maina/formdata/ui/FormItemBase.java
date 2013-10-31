@@ -13,6 +13,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -53,6 +54,7 @@ public class FormItemBase extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d("FormItemActivity","onCreate");
 		super.onCreate(savedInstanceState);
+		
 		resultItemEs = new ArrayList<DformResultItemE>();
 	}
 	
@@ -90,6 +92,7 @@ public class FormItemBase extends BaseActivity {
 		view = new EditText(this);
 		view.setTextSize(24);
 		view.setRawInputType(inputType(regex));
+		view.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		view.setHint("Provide answer");
 		view.addTextChangedListener(new TextWatcher() {	
 			

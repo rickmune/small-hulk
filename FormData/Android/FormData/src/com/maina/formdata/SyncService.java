@@ -24,6 +24,7 @@ import com.maina.formdata.repository.IDFormResultRepository;
 import com.maina.formdata.repository.Repositoryregistry;
 import com.maina.formdata.utils.DformItemTypeserializer;
 import com.maina.formdata.utils.JsonConverter;
+import com.maina.formdata.utils.ui.GenUtils;
 
 public class SyncService extends OrmLiteBaseService<Datamanager> {
 
@@ -69,7 +70,7 @@ public class SyncService extends OrmLiteBaseService<Datamanager> {
 					}
 					
 					String json = JsonConverter.MapObject(resultE);
-					String url = "http://test.icoders-solution.com/api/client/form/publish";
+					String url = GenUtils.getUrl(dataManager) + "/api/client/form/publish";
 					Hashtable<String, String> params = new Hashtable<String, String>();
 					params.put("result", json);
 					String res = null;

@@ -14,6 +14,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.maina.formdata.datamanager.IDataManager;
 import com.maina.formdata.dto.DBase;
 import com.maina.formdata.dto.Dform;
 import com.maina.formdata.dto.DformItem;
@@ -38,6 +39,7 @@ import com.maina.formdata.repository.IDFormRespondentTypeRepository;
 import com.maina.formdata.repository.IDUserRepository;
 import com.maina.formdata.utils.DformItemTypeserializer;
 import com.maina.formdata.utils.SyncEntity;
+import com.maina.formdata.utils.ui.GenUtils;
 
 public class LoginService implements ILoginService {
 
@@ -49,12 +51,13 @@ public class LoginService implements ILoginService {
 	IDFormItemAnswerRepository formItemAnswerRepository;
 	IDFormItemRespondentTypeRepository dformItemRespondentTypeErepository;
 	IDUserRepository userRepository;
+	IDataManager dataManager;
 	
 	public LoginService(IDFormRepository formRepository, IHttpUtils httpUtils,
 			IDFormRespondentTypeRepository respondentTypeRepository,
 			IDFormItemRepository formItemRepository, IDFormItemAnswerRepository formItemAnswerRepository,
 			IDFormItemRespondentTypeRepository dformItemRespondentTypeErepository,
-			IDUserRepository userRepository) {
+			IDUserRepository userRepository, IDataManager dataManager) {
 		this.formRepository = formRepository;
 		this.httpUtils = httpUtils;
 		this.respondentTypeRepository = respondentTypeRepository;
@@ -62,6 +65,7 @@ public class LoginService implements ILoginService {
 		this.formItemAnswerRepository = formItemAnswerRepository;
 		this.dformItemRespondentTypeErepository = dformItemRespondentTypeErepository;
 		this.userRepository = userRepository;
+		this.dataManager = dataManager;
 	}
 
 	@Override
@@ -85,7 +89,7 @@ public class LoginService implements ILoginService {
 		Hashtable<String, String> params = new Hashtable<String, String>();
 		params.put("username", userName);
 		params.put("password", Password);
-		String res = httpUtils.GetRequest("http://test.icoders-solution.com/api/client/user/login", params);
+		String res = httpUtils.GetRequest(GenUtils.getUrl(dataManager)+"/api/client/user/login", params);
 		SyncEntity<UserDto> syncUser = deserialize(res, new TypeToken<SyncEntity<UserDto>>() {}.getType());
 		if(!syncUser.Status){
 			//TODO: get the message
@@ -95,7 +99,8 @@ public class LoginService implements ILoginService {
 		System.out.println(" User: "+user.toString());
 		UserType t = (user.getUserType() == 2 ? UserType.TDR : UserType.Admin);
 		DUserE dUserE = new DUserE(user.getId(), user.getUsername(), user.getPassword(), 
-				user.getFullname(), t, user.getEmail(), user.getPhoneNumber(), user.getClientId());
+				user.getFullname(), t, user.getEmail(), user.getPhoneNumber(), user.getClientId(),
+				user.getLocationId());
 		userRepository.save(dUserE);
 		return getFormIds(user.getClientId().toString());
 	}
@@ -103,7 +108,7 @@ public class LoginService implements ILoginService {
 	private boolean getFormIds(String ClientId) throws Exception{
 		Hashtable<String, String> params = new Hashtable<String, String>();
 		params.put("clientid", ClientId);
-		String res = httpUtils.GetRequest("http://test.icoders-solution.com/api/client/form/getformids", params);
+		String res = httpUtils.GetRequest(GenUtils.getUrl(dataManager)+"/api/client/form/getformids", params);
 		SyncEntity<DBase> ids = deserialize(res, new TypeToken<SyncEntity<DBase>>() {}.getType());
 		if(!ids.getStatus()){
 			return false;
@@ -119,7 +124,7 @@ public class LoginService implements ILoginService {
 	private boolean getFormById(UUID formId)throws Exception{
 		Hashtable<String, String> params = new Hashtable<String, String>();
 		params.put("formid", formId.toString());
-		String res = httpUtils.GetRequest("http://test.icoders-solution.com/api/client/form/getform", params);
+		String res = httpUtils.GetRequest(GenUtils.getUrl(dataManager)+"/api/client/form/getform", params);
 		SyncEntity<Dform> form = deserialize(res, new TypeToken<SyncEntity<Dform>>() {}.getType());
 		if(!form.Status){
 			//TODO: get the message

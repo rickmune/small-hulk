@@ -46,11 +46,12 @@ public class FormListActivity extends BaseActivity {
 	private CustomCursorAdapter customAdapter;
 	public static final int RespondentTypeId = 200;
 	private UUID formId;
-	String formName, UserName;
+	String formName, UserName, LocationId;
 	public static final String RESPONDENTTYPE = "_RESPONDENTTYPE";
 	public static final String FORMID = "_FORMID";
 	public static final String FORMNAME = "_FORMNAME";
 	public static final String USERNAME = "_USERNAME";
+	public static final String LOCATIONID = "_LOCATIONID";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class FormListActivity extends BaseActivity {
 		Log.d("FormListActivity", "onCreate (dataManager== null): "+(dataManager== null));
 		Bundle bundle = getIntent().getExtras();
 		UserName = bundle.getString(USERNAME);
+		LocationId = bundle.getString(LOCATIONID);
 		listView = (ListView)findViewById(android.R.id.list);
         listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -183,6 +185,7 @@ public class FormListActivity extends BaseActivity {
 				bundle.putString(FORMNAME, formName);
 				bundle.putString(RESPONDENTTYPE, result);
 				bundle.putString(USERNAME, UserName);
+				bundle.putString(LOCATIONID, LocationId);
 				intent.putExtras(bundle);
 				startActivity(intent);
 			}

@@ -2,13 +2,13 @@
 
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom|withText"
+        android:icon="@drawable/settings"
         android:title="@string/action_settings"/>
     <item
         android:id="@+id/action_sync"
-        android:orderInCategory="200"
-        android:showAsAction="withText"
+        android:icon="@drawable/sync"
+        android:showAsAction="ifRoom|withText"
         android:title="@string/sync"/>
 
 </menu>

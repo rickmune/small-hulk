@@ -6,11 +6,14 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -54,6 +57,7 @@ public class FormItemActivity extends FormItemBase {
 		String formId = bundle.getString(FormListActivity.FORMID);
 		String formName = bundle.getString(FormListActivity.FORMNAME);
 		String userName = bundle.getString(FormListActivity.USERNAME);
+		String locationId = bundle.getString(FormListActivity.LOCATIONID);
 		RespondentId = UUID.fromString( bundle.getString(FormListActivity.RESPONDENTTYPE));
 		dynamicView = (LinearLayout)findViewById(R.id.dynamicView);
 		btnSpinner = (Button)findViewById(R.id.pop_up);
@@ -69,7 +73,7 @@ public class FormItemActivity extends FormItemBase {
 		new GetFormItems().execute(UUID.fromString(formId));
 		
 		dformResultE = new DformResultE(UUID.randomUUID(), RespondentId, UUID.fromString(formId), 
-				resultItemEs, false, false, userName);
+				resultItemEs, false, false, userName, UUID.fromString(locationId));
 	}
 	
 	@Override
@@ -115,7 +119,7 @@ public class FormItemActivity extends FormItemBase {
 		}
 		
 	}
-
+	
 	private boolean showQuestion(){
 		boolean show = false;
 		if(dformItemE != null){
@@ -222,7 +226,7 @@ public class FormItemActivity extends FormItemBase {
 				
 			}else if(v.getId() == R.id.cancel){
 				Toast.makeText(FormItemActivity.this, "Cancel Operation", Toast.LENGTH_SHORT).show();
-				finish();
+				cancelSurv();
 			}else if(v.getId() == R.id.save){
 				Toast.makeText(FormItemActivity.this, "Saving Operation", Toast.LENGTH_SHORT).show();
 				dformResultE.setFormResultItem(resultItemEs);
@@ -261,4 +265,33 @@ public class FormItemActivity extends FormItemBase {
  		matcher = pattern.matcher(value);
         return matcher.matches();
  	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_BACK){
+			cancelSurv();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	private void cancelSurv(){
+		new AlertDialog.Builder(this)
+		.setTitle("Warning")
+		.setMessage("Your progress will be lost")
+		.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+						finish();
+					}
+				})
+		.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+		}).create().show();
+	}
 }

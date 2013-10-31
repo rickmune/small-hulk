@@ -12,11 +12,12 @@ public class DformResult extends DBase {
 	
 	public DformResult(UUID id, UUID respondentTypeId, UUID formId,
 			List<DformResultItemE> formResultItem, double longitude,
-    		double latitude) {
+    		double latitude, UUID locationId) {
 		super(id);
 		RespondentTypeId = respondentTypeId;
 		FormId = formId;
 		FormResultItem = formResultItem;
+		LocationId = locationId;
 	}
 	
 	private UUID RespondentTypeId;
@@ -24,6 +25,7 @@ public class DformResult extends DBase {
 	private double Longitude;
     private double Latitude;
     private String Username;
+    private UUID LocationId;
 	
 	private List<DformResultItemE> FormResultItem;
 	
@@ -73,5 +75,13 @@ public class DformResult extends DBase {
 
 	public void setUsername(String username) {
 		Username = username;
+	}
+
+	public UUID getLocationId() {
+		return LocationId;
+	}
+
+	public void setLocationId(UUID locationId) {
+		LocationId = locationId;
 	}
 }

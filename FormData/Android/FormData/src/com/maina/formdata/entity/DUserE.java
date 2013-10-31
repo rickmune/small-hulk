@@ -13,7 +13,8 @@ public class DUserE extends DBaseE {
 	}
 	
 	public DUserE(UUID id, String username, String password, String fullname,
-			UserType userTypeId, String email, String phoneNumber, UUID clientId) {
+			UserType userTypeId, String email, String phoneNumber, UUID clientId,
+			UUID locationId) {
 		super(id);
 		Username = username;
 		Password = password;
@@ -22,6 +23,7 @@ public class DUserE extends DBaseE {
 		Email = email;
 		PhoneNumber = phoneNumber;
 		ClientId = clientId;
+		LocationId = locationId;
 	}
 	@DatabaseField
 	private String Username;
@@ -37,6 +39,8 @@ public class DUserE extends DBaseE {
 	private String PhoneNumber;
 	@DatabaseField
 	private UUID ClientId;
+	@DatabaseField
+	private UUID LocationId;
 	
 	public String getUsername() {
 		return Username;
@@ -81,13 +85,20 @@ public class DUserE extends DBaseE {
 		ClientId = clientId;
 	}
 
+	public UUID getLocationId() {
+		return LocationId;
+	}
+
+	public void setLocationId(UUID locationId) {
+		LocationId = locationId;
+	}
+
 	@Override
 	public String toString() {
 		return "DUserE [Username=" + Username + ", Password=" + Password
 				+ ", Fullname=" + Fullname + ", UserTypeId=" + UserTypeId
 				+ ", Email=" + Email + ", PhoneNumber=" + PhoneNumber
-				+ ", ClientId=" + ClientId + "]";
+				+ ", ClientId=" + ClientId + ", LocationId=" + LocationId + "]";
 	}
-	
 	
 }
