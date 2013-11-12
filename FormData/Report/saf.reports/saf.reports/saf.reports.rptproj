@@ -10,12 +10,20 @@
   <DataSets />
   <Reports>
     <ProjectItem>
+      <Name>DailyDataReport.rdl</Name>
+      <FullPath>DailyDataReport.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>Report1.rdl</Name>
       <FullPath>Report1.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>DailyDataReport.rdl</Name>
-      <FullPath>DailyDataReport.rdl</FullPath>
+      <Name>AirtimeAvailability.rdl</Name>
+      <FullPath>AirtimeAvailability.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>CompetitorAirtimeAvailability.rdl</Name>
+      <FullPath>CompetitorAirtimeAvailability.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
@@ -25,10 +33,9 @@
       <Options>
         <OutputPath>bin\Debug</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetServerURL>http://cp.icoders-solutions.com/ReportServer_SQLExpress</TargetServerURL>
+        <TargetServerURL>http://barberry.arvixe.com/ReportServer_SQLExpress</TargetServerURL>
         <TargetFolder>safaricom/reports</TargetFolder>
         <TargetDataSourceFolder>safaricom/Data Sources</TargetDataSourceFolder>
-        <OverwriteDataSources>true</OverwriteDataSources>
         <TargetDatasetFolder>safaricom/Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
       </Options>

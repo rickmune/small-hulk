@@ -3,6 +3,7 @@ CREATE TABLE [dbo].[tblReportGroup](
 	[Name] [nvarchar](250) NOT NULL,	
 	[Description] [nvarchar](250)  NULL,
 	[ClientId] [uniqueidentifier] not null,	
+	[Order] int Not  NULL,
 	[CreatedOn] [datetime] NOT NULL,
 	[UpdatedOn] [datetime] NOT NULL,
 	[IsActive] [bit] NOT NULL

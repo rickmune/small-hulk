@@ -8,39 +8,6 @@
             <TablixCornerRow>
               <TablixCornerCell>
                 <CellContents>
-                  <Textbox Name="Textbox19">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value />
-                            <Style>
-                              <FontSize>9pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox19</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Color>LightGrey</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixCornerCell>
-              <TablixCornerCell>
-                <CellContents>
                   <Textbox Name="Textbox4">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
@@ -76,39 +43,6 @@
             <TablixCornerRow>
               <TablixCornerCell>
                 <CellContents>
-                  <Textbox Name="Textbox20">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value />
-                            <Style>
-                              <FontSize>9pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox20</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Color>LightGrey</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixCornerCell>
-              <TablixCornerCell>
-                <CellContents>
                   <Textbox Name="Textbox9">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
@@ -142,39 +76,6 @@
               </TablixCornerCell>
             </TablixCornerRow>
             <TablixCornerRow>
-              <TablixCornerCell>
-                <CellContents>
-                  <Textbox Name="Textbox21">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>id</Value>
-                            <Style>
-                              <FontSize>9pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox21</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Color>LightGrey</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixCornerCell>
               <TablixCornerCell>
                 <CellContents>
                   <Textbox Name="Textbox6">
@@ -555,7 +456,7 @@
             <TablixMember>
               <Group Name="OutletType">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!OutletType.Value</GroupExpression>
+                  <GroupExpression>=Fields!id.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
@@ -563,39 +464,6 @@
                   <Value>=Fields!OutletType.Value</Value>
                 </SortExpression>
               </SortExpressions>
-              <TablixHeader>
-                <Size>1in</Size>
-                <CellContents>
-                  <Textbox Name="id">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>=Fields!id.Value</Value>
-                            <Style>
-                              <FontSize>8pt</FontSize>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>id</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Color>LightGrey</Color>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
@@ -639,7 +507,7 @@
         <DataSetName>data</DataSetName>
         <Top>0.06944in</Top>
         <Height>0.95833in</Height>
-        <Width>4in</Width>
+        <Width>3in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -677,7 +545,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox18</rd:DefaultName>
           <Top>0.13417in</Top>
-          <Left>1.31125in</Left>
+          <Left>1.63417in</Left>
           <Height>0.25in</Height>
           <Width>3.02083in</Width>
           <Style>
@@ -694,7 +562,6 @@
           <Source>Embedded</Source>
           <Value>logofinal</Value>
           <Sizing>FitProportional</Sizing>
-          <Left>5.14458in</Left>
           <Height>0.38417in</Height>
           <Width>1.35542in</Width>
           <ZIndex>1</ZIndex>
