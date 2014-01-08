@@ -60,6 +60,7 @@
     <Compile Include="Domain\Settings\Config.cs" />
     <Compile Include="Domain\Users\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IFormRepository.cs" />
     <Compile Include="Repository\IConfigRepository.cs" />
     <Compile Include="Repository\IReportGroupItemRepository.cs" />
     <Compile Include="Repository\IReportGroupRepository.cs" />

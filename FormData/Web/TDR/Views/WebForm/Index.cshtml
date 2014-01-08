@@ -1,17 +1,17 @@
 ﻿
 @using MvcPaging
-@model IPagedList<TDR.WEB.LIB.DTOS.Clients.ClientDTO>
+@model IPagedList<TDR.WEB.LIB.DTOS.Forms.FormDTO>
 @{
     ViewBag.Title = "Index";
 }
 <div class="page-header">
-    <h1>Clients </h1>
+    <h1>Forms</h1>
 </div>
 
     <div class="row">
         <div class="col-xs-6 ">
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">New</button>
+                 @Html.ActionLink("New", "CreateForm",null,new { @class="btn btn-primary"})
             </div>
         </div>
         <div class="col-xs-6 ">
@@ -29,25 +29,51 @@
     <table class="table table-bordered table-hover ">
         <thead>
             <tr>
-                <th>Code
-                </th>
-                <th>Name
-                </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Code
+            </th>
+            <th>
+                Client
+            </th>
                 <th>
-                </th>
+              
+            </th>
+            <th>
+                Respondent Type
+            </th>
+                 <th>
+                Items
+            </th>
+
         </thead>
         <tbody>
             @foreach (var item in Model)
             { 
                 <tr>
                     <td>
+                        @item.Name
+                    </td>
+                    <td>
                         @item.Code
                     </td>
                     <td>
-                        @item.Name
+                        @item.ClientName
                     </td>
-                     <td>
-                         <a href="@Url.Action("Index", "WebForm",new {id=item.Id})"> Forms</a>
+                    <td>
+                         <a href="@Url.Action("EditForm", "WebForm",new {id=item.Id})"> <span class="glyphicon glyphicon-pencil"></span></a>
+                       
+                        
+                    </td>
+                    <td>
+                        <a href="@Url.Action("RespondentType", "WebForm",new {formId=item.Id})"> RespondentType</a>
+                        
+                    </td>
+                    <td>
+                        
+                         <a href="@Url.Action("FormItems", "WebForm",new {formId=item.Id})"> Items</a>
                     </td>
                 </tr>
             }

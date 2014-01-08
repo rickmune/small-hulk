@@ -26,7 +26,7 @@ namespace TDR.WEB.LIB.Services.Users.Impl
 
             try
             {
-                var user = _userRepository.Login(username, password);
+                var user = _userRepository.MobileLogin(username, password);
                 if (user != null)
                 {
                     response.Data.Add(Map(user));

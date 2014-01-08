@@ -53,6 +53,7 @@
     <Compile Include="DTOS\BI\ReportGroupDTO.cs" />
     <Compile Include="DTOS\Clients\ClientDTO.cs" />
     <Compile Include="DTOS\Configurations\ConfigDTO.cs" />
+    <Compile Include="DTOS\Forms\FormDTO.cs" />
     <Compile Include="DTOS\Locations\LocationDTO.cs" />
     <Compile Include="DTOS\Users\UserDTO.cs" />
     <Compile Include="IOC\StructureMapDependencyResolver.cs" />
@@ -70,6 +71,8 @@
     <Compile Include="Services\BI\Impl\ReportGroupService.cs" />
     <Compile Include="Services\Clients\IClientService.cs" />
     <Compile Include="Services\Clients\Impl\ClientService.cs" />
+    <Compile Include="Services\Forms\IFormService.cs" />
+    <Compile Include="Services\Forms\Impl\FormService.cs" />
     <Compile Include="Services\Locations\ILocationService.cs" />
     <Compile Include="Services\Locations\Impl\LocationService.cs" />
     <Compile Include="Services\IBaseService.cs" />

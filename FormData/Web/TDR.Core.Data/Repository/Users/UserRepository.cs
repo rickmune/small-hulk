@@ -94,5 +94,11 @@ namespace TDR.Core.Data.Repository.Users
         {
             return _context.Users.Any(s => s.Username.ToLower() == username.ToLower());
         }
+
+        public User MobileLogin(string username, string password)
+        {
+            return
+                _context.Users.FirstOrDefault(s => s.Username.ToLower() == username.ToLower() && s.Password == password && s.UserType== UserType.TDR);
+        }
     }
 }

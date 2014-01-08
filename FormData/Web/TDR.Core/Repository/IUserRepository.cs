@@ -9,5 +9,6 @@ namespace TDR.Core.Repository
 
        User Get(string name);
        bool CheckUserAvailability(string username);
+       User MobileLogin(string username, string password);
    }
 }

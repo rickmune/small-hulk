@@ -152,6 +152,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\WebFormController.cs" />
     <Compile Include="Controllers\ReportGroupItemController.cs" />
     <Compile Include="Controllers\ReportGroupController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
@@ -240,6 +241,7 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\topimage.pubxml" />
     <None Include="Properties\PublishProfiles\trd.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="rpt\WebFormReportViewer.aspx" />
@@ -297,6 +299,13 @@
     <Content Include="Views\ReportMenu\Index.cshtml" />
     <Content Include="Views\Configuration\ReportServer.cshtml" />
     <Content Include="Views\ReportMenu\Navigation.cshtml" />
+    <Content Include="Views\WebForm\Index.cshtml" />
+    <Content Include="Views\WebForm\RespondentType.cshtml" />
+    <Content Include="Views\WebForm\CreateForm.cshtml" />
+    <Content Include="Views\WebForm\CreateFormRepondentType.cshtml" />
+    <Content Include="Views\WebForm\EditForm.cshtml" />
+    <Content Include="Views\WebForm\EditFormRespondentType.cshtml" />
+    <Content Include="Views\WebForm\FormItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

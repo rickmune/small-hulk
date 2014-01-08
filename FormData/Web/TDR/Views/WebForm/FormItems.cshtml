@@ -1,18 +1,21 @@
 ﻿
 @using MvcPaging
-@model IPagedList<TDR.WEB.LIB.DTOS.Clients.ClientDTO>
+@model IPagedList<TDR.WEB.LIB.DTOS.Forms.FormItemDTO>
 @{
     ViewBag.Title = "Index";
+    Guid formId =ViewBag.FormId;
 }
 <div class="page-header">
-    <h1>Clients </h1>
+    <h1>Form Item</h1>
 </div>
 
     <div class="row">
         <div class="col-xs-6 ">
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">New</button>
+                @Html.ActionLink("Back", "Index",null,new { @class="btn btn-primary"})
+                 @Html.ActionLink("New", "CreateFormRepondentType",new {formId=formId},new { @class="btn btn-primary"})
             </div>
+          
         </div>
         <div class="col-xs-6 ">
             <div class="col-lg-offset-4">
@@ -29,25 +32,34 @@
     <table class="table table-bordered table-hover ">
         <thead>
             <tr>
-                <th>Code
-                </th>
-                <th>Name
-                </th>
-                <th>
-                </th>
+            <th>
+                Label
+            </th>
+            
+            <th>
+                Form
+            </th>
+           <th>
+                
+            </th>
+
         </thead>
         <tbody>
             @foreach (var item in Model)
             { 
                 <tr>
                     <td>
-                        @item.Code
+                        @item.Label
                     </td>
-                    <td>
-                        @item.Name
-                    </td>
+                   
                      <td>
-                         <a href="@Url.Action("Index", "WebForm",new {id=item.Id})"> Forms</a>
+                        @item.FormName
+                    </td>
+                   
+                   <td>
+                         <a href="@Url.Action("EditFormRespondentType", "WebForm",new {id=item.Id})"> <span class="glyphicon glyphicon-pencil"></span></a>
+                       
+                        
                     </td>
                 </tr>
             }
@@ -60,6 +72,7 @@
 			.MaxNrOfPages(14)
 			.AlwaysAddFirstPageNumber()
 		)
+
        
 
   

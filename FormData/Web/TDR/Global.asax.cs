@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Security.Principal;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -34,6 +36,9 @@ namespace TDR
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer<TDRContext>(new DatabaseInitializer());
             InitIOC();
+            CultureInfo ci = CultureInfo.CreateSpecificCulture("en-GB");
+            ci.DateTimeFormat.ShortDatePattern = "dd-MMM-yyyy";
+            Thread.CurrentThread.CurrentCulture = ci;
         }
         private void InitIOC()
         {

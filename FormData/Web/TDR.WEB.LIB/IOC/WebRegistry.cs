@@ -4,6 +4,8 @@ using TDR.WEB.LIB.Services.BI;
 using TDR.WEB.LIB.Services.BI.Impl;
 using TDR.WEB.LIB.Services.Clients;
 using TDR.WEB.LIB.Services.Clients.Impl;
+using TDR.WEB.LIB.Services.Forms;
+using TDR.WEB.LIB.Services.Forms.Impl;
 using TDR.WEB.LIB.Services.Locations;
 using TDR.WEB.LIB.Services.Locations.Impl;
 using TDR.WEB.LIB.Services.Users;
@@ -22,6 +24,8 @@ namespace TDR.WEB.LIB.IOC
             For<ILocationService>().Use<LocationService>();
             For<IReportGroupItemService>().Use<ReportGroupItemService>();
             For<IReportGroupService>().Use<ReportGroupService>();
+            For<IFormService>().Use<FormService>();
+          
         }
     }
 }

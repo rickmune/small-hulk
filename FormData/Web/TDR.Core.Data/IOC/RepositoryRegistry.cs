@@ -7,6 +7,7 @@ using StructureMap.Configuration.DSL;
 using TDR.Core.Data.EF;
 using TDR.Core.Data.Repository.BI;
 using TDR.Core.Data.Repository.Clients;
+using TDR.Core.Data.Repository.Forms;
 using TDR.Core.Data.Repository.Locations;
 using TDR.Core.Data.Repository.Settings;
 using TDR.Core.Data.Repository.Users;
@@ -32,6 +33,7 @@ namespace TDR.Core.Data.IOC
             For<IReportGroupItemRepository>().Use<ReportGroupItemRepository>();
             For<IReportGroupRepository>().Use<ReportGroupRepository>();
             For<IConfigRepository>().Use<ConfigRepository>();
+            For<IFormRepository>().Use<FormRepository>();
 
         }
     }

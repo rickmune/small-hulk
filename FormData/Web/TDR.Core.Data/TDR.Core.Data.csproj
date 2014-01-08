@@ -55,6 +55,7 @@
     <Compile Include="Repository\BI\ReportGroupItemRepository.cs" />
     <Compile Include="Repository\BI\ReportGroupRepository.cs" />
     <Compile Include="Repository\Clients\ClientRepository.cs" />
+    <Compile Include="Repository\Forms\FormRepository.cs" />
     <Compile Include="Repository\Locations\LocationRepository.cs" />
     <Compile Include="Repository\Settings\ConfigRepository.cs" />
     <Compile Include="Repository\Users\UserRepository.cs" />

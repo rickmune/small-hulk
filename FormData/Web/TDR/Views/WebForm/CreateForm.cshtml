@@ -1,0 +1,55 @@
+﻿@model TDR.WEB.LIB.DTOS.Forms.FormDTO
+
+@{
+    ViewBag.Title = "Create Form";
+}
+
+<div class="page-header">
+    <h1>Form </h1>
+</div>
+<div>
+    @Html.ActionLink("Back", "Index",null,new { @class="btn btn-default"})
+</div>
+@using (Html.BeginForm("CreateForm", "WebForm", FormMethod.Post, new { @class = "form-horizontal", @role = "form" }))
+{
+     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        <label for="Username" class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-5">
+              @Html.TextBoxFor(model => model.Name,new {@placeholder="Name",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.Name )
+           @* <input type="text" class="form-control" id="inputUsername" placeholder="Username">*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Description" class="col-lg-2 control-label">Description</label>
+        <div class="col-lg-5">
+            @Html.TextBoxFor(model => model.Code,new {@placeholder="Code",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.Code )
+            @*<input type="text" class="form-control" id="inputFullname" placeholder="Full Name">*@
+        </div>
+    </div>
+   
+    
+     <div class="form-group">
+        <label for="inputClientId" class="col-lg-2 control-label">Client</label>
+        <div class="col-lg-5">
+            @Html.DropDownListFor(model => model.ClientId, new SelectList(ViewBag.ClientList,"Value","Text"),"-----------",new {@placeholder="Client",@class="form-control"})
+            @Html.ValidationMessageFor(model => model.ClientId )
+            @* <input type="text" class="form-control" id="inputUserType" placeholder="User Type">*@
+        </div>
+    </div>
+    <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-default">Save</button>
+    </div>
+  </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

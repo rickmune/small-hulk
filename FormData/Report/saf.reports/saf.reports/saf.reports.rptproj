@@ -10,6 +10,14 @@
   <DataSets />
   <Reports>
     <ProjectItem>
+      <Name>AirtimeAvailability.rdl</Name>
+      <FullPath>AirtimeAvailability.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>CompetitorAirtimeAvailability.rdl</Name>
+      <FullPath>CompetitorAirtimeAvailability.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>DailyDataReport.rdl</Name>
       <FullPath>DailyDataReport.rdl</FullPath>
     </ProjectItem>
@@ -18,12 +26,12 @@
       <FullPath>Report1.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>AirtimeAvailability.rdl</Name>
-      <FullPath>AirtimeAvailability.rdl</FullPath>
+      <Name>OutletCallsPerUser.rdl</Name>
+      <FullPath>OutletCallsPerUser.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>CompetitorAirtimeAvailability.rdl</Name>
-      <FullPath>CompetitorAirtimeAvailability.rdl</FullPath>
+      <Name>OutletCallPerRegion.rdl</Name>
+      <FullPath>OutletCallPerRegion.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>

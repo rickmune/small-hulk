@@ -70,7 +70,7 @@ namespace TDR.Core.Data.Repository.BI
             }
 
             queryResult.Count = myQuery.Count();
-            myQuery = myQuery.OrderBy(s => s.Name);
+            myQuery = myQuery.OrderBy(s => s.ReportOrder);
             if (q.Skip.HasValue && q.Take.HasValue)
                 myQuery = myQuery.Skip(q.Skip.Value).Take(q.Take.Value);
             queryResult.Result = myQuery.ToList().OfType<BaseEntity>().ToList();
