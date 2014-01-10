@@ -13,5 +13,8 @@ namespace TDR.Core.Repository
         FormItemQueryResult QueryFormItem(QueryBase query);
         void SaveForm(DformEntity entity);
         void SaveFormRespondentType(DformRespondentTypeEntity entity);
+        void SaveFormItem(DformItemEntity entity);
+        void SaveFormItemRespondent(DformItemRespondentTypeEntity entity);
+        void DeleteFormItemRespondent(Guid itemid);
     }
 }

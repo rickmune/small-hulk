@@ -18,3 +18,12 @@
 <div>
     <iframe   src="@Html.MyResource("rpt/WebFormReportViewer.aspx?reporturi=")@ViewBag.reporturi" ></iframe>
 </div>
+ @section scripts
+  {
+    
+    <script type="text/javascript" >
+        window.pageload = function () {
+          
+        }
+    </script>
+}

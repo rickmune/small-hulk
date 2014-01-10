@@ -11,9 +11,11 @@ namespace TDR.WEB.LIB.Services.Forms
         void Save(FormRespondentTypeDTO dto);
         FormDTO GetById(Guid id);
         FormRespondentTypeDTO GetRespondentTypeById(Guid id);
+        FormItemDTO GetItemById(Guid id);
         TranferResponse<FormDTO> Query(QueryBase query);
         TranferResponse<FormRespondentTypeDTO> QueryRespondentType(QueryBase query);
         TranferResponse<FormItemDTO> QueryItem(QueryBase query);
+        BasicResponse Save(FormItemDTO dto);
 
         
         

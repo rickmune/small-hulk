@@ -35,20 +35,28 @@ namespace TDR.WEB.LIB.DTOS.Forms
   }
   public class FormItemDTO : BaseDTO
   {
+      public FormItemDTO()
+      {
+          RespondentTypes = new List<Guid>();
+      }
+
       public int Order { get; set; }
       public string Label { set; get; }
-       [Required]
+      public string HelpText { set; get; }
+      public string Section { set; get; }
+     
       public int FormItemTypeId { set; get; }
       public string FormItemType { set; get; }
-      [Required]
+      
       public Guid FormId { get; set; }
       public string FormName { get; set; }
       public bool IsRequired { set; get; }
       public string ValidationText { set; get; }
       public string ValidationRegex { set; get; }
 
-      [Required]
+      
       public string Code { get; set; }
+      public List<Guid> RespondentTypes { get; set; }
      
 
   }

@@ -137,5 +137,60 @@ namespace TDR.Core.Data.Repository.Forms
 
             _context.SaveChanges();
         }
+
+        public void SaveFormItem(DformItemEntity entity)
+        {
+            var item1 = _context.FormItems.FirstOrDefault(s => s.Id == entity.Id);
+            if (item1 == null)
+            {
+                item1 = new DformItemEntity
+                {
+                    Id =entity.Id,
+                };
+                _context.FormItems.Add(item1);
+            }
+            item1.FormId = entity.FormId;
+            item1.Label = entity.Label;
+            item1.IsRequired = entity.IsRequired;
+            item1.FormItemType = entity.FormItemType;
+            item1.Order = entity.Order;
+            item1.IdCode =entity.IdCode;
+            item1.ValidationRegex = entity.ValidationRegex;
+            item1.ValidationText = entity.ValidationText;
+            item1.HelpText = entity.HelpText;
+            item1.Section = entity.Section;
+            //item1.SectionOrder = sectionorder;
+            _context.SaveChanges();
+           
+        }
+
+        public void SaveFormItemRespondent(DformItemRespondentTypeEntity entity)
+        {
+            var rItem = _context.FormItemRespondentTypes.FirstOrDefault(s => s.FormItemId == entity.FormItemId && s.FormRespondentTypeId ==entity.FormRespondentTypeId);
+            if (rItem == null)
+            {
+
+                rItem =
+                    new DformItemRespondentTypeEntity
+                    {
+                        Id = Guid.NewGuid(),
+                    };
+                _context.FormItemRespondentTypes.Add(rItem);
+            }
+            rItem.FormItemId = entity.FormItemId;
+            rItem.FormRespondentTypeId = entity.FormRespondentTypeId;
+
+            _context.SaveChanges();
+        }
+
+        public void DeleteFormItemRespondent(Guid itemid)
+        {
+            var rItem = _context.FormItemRespondentTypes.Where(s => s.FormItemId == itemid);
+            foreach(var item in rItem)
+            {
+                _context.FormItemRespondentTypes.Remove(item);
+            }
+            _context.SaveChanges();
+        }
     }
 }

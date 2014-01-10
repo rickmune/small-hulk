@@ -8,9 +8,12 @@ using System.Web.Mvc;
 using TDR.Core.Data.EF;
 using TDR.Core.Domain;
 using TDR.Core.Domain.Forms;
+using TDR.Core.Util;
 using TDR.EF;
 using TDR.Models;
 using TDR.WEB.LIB.DTOS;
+using TDR.WEB.LIB.DTOS.Forms;
+using TDR.WEB.LIB.Services.Forms;
 using TDR.WEB.LIB.Util;
 
 namespace TDR.API
@@ -18,10 +21,12 @@ namespace TDR.API
     public class FormController  : ApiController
     {
         private TDRContext _context;
+        private IFormService _formService;
 
-        public FormController(TDRContext context)
+        public FormController(TDRContext context, IFormService formService)
         {
             _context = context;
+            _formService = formService;
         }
 
         //
@@ -106,6 +111,36 @@ namespace TDR.API
             return response;
         }
 
+        public TranferResponse<FormRespondentTypeDTO> GetFormRespodent(Guid formId)
+        {
+            var response = new TranferResponse<FormRespondentTypeDTO>();
+            try
+            {
+                response = _formService.QueryRespondentType(new QueryRespondentType {FormId = formId});
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Info = ex.Message;
+            }
+
+            return response;
+        }
+        public FormItemDTO GetFormItem(Guid itemId)
+        {
+           
+            try
+            {
+              return  _formService.QueryItem(new QueryFormItem { Id = itemId }).Data.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
+            return null;
+        }
+
         public BasicResponse PublishFormResult(DformResult formresult)
         {
             BasicResponse result = new BasicResponse();
@@ -152,6 +187,24 @@ namespace TDR.API
             {
                 result.Info = ex.Message;
                
+            }
+            return result;
+        }
+        [System.Web.Http.HttpPost]
+        public BasicResponse SaveFormItem(FormItemDTO dto)
+        {
+            BasicResponse result = new BasicResponse();
+            try
+            {
+               return _formService.Save(dto);
+                  
+               
+
+            }
+            catch (Exception ex)
+            {
+                result.Info = ex.Message;
+
             }
             return result;
         }

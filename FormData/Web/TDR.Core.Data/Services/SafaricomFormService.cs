@@ -94,7 +94,7 @@ namespace TDR.Core.Data.Services
             var delearshop = CreateFormRespondentType(formid, GetRespodentCode(1), "DEALER", "D");
             var mpesa = CreateFormRespondentType(formid, GetRespodentCode(2), "M-PESA", "M");
             var retailshop = CreateFormRespondentType(formid, GetRespodentCode(3), "RETAIL", "R");
-            var digitalvilage = CreateFormRespondentType(formid, GetRespodentCode(4), "CYBER CENTRE", "DV");
+           // var digitalvilage = CreateFormRespondentType(formid, GetRespodentCode(4), "CYBER CENTRE", "DV");
             var mpesaRetail = CreateFormRespondentType(formid, GetRespodentCode(5), "M-PESA & RETAIL", "MR");
 
             var q1 = new DformItemEntity();
@@ -113,7 +113,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem1, delearshop);
             CreateItemRespondentType(formitem1, mpesa);
             CreateItemRespondentType(formitem1, retailshop);
-            CreateItemRespondentType(formitem1, digitalvilage);
+           // CreateItemRespondentType(formitem1, digitalvilage);
             CreateItemRespondentType(formitem1, mpesaRetail);
 
             var q2 = new DformItemEntity();
@@ -135,12 +135,12 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem2, delearshop);
             CreateItemRespondentType(formitem2, mpesa);
             CreateItemRespondentType(formitem2, retailshop);
-            CreateItemRespondentType(formitem2, digitalvilage);
+            //CreateItemRespondentType(formitem2, digitalvilage);
             CreateItemRespondentType(formitem2, mpesaRetail);
 
             var q3 = new DformItemEntity();
             q3.FormId = formid;
-            q3.Label = "What is the M-Pesa Agent Number ?";
+            q3.Label = "What is the M-PESA Agent Number ?";
             q3.IsRequired = true;
             q3.FormItemType = DformItemType.Text;
             q3.Order = 3;
@@ -157,12 +157,12 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem3, delearshop);
             CreateItemRespondentType(formitem3, mpesa);
            // CreateItemRespondentType(formitem3, retailshop);
-            CreateItemRespondentType(formitem3, digitalvilage);
+           // CreateItemRespondentType(formitem3, digitalvilage);
             CreateItemRespondentType(formitem3, mpesaRetail);
 
             var q4 = new DformItemEntity();
             q4.FormId = formid;
-            q4.Label = "What is the status of the mpesa outlet?";
+            q4.Label = "What is the status of the M-Pesa  outlet?";
             q4.IsRequired = true;
             q4.FormItemType = DformItemType.DropdownList;
             q4.Order = 4;
@@ -179,7 +179,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem4, delearshop);
             CreateItemRespondentType(formitem4, mpesa);
             //CreateItemRespondentType(formitem4, retailshop);
-            CreateItemRespondentType(formitem4, digitalvilage);
+            //CreateItemRespondentType(formitem4, digitalvilage);
             CreateItemRespondentType(formitem4, mpesaRetail);
             CreateAnswers(formitem4, GetItemAnsCode(4, 1), "Active", "Active");
             CreateAnswers(formitem4, GetItemAnsCode(4, 2), "Closed", "Closed");
@@ -204,7 +204,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem5, delearshop);
             CreateItemRespondentType(formitem5, mpesa);
             CreateItemRespondentType(formitem5, retailshop);
-            CreateItemRespondentType(formitem5, digitalvilage);
+            //CreateItemRespondentType(formitem5, digitalvilage);
             CreateItemRespondentType(formitem5, mpesaRetail);
 
             var q6 = new DformItemEntity();
@@ -214,8 +214,8 @@ namespace TDR.Core.Data.Services
             q6.FormItemType = DformItemType.Text;
             q6.Order = 6;
             q6.IdCode = GetItemCode(6);
-            q6.ValidationRegex = "";
-            q6.ValidationText = "";
+            q6.ValidationRegex = @"^\+?\d{10,12}$";
+            q6.ValidationText = "Enter valid phone number";
             q6.HelpText = "Assistant Tel: Contact";
             q6.Section = "2|M-PESA DATA|2|Assistants on Premise"; ;
             
@@ -226,7 +226,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem6, delearshop);
             CreateItemRespondentType(formitem6, mpesa);
             CreateItemRespondentType(formitem6, retailshop);
-            CreateItemRespondentType(formitem6, digitalvilage);
+            //CreateItemRespondentType(formitem6, digitalvilage);
             CreateItemRespondentType(formitem6, mpesaRetail);
 
             var q7 = new DformItemEntity();
@@ -248,8 +248,8 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem7, delearshop);
             CreateItemRespondentType(formitem7, mpesa);
             CreateItemRespondentType(formitem7, retailshop);
-            CreateItemRespondentType(formitem7, digitalvilage);
-            CreateItemRespondentType(formitem7, mpesaRetail);
+            //CreateItemRespondentType(formitem7, digitalvilage);
+           // CreateItemRespondentType(formitem7, mpesaRetail);
             CreateAnswers(formitem7, GetItemAnsCode(7, 1), "YES", "1");
             CreateAnswers(formitem7, GetItemAnsCode(7, 2), "NO", "0");
 
@@ -271,31 +271,31 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem8, delearshop);
             CreateItemRespondentType(formitem8, mpesa);
             //CreateItemRespondentType(formitem8, retailshop);
-            CreateItemRespondentType(formitem8, digitalvilage);
+           // CreateItemRespondentType(formitem8, digitalvilage);
             CreateItemRespondentType(formitem8, mpesaRetail);
             CreateAnswers(formitem8, GetItemAnsCode(8, 1), "YES", "1");
             CreateAnswers(formitem8, GetItemAnsCode(8, 2), "NO", "0");
 
             var q9 = new DformItemEntity();
             q9.FormId = formid;
-            q9.Label = "What is the current mpesa float ?";
+            q9.Label = "What is the current M-PESA  float ?";
             q9.IsRequired = true;
             q9.FormItemType = DformItemType.Text;
             q9.Order = 9;
             q9.IdCode = GetItemCode(9);
             q9.ValidationRegex = @"\d{1,10}(\.\d{0,2})?$";
-            q9.ValidationText = "Enter valid mpesa float amount.";
+            q9.ValidationText = "Enter valid M-PESA float amount.";
             q9.HelpText = "E-Float(Ksh.)";
             q9.Section = "2|M-PESA DATA|4|Float Availability";
             
             var formitem9 = CreateFormItem(q9);
-            //var formitem9 = CreateFormItem(formid, GetItemCode(9), "What is the current mpesa float ?",
-            //                               DformItemType.Text, 9, true, "Enter valid mpesa float amount.",
+            //var formitem9 = CreateFormItem(formid, GetItemCode(9), "What is the current M-Pesa float ?",
+            //                               DformItemType.Text, 9, true, "Enter valid M-Pesa float amount.",
             //                               @"\d{1,10}+(\.*\d{0,2})");
             CreateItemRespondentType(formitem9, delearshop);
             CreateItemRespondentType(formitem9, mpesa);
             //CreateItemRespondentType(formitem9, retailshop);
-            CreateItemRespondentType(formitem9, digitalvilage);
+           // CreateItemRespondentType(formitem9, digitalvilage);
             CreateItemRespondentType(formitem9, mpesaRetail);
             var q10 = new DformItemEntity();
             q10.FormId = formid;
@@ -315,7 +315,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem10, delearshop);
             CreateItemRespondentType(formitem10, mpesa);
            // CreateItemRespondentType(formitem10, retailshop);
-            CreateItemRespondentType(formitem10, digitalvilage);
+            //CreateItemRespondentType(formitem10, digitalvilage);
             CreateItemRespondentType(formitem10, mpesaRetail);
             CreateAnswers(formitem10, GetItemAnsCode(10, 1), "Available", "1");
             CreateAnswers(formitem10, GetItemAnsCode(10, 2), "Not Available", "0");
@@ -338,7 +338,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem11, delearshop);
             CreateItemRespondentType(formitem11, mpesa);
             //CreateItemRespondentType(formitem11, retailshop);
-            CreateItemRespondentType(formitem11, digitalvilage);
+            //CreateItemRespondentType(formitem11, digitalvilage);
             CreateItemRespondentType(formitem11, mpesaRetail);
             CreateAnswers(formitem11, GetItemAnsCode(11, 1), "Available", "1");
             CreateAnswers(formitem11, GetItemAnsCode(11, 2), "Not Available", "0");
@@ -361,7 +361,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem12, delearshop);
             CreateItemRespondentType(formitem12, mpesa);
            // CreateItemRespondentType(formitem12, retailshop);
-            CreateItemRespondentType(formitem12, digitalvilage);
+            //CreateItemRespondentType(formitem12, digitalvilage);
             CreateItemRespondentType(formitem12, mpesaRetail);
 
             //var q13 = new DformItemEntity();
@@ -451,7 +451,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem15, delearshop);
             CreateItemRespondentType(formitem15, mpesa);
             //CreateItemRespondentType(formitem15, retailshop);
-            CreateItemRespondentType(formitem15, digitalvilage);
+            //CreateItemRespondentType(formitem15, digitalvilage);
             CreateItemRespondentType(formitem15, mpesaRetail);
 
             var q16 = new DformItemEntity();
@@ -472,7 +472,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem16, delearshop);
             CreateItemRespondentType(formitem16, mpesa);
             CreateItemRespondentType(formitem16, retailshop);
-            CreateItemRespondentType(formitem16, digitalvilage);
+            //CreateItemRespondentType(formitem16, digitalvilage);
             CreateItemRespondentType(formitem16, mpesaRetail);
             CreateAnswers(formitem16, GetItemAnsCode(16, 1), "YES", "1");
             CreateAnswers(formitem16, GetItemAnsCode(16, 2), "NO", "0");
@@ -495,7 +495,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem17, delearshop);
             CreateItemRespondentType(formitem17, mpesa);
             CreateItemRespondentType(formitem17, retailshop);
-            CreateItemRespondentType(formitem17, digitalvilage);
+            //CreateItemRespondentType(formitem17, digitalvilage);
             CreateItemRespondentType(formitem17, mpesaRetail);
             CreateAnswers(formitem17, GetItemAnsCode(17, 1), "YES", "1");
             CreateAnswers(formitem17, GetItemAnsCode(17, 2), "NO", "0");
@@ -518,7 +518,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem18, delearshop);
             CreateItemRespondentType(formitem18, mpesa);
             CreateItemRespondentType(formitem18, retailshop);
-            CreateItemRespondentType(formitem18, digitalvilage);
+            //CreateItemRespondentType(formitem18, digitalvilage);
             CreateItemRespondentType(formitem18, mpesaRetail);
             CreateAnswers(formitem18, GetItemAnsCode(18, 1), "YES", "1");
             CreateAnswers(formitem18, GetItemAnsCode(18, 2), "NO", "0");
@@ -541,7 +541,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem19, delearshop);
             CreateItemRespondentType(formitem19, mpesa);
             CreateItemRespondentType(formitem19, retailshop);
-            CreateItemRespondentType(formitem19, digitalvilage);
+           // CreateItemRespondentType(formitem19, digitalvilage);
             CreateItemRespondentType(formitem19, mpesaRetail);
             CreateAnswers(formitem19, GetItemAnsCode(19, 1), "YES", "1");
             CreateAnswers(formitem19, GetItemAnsCode(19, 2), "NO", "0");
@@ -564,7 +564,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem20, delearshop);
             CreateItemRespondentType(formitem20, mpesa);
             CreateItemRespondentType(formitem20, retailshop);
-            CreateItemRespondentType(formitem20, digitalvilage);
+            //CreateItemRespondentType(formitem20, digitalvilage);
             CreateItemRespondentType(formitem20, mpesaRetail);
             CreateAnswers(formitem20, GetItemAnsCode(20, 1), "YES", "1");
             CreateAnswers(formitem20, GetItemAnsCode(20, 2), "NO", "0");
@@ -587,7 +587,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem21, delearshop);
             CreateItemRespondentType(formitem21, mpesa);
             CreateItemRespondentType(formitem21, retailshop);
-            CreateItemRespondentType(formitem21, digitalvilage);
+           // CreateItemRespondentType(formitem21, digitalvilage);
             CreateItemRespondentType(formitem21, mpesaRetail);
             CreateAnswers(formitem21, GetItemAnsCode(21, 1), "YES", "1");
             CreateAnswers(formitem21, GetItemAnsCode(21, 2), "NO", "0");
@@ -610,7 +610,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem22, delearshop);
             CreateItemRespondentType(formitem22, mpesa);
             CreateItemRespondentType(formitem22, retailshop);
-            CreateItemRespondentType(formitem22, digitalvilage);
+            //CreateItemRespondentType(formitem22, digitalvilage);
             CreateItemRespondentType(formitem22, mpesaRetail);
             CreateAnswers(formitem22, GetItemAnsCode(22, 1), "YES", "1");
             CreateAnswers(formitem22, GetItemAnsCode(22, 2), "NO", "0");
@@ -630,10 +630,10 @@ namespace TDR.Core.Data.Services
             var formitem23 = CreateFormItem(q23);
             //var formitem23 = CreateFormItem(formid, GetItemCode(23), "Is ORANGE aritime available?",
             //                                DformItemType.DropdownList, 23, true);
-            CreateItemRespondentType(formitem23, delearshop);
+            //CreateItemRespondentType(formitem23, delearshop);
            // CreateItemRespondentType(formitem23, mpesa);
             CreateItemRespondentType(formitem23, retailshop);
-            CreateItemRespondentType(formitem23, digitalvilage);
+            //CreateItemRespondentType(formitem23, digitalvilage);
             CreateItemRespondentType(formitem23, mpesaRetail);
             CreateAnswers(formitem23, GetItemAnsCode(23, 1), "YES", "1");
             CreateAnswers(formitem23, GetItemAnsCode(23, 2), "NO", "0");
@@ -653,10 +653,10 @@ namespace TDR.Core.Data.Services
             var formitem24 = CreateFormItem(q24);
             //var formitem24 = CreateFormItem(formid, GetItemCode(24), "Is YU aritime available?",
             //                                DformItemType.DropdownList, 24, true);
-            CreateItemRespondentType(formitem24, delearshop);
+           // CreateItemRespondentType(formitem24, delearshop);
             //CreateItemRespondentType(formitem24, mpesa);
             CreateItemRespondentType(formitem24, retailshop);
-            CreateItemRespondentType(formitem24, digitalvilage);
+           // CreateItemRespondentType(formitem24, digitalvilage);
             CreateItemRespondentType(formitem24, mpesaRetail);
             CreateAnswers(formitem24, GetItemAnsCode(24, 1), "YES", "1");
             CreateAnswers(formitem24, GetItemAnsCode(24, 2), "NO", "0");
@@ -676,10 +676,10 @@ namespace TDR.Core.Data.Services
             var formitem25 = CreateFormItem(q25);
             //var formitem25 = CreateFormItem(formid, GetItemCode(25), "Is AIRTEL aritime available?",
             //                                DformItemType.DropdownList, 25, true);
-            CreateItemRespondentType(formitem25, delearshop);
+           // CreateItemRespondentType(formitem25, delearshop);
            // CreateItemRespondentType(formitem25, mpesa);
             CreateItemRespondentType(formitem25, retailshop);
-            CreateItemRespondentType(formitem25, digitalvilage);
+           // CreateItemRespondentType(formitem25, digitalvilage);
             CreateItemRespondentType(formitem25, mpesaRetail);
             CreateAnswers(formitem25, GetItemAnsCode(25, 1), "YES", "1");
             CreateAnswers(formitem25, GetItemAnsCode(25, 2), "NO", "0");
@@ -705,7 +705,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem26, delearshop);
             CreateItemRespondentType(formitem26, mpesa);
             CreateItemRespondentType(formitem26, retailshop);
-            CreateItemRespondentType(formitem26, digitalvilage);
+            //CreateItemRespondentType(formitem26, digitalvilage);
             CreateItemRespondentType(formitem26, mpesaRetail);
 
             //missing Merchandising materials
@@ -727,7 +727,7 @@ namespace TDR.Core.Data.Services
             CreateItemRespondentType(formitem27, delearshop);
             CreateItemRespondentType(formitem27, mpesa);
             CreateItemRespondentType(formitem27, retailshop);
-            CreateItemRespondentType(formitem27, digitalvilage);
+            //CreateItemRespondentType(formitem27, digitalvilage);
             CreateItemRespondentType(formitem27, mpesaRetail);
             //var formitem3 = CreateFormItem(formid, "Which of the following Product do you use?", DformItemType.MultiChoice, 3, true);
             //CreateItemRespondentType(formitem3, delearshop);

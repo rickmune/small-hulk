@@ -200,5 +200,18 @@ namespace TDR.Controllers
             }
             return View();
         }
+        public ActionResult CreateFormItem(Guid formId)
+        {
+
+            var model = new FormItemDTO() { FormId = formId };
+            return View(model);
+        }
+        public ActionResult EditFormItem(Guid id)
+        {
+
+            var model = _formService.GetItemById(id);
+
+            return View(model);
+        }
     }
 }

@@ -29,8 +29,22 @@ namespace TDR
                 routeTemplate: "api/client/form/publish",
                 defaults: new {controller = "Form", action = "PublishFormResult"}
                 );
+             config.Routes.MapHttpRoute(
+                name: "GetFormRespodent",
+                routeTemplate: "api/client/form/GetFormRespodent",
+                defaults: new { controller = "Form", action = "GetFormRespodent" }
+                );
+             config.Routes.MapHttpRoute(
+                name: "SaveFormItem",
+                routeTemplate: "api/client/form/SaveFormItem",
+                defaults: new { controller = "Form", action = "SaveFormItem" }
+                );
 
-
+             config.Routes.MapHttpRoute(
+                name: "GetFormItem",
+                routeTemplate: "api/client/form/GetFormItem",
+                defaults: new { controller = "Form", action = "GetFormItem" }
+                );
             //users
             config.Routes.MapHttpRoute(
                 name: "Authenticate",

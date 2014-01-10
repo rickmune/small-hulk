@@ -1,0 +1,31 @@
+﻿@model TDR.WEB.LIB.DTOS.Forms.FormItemDTO
+
+@{
+    ViewBag.Title = "Create Form Item";
+}
+
+<div class="page-header">
+    <h1> Create Form Item</h1>
+</div>
+<div>
+    @Html.ActionLink("Back", "FormItems",new {formId=Model.FormId},new { @class="btn btn-default"})
+</div>
+
+<input id="formid" type="hidden" name="formid" value="@Model.FormId"/>
+<div id="pagecontentholder">
+    
+</div>
+ @section scripts
+  {
+       @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" >
+        window.pageload = function () {
+            console.log("Create Form item pageload.....");
+            require(['addupdateformitemviewmodel'], function (view) {
+               
+                var v = new view({});
+                v.render();
+             });
+        }
+    </script>
+}

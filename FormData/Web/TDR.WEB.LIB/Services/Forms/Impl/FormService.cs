@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TDR.Core.Domain;
 using TDR.Core.Domain.Forms;
 using TDR.Core.Repository;
 using TDR.Core.Util;
@@ -53,6 +55,11 @@ namespace TDR.WEB.LIB.Services.Forms.Impl
             return _formRepository.QueryFormRespondentType(new QueryRespondentType { Id = id }).Result.Select(Map).FirstOrDefault();
         }
 
+        public FormItemDTO GetItemById(Guid id)
+        {
+            return _formRepository.QueryFormItem(new QueryFormItem { Id = id }).Result.Select(Map).FirstOrDefault();
+        }
+
         private FormDTO Map(DformEntity s)
         {
             return new FormDTO
@@ -63,6 +70,7 @@ namespace TDR.WEB.LIB.Services.Forms.Impl
                 Code = s.IdCode,
                 ClientId = s.ClientId,
                 ClientName = s.Client.Name,
+               
             };
         }
         private FormRespondentTypeDTO Map(DformRespondentTypeEntity s)
@@ -94,6 +102,9 @@ namespace TDR.WEB.LIB.Services.Forms.Impl
                Order = s.Order,
                ValidationRegex = s.ValidationRegex,
                ValidationText = s.ValidationText,
+               RespondentTypes = s.FormItemRespondentTypes.Select(b=>b.FormRespondentTypeId).ToList(),
+               HelpText = s.HelpText,
+               Section = s.Section,
             };
         }
         public TranferResponse<FormDTO> Query(QueryBase query)
@@ -152,6 +163,64 @@ namespace TDR.WEB.LIB.Services.Forms.Impl
             {
                 response.Info = ex.Message;
                 response.Status = false;
+
+            }
+            return response;
+        }
+
+        public BasicResponse Save(FormItemDTO dto)
+        {
+            var response = new BasicResponse();
+            try
+            {
+                var entity = new DformItemEntity()
+                {
+                   
+                    Id = dto.Id,
+                    FormId = dto.FormId,
+                    HelpText = dto.HelpText,
+                    IdCode = "",
+                    IsRequired = dto.IsRequired,
+                    Label = dto.Label,
+                    Section = dto.Section,
+                    ValidationRegex = dto.ValidationRegex,
+                    ValidationText = dto.ValidationText,
+                    Order = dto.Order,
+                    FormItemType = (DformItemType)dto.FormItemTypeId,
+                    
+                };
+                _formRepository.SaveFormItem(entity);
+               // entity = _formRepository.QueryFormItem(new QueryFormItem {Id = entity.Id}).Result.FirstOrDefault();
+                _formRepository.DeleteFormItemRespondent(entity.Id);
+                foreach(var respondent in dto.RespondentTypes)
+                {
+                    var respondentItem = new DformItemRespondentTypeEntity
+                                             {
+                                                 Id = dto.Id,
+                                                 FormItemId = entity.Id,
+                                                 FormRespondentTypeId = respondent
+                                             };
+                    _formRepository.SaveFormItemRespondent(respondentItem);
+
+                }
+                response.Status = true;
+                response.Info = "Success";
+
+            }
+
+            catch (Exception ex)
+            {
+                response.Status = false;
+                if (ex is DomainValidationException)
+                {
+                    var dex = ex as DomainValidationException;
+                    response.Info = dex.FormatException();
+                }
+                else
+                {
+                    response.Status = false;
+                    response.Info = ex.Message;
+                }
 
             }
             return response;
