@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:layout_margin="@dimen/home_margins"
+    android:orientation="vertical" >
+    <LinearLayout android:id="@+id/nof_id" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:layout_alignParentTop="true" android:background="@drawable/button_blue"
+        android:layout_marginBottom="5dp">
+        <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:textColor="@color/white"
+            android:text="@string/nof" android:textIsSelectable="false"/>
+        <TextView android:id="@+id/n_o_f" android:layout_height="wrap_content" android:layout_width="match_parent"
+            android:layout_marginLeft="30dp" android:textIsSelectable="false" android:textColor="@color/black"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/unsentresp_id" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:background="@drawable/button_blue"
+        android:layout_below="@+id/nof_id" android:layout_marginBottom="5dp">
+        <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:textColor="@color/white"
+            android:text="@string/unsentresp" android:textIsSelectable="false"/>
+        <TextView android:id="@+id/u_s" android:layout_height="wrap_content" android:layout_width="match_parent"
+            android:layout_marginLeft="30dp" android:textIsSelectable="false" android:textColor="@color/black"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/sentresp_id" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:background="@drawable/button_blue"
+        android:layout_below="@+id/unsentresp_id" android:layout_marginBottom="5dp">
+        <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:textColor="@color/white"
+            android:text="@string/sentresp" android:textIsSelectable="false"/>
+        <TextView android:id="@+id/s_r" android:layout_height="wrap_content" android:layout_width="match_parent"
+            android:layout_marginLeft="30dp" android:textIsSelectable="false" android:textColor="@color/black"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/totalresp_id" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:background="@drawable/button_blue"
+        android:layout_below="@+id/sentresp_id" android:layout_marginBottom="5dp">
+        <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:textColor="@color/white"
+            android:text="@string/totalresp" android:textIsSelectable="false"/>
+        <TextView android:id="@+id/t_r" android:layout_height="wrap_content" android:layout_width="match_parent"
+            android:layout_marginLeft="30dp" android:textIsSelectable="false" android:textColor="@color/black"/>
+    </LinearLayout>
+</RelativeLayout>

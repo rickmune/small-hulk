@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:isScrollContainer="true"
+    android:orientation="vertical" android:layout_margin="@dimen/home_margins">
+    <LinearLayout android:id="@+id/u_name" android:layout_width="match_parent" android:orientation="horizontal"
+        android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:background="@drawable/button_blue"
+        android:layout_marginTop="4dip" android:layout_marginBottom="4dip" android:paddingBottom="4dp">
+        <TextView android:id="@+id/user" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    	    android:text="@string/user_name" android:textSize="20sp" android:gravity="left" android:textColor="@color/black"
+    	    android:textIsSelectable="false" android:layout_weight="1"/>
+        <TextView android:id="@+id/user_name" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    	    android:tag="@string/user_name" android:textSize="18sp" android:textIsSelectable="false" android:layout_weight="2"
+    	    android:textColor="@color/black" android:gravity="left"/>
+    </LinearLayout>
+    
+    <LinearLayout android:id="@+id/c_name" android:layout_width="match_parent" android:orientation="horizontal"
+        android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:background="@drawable/button_blue"
+        android:layout_marginTop="4dip" android:layout_marginBottom="4dip" android:paddingBottom="4dp">
+        <TextView android:id="@+id/client" android:layout_width="match_parent" android:layout_height="wrap_content"
+    	    android:text="@string/client_name" android:gravity="left" android:textSize="20sp" android:textColor="@color/black"
+    	    android:textIsSelectable="false" android:layout_weight="1"/>
+        <TextView android:id="@+id/client_name" android:layout_width="match_parent" android:layout_height="wrap_content"
+    	    android:tag="@string/client_name" android:textSize="18sp" android:textIsSelectable="false" android:layout_weight="2"
+    	    android:textColor="@color/black" android:singleLine="true" android:gravity="left"/>
+    </LinearLayout>    
+    
+    <LinearLayout android:id="@+id/l_s_name" android:layout_width="match_parent" android:orientation="horizontal"
+        android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:background="@drawable/button_blue"
+        android:layout_marginTop="4dip" android:layout_marginBottom="4dip" android:paddingBottom="4dp">
+        <TextView android:id="@+id/last_sync" android:layout_width="match_parent" android:layout_height="wrap_content"
+    	    android:text="@string/last_sync" android:gravity="left" android:textSize="20sp" android:textColor="@color/black"
+    	    android:textIsSelectable="false" android:layout_weight="1"/>
+        <TextView android:id="@+id/last_sync_name" android:layout_width="match_parent" android:layout_height="wrap_content"
+    	    android:tag="@string/last_sync" android:textSize="18sp" android:textIsSelectable="false" android:layout_weight="2"
+    	    android:singleLine="true" android:textColor="@color/black" android:gravity="left"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/btn_bottom" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal" android:paddingBottom="4dp">
+        <Button android:id="@+id/survey_btn" android:layout_height="wrap_content" android:layout_width="wrap_content"
+	        android:text="@string/survey" android:layout_weight="1" android:background="@drawable/button_yellow"/>
+	    <Button android:id="@+id/dismiss_button" android:layout_height="wrap_content" android:layout_width="wrap_content"
+	        android:text="@android:string/ok" android:layout_weight="1" android:background="@drawable/button_yellow"/>
+	</LinearLayout>
+</LinearLayout>

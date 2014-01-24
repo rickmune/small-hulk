@@ -2,7 +2,8 @@ package com.maina.formdata.utils;
 
 public enum CloudConstants {
 
-	DATABASEMANAGER("CloudConstants.DATABASEMANAGER");
+	DATABASEMANAGER("CloudConstants.DATABASEMANAGER"),
+	LOGINERROR("CloudConstants.LOGINERROR");
 	
 	public final String value;
 

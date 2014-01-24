@@ -10,6 +10,10 @@ import com.maina.formdata.repository.IDFormResultItemRepository;
 import com.maina.formdata.repository.IDFormResultRepository;
 import com.maina.formdata.repository.RepositoryBase;
 
+/**
+ * @author Patrick
+ *
+ */
 public class DFormResultRepository extends RepositoryBase implements IDFormResultRepository {
 
 	IDFormResultItemRepository resultItemRepository;
@@ -30,6 +34,7 @@ public class DFormResultRepository extends RepositoryBase implements IDFormResul
 		this.dataManager = dataManager;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public int Saveresult(DformResultE dformResultE) throws Exception {
 		DformResultE resultE = dataManager.save(dformResultE, DataClass);
@@ -39,6 +44,7 @@ public class DFormResultRepository extends RepositoryBase implements IDFormResul
 		return 0;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public DformResultE getReadyToSend() throws Exception {
 		List<DformResultE> list = dataManager.publicDao(DataClass).queryForEq("Sent", false);
@@ -49,6 +55,28 @@ public class DFormResultRepository extends RepositoryBase implements IDFormResul
 			}
 		}
 		return null;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.maina.formdata.repository.IDFormResultRepository#getStatusNumbers()
+	 * @return array of int with 0=total, 1=sent, 2=unsent
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public int[] getStatusNumbers() throws Exception {
+		int[] status = new int[3];
+		List<DformResultE> list = dataManager.publicDao(DataClass).queryForAll();
+		for (DformResultE form : list) {
+			if (form.isDone()){
+				status[0] += 1;
+				if(form.isSent()){
+					status[1] += 1;
+				}else{
+					status[2] += 1;
+				}
+			}
+		}
+		return status;
 	}
 
 }

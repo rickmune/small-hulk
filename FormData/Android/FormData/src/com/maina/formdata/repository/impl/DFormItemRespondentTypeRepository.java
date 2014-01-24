@@ -26,6 +26,7 @@ public class DFormItemRespondentTypeRepository extends RepositoryBase implements
 		this.dataManager = dataManager;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<DformItemRespondentTypeE> getByFormItemId(UUID formItemId) throws Exception {
 		return dataManager.publicDao(DataClass).queryForEq("FormItemId", formItemId);

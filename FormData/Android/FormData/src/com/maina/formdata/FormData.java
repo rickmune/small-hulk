@@ -47,6 +47,7 @@ public class FormData extends BaseActivity{
 	private static final String TAG = "LoginActivity";
 	public static final String USERID = "USERID";
 	public static final String CLIENTID = "CLIENTID";
+	public static final String CLIENTNAME = "_CLIENTNAME";
 	@SuppressWarnings("rawtypes")
 	private Class classInstance = null;
 	private Method methodInstance = null;
@@ -82,12 +83,18 @@ public class FormData extends BaseActivity{
 					
 				}else{
 					SyncEntity<UserDto> entity = Login();
-					if(entity.getStatus()){
-						moveToNext(entity);
+					if(entity == null){
+						Toast.makeText(FormData.this, "Error during login. Stop app and restart it again"
+								, Toast.LENGTH_LONG).show();
+						System.out.println("entity == null");
 					}else{
-						Toast.makeText(FormData.this, entity.getInfo(), Toast.LENGTH_LONG).show();
-						remoteRequest(entity.getInfo());
-						System.out.println("after remoteRequest");
+						if(entity.getStatus()){
+							moveToNext(entity);
+						}else{
+							Toast.makeText(FormData.this, entity.getInfo(), Toast.LENGTH_LONG).show();
+							remoteRequest(entity.getInfo());
+							System.out.println("after remoteRequest");
+						}
 					}
 				}
 			}
@@ -102,9 +109,10 @@ public class FormData extends BaseActivity{
 			Bundle bundle = new Bundle();
 			bundle.putString(CLIENTID, dto.getClientId().toString());
 			bundle.putString(USERID, dto.getId().toString());
+			bundle.putString(CLIENTNAME, dto.getClientName());
 			bundle.putString(FormListActivity.USERNAME, dto.getUsername());
 			bundle.putString(FormListActivity.LOCATIONID, dto.getLocationId().toString());
-			Intent intent = new Intent(FormData.this, FormListActivity.class);
+			Intent intent = new Intent(FormData.this, Home.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
 		}else{
@@ -139,7 +147,7 @@ public class FormData extends BaseActivity{
 		if(validate()){
 			SyncEntity<UserDto>entity = Login();
 			if(entity.getStatus())
-				new SyncAsyncTask().execute(new String[]{entity.getData().get(0).getClientId().toString()});
+				new SyncTask().execute(new String[]{entity.getData().get(0).getClientId().toString()});
 			else
 				remoteRequest(entity.getInfo());
 		}else{
@@ -183,6 +191,19 @@ public class FormData extends BaseActivity{
 		@Override
 		protected String doInBackground(Void... params){
 			System.out.println("in doInBackground getuserName");
+			IPhonConfig config = Repositoryregistry.get(IPhonConfig.class, dataManager);
+			try {
+				PhonConfig pc = config.getConfig();
+				if(pc == null){
+					PhonConfig config2 = new PhonConfig();
+					config2.setId(UUID.randomUUID());
+					config2.setURL("http://topimage.icoders-solution.com");
+					config2.setEdit(false);
+					config.save(config2);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return getuserName();
 		}
 		
@@ -194,6 +215,7 @@ public class FormData extends BaseActivity{
             //startService(new Intent(LoginActivity.this, SyncService.class));
 		}
 	}
+	
 	
 	@SuppressWarnings("unchecked")
 	private String getuserName(){
@@ -219,7 +241,7 @@ public class FormData extends BaseActivity{
 		return ret;
 	}
 
-	private class SyncAsyncTask extends AsyncTask<String, Void, String[]>{
+	private class SyncTask extends AsyncTask<String, Void, String[]>{
 
 		@Override
 		protected void onPreExecute() {
@@ -241,8 +263,12 @@ public class FormData extends BaseActivity{
 					Repositoryregistry.get(IDUserRepository.class, dataManager), dataManager);
 			try {
 				Log.d("SyncService", "SyncForm() called with params.length: "+ params.length);
-				loginService.SyncForm(params);
-				return params;
+				if(loginService.SyncForm(params)){
+					return params;
+				}else{
+					return null;
+				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -256,12 +282,14 @@ public class FormData extends BaseActivity{
 			if(returns != null && returns.length > 1){
 				try {
 					SyncEntity<UserDto> entity = Repositoryregistry.get(IDUserRepository.class, dataManager).login(
-							username.getText().toString(), password.getText().toString());
+							username.getText().toString(), MakePWD.getMD5(password.getText().toString()));
 					moveToNext(entity);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
+			}else{
+				Toast.makeText(FormData.this, (String)CloudManager.getObject(CloudConstants.LOGINERROR.value), 
+						Toast.LENGTH_LONG).show();
 			}
 		}
 	}
@@ -307,7 +335,7 @@ public class FormData extends BaseActivity{
 				try {
 					pwd = MakePWD.getMD5(password.getText().toString());
 				} catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
-				new SyncAsyncTask().execute(new String[]{username.getText().toString(), pwd});
+				new SyncTask().execute(new String[]{username.getText().toString(), pwd});
 			};
 		});
 		dialog.show();
@@ -320,9 +348,14 @@ public class FormData extends BaseActivity{
 		dialog.setContentView(view);
 		dialog.setTitle("Settings");
 		final IPhonConfig phonConfig = Repositoryregistry.get(IPhonConfig.class, dataManager);
+		final EditText urlEdit = (EditText)view.findViewById(R.id.url_input);
 		try {
 			config = phonConfig.getConfig();
 			if(config != null && config.getURL() != null && !config.getURL().equals("")){
+				if(!config.isEdit()){
+					urlEdit.setEnabled(false);
+					urlEdit.setFocusable(false);
+				}
 				Log.d("setURL", "config != null: "+config.getURL());
 				((TextView)view.findViewById(R.id.url_text)).setText(config.getURL());
 			}else {
@@ -330,7 +363,6 @@ public class FormData extends BaseActivity{
 				((TextView)view.findViewById(R.id.url_text)).setText("Not Set");
 			}
 		} catch (Exception e) { e.printStackTrace(); }
-		final EditText urlEdit = (EditText)view.findViewById(R.id.url_input);
 		((Button)view.findViewById(R.id.btn_cancel)).setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -354,6 +386,7 @@ public class FormData extends BaseActivity{
 					}
 					config.setURL(object.toString());
 					try {
+						config.setEdit(false);
 						phonConfig.save(config);
 					} catch (Exception e) { e.printStackTrace(); }
 				}

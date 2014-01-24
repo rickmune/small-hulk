@@ -29,7 +29,7 @@ public class DFormRespondentTypeRepository extends RepositoryBase implements IDF
 	@Override
 	public Cursor getByFormId(List<String> params) throws Exception {
 		String sql = "SELECT id as _id, Name as name FROM DformRespondentTypeE frt";
-		return executeQuery(sql, params, "frt");
+		return executeQuery(sql, params, "frt", true);
 	}
 
 }

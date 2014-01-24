@@ -37,6 +37,8 @@ import com.maina.formdata.repository.IDFormItemRespondentTypeRepository;
 import com.maina.formdata.repository.IDFormRepository;
 import com.maina.formdata.repository.IDFormRespondentTypeRepository;
 import com.maina.formdata.repository.IDUserRepository;
+import com.maina.formdata.utils.CloudConstants;
+import com.maina.formdata.utils.CloudManager;
 import com.maina.formdata.utils.DformItemTypeserializer;
 import com.maina.formdata.utils.SyncEntity;
 import com.maina.formdata.utils.ui.GenUtils;
@@ -91,16 +93,26 @@ public class LoginService implements ILoginService {
 		params.put("password", Password);
 		String res = httpUtils.GetRequest(GenUtils.getUrl(dataManager)+"/api/client/user/login", params);
 		SyncEntity<UserDto> syncUser = deserialize(res, new TypeToken<SyncEntity<UserDto>>() {}.getType());
+		String msg = "No user returned Confirm UserName and Password";
 		if(!syncUser.Status){
 			//TODO: get the message
+			CloudManager.putObject(CloudConstants.LOGINERROR.value, msg, false);
 			return false;
 		}
+		if(syncUser.getData() == null || syncUser.getData().size() <= 0){
+			CloudManager.putObject(CloudConstants.LOGINERROR.value, msg, false);
+			return false;
+		}
+		/*if(syncUser.getRecordCount() <= 0){
+			CloudManager.putObject(CloudConstants.LOGINERROR.value, msg, false);
+			return false;
+		}*/
 		UserDto user = syncUser.getData().get(0);
 		System.out.println(" User: "+user.toString());
 		UserType t = (user.getUserType() == 2 ? UserType.TDR : UserType.Admin);
 		DUserE dUserE = new DUserE(user.getId(), user.getUsername(), user.getPassword(), 
 				user.getFullname(), t, user.getEmail(), user.getPhoneNumber(), user.getClientId(),
-				user.getLocationId());
+				user.getLocationId(), user.getClientName());
 		userRepository.save(dUserE);
 		return getFormIds(user.getClientId().toString());
 	}
@@ -197,6 +209,7 @@ public class LoginService implements ILoginService {
 	}
 
 		
+	@SuppressWarnings("unused")
 	private String makreResponse(){
 		return "{\"Name\":\"Safaricom\",\"RespondentTypes\":[{\"Name\":\"M-PESA\",\"Code\":\"M\",\"Id\":\"9a8253a1-0402-429e-9ac3-9094429fa6a5\"},{\"Name\":\"Dealer\",\"Code\":\"D\",\"Id\":\"213fae70-c546-42bd-bcd2-c4885f874de6\"}],\"FormItems\":[{\"Order\":2,\"Label\":\"What is you Gender\",\"FormItemType\":2,\"FormItemRespondentTypes\":[{\"RespondentTypeId\":\"213fae70-c546-42bd-bcd2-c4885f874de6\",\"FormItemId\":\"9f2b67d3-db9f-4f05-b8d9-3b22f66765d9\",\"Id\":\"059a6182-9186-4ba5-ad1e-c90434c58f8d\"}],\"FormItemAnswer\":[{\"Text\":\"Female\",\"Value\":\"F\",\"Id\":\"62365bde-680b-43e9-bc96-81c2861d5fb8\"},{\"Text\":\"Male\",\"Value\":\"M\",\"Id\":\"02a639a1-98f8-4262-b485-d401518458d0\"}],\"IsRequired\":true,\"Id\":\"9f2b67d3-db9f-4f05-b8d9-3b22f66765d9\"},{\"Order\":3,\"Label\":\"Which of the following Product do you use?\",\"FormItemType\":3,\"FormItemRespondentTypes\":[{\"RespondentTypeId\":\"9a8253a1-0402-429e-9ac3-9094429fa6a5\",\"FormItemId\":\"92624c90-08d5-4544-811a-e3505d3eb60f\",\"Id\":\"335c75f4-48e9-48bd-b941-5fa3ddb4ac37\"}],\"FormItemAnswer\":[{\"Text\":\"A\",\"Value\":\"Aple\",\"Id\":\"7f9a67dc-00e6-4400-bfe6-19f9e20ed5d1\"},{\"Text\":\"Banana\",\"Value\":\"B\",\"Id\":\"43405fc3-b9b7-493b-bd78-a81500d98162\"},{\"Text\":\"Mango\",\"Value\":\"M\",\"Id\":\"1f94ce19-0509-4663-92de-af83306ff85b\"}],\"IsRequired\":true,\"Id\":\"92624c90-08d5-4544-811a-e3505d3eb60f\"},{\"Order\":1,\"Label\":\"What is you name?\",\"FormItemType\":1,\"FormItemRespondentTypes\":[{\"RespondentTypeId\":\"9a8253a1-0402-429e-9ac3-9094429fa6a5\",\"FormItemId\":\"0396aba1-7b06-4a1e-bb93-fb725024c6c3\",\"Id\":\"2429a54b-bea3-44ae-872b-37a510bb35e2\"}],\"FormItemAnswer\":[],\"IsRequired\":true,\"Id\":\"0396aba1-7b06-4a1e-bb93-fb725024c6c3\"}],\"Id\":\"2bfd38a8-fe58-4dc2-b5f6-139962f5ecbb\"}";
 	}

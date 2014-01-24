@@ -9,6 +9,8 @@ public class PhonConfig extends DBaseE {
 
 	@DatabaseField
 	private String URL;
+	@DatabaseField
+	private boolean edit;
 	
 	public String getURL() {
 		return URL;
@@ -17,5 +19,12 @@ public class PhonConfig extends DBaseE {
 	public void setURL(String uRL) {
 		URL = uRL;
 	}
-	
+
+	public boolean isEdit() {
+		return edit;
+	}
+
+	public void setEdit(boolean edit) {
+		this.edit = edit;
+	}
 }

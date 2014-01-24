@@ -122,8 +122,7 @@ public class Datamanager extends OrmLiteSqliteOpenHelper implements IDataManager
 
 	@Override
 	public <T> T getById(UUID id, Class<T> dataClass) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return publicDao(dataClass).queryForId(id);
 	}
 
 	@Override

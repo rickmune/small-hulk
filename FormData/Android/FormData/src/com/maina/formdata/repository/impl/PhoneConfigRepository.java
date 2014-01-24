@@ -40,5 +40,15 @@ public class PhoneConfigRepository extends RepositoryBase implements IPhonConfig
 	public void setDataManager(IDataManager dataManager) {
 		this.dataManager = dataManager;
 	}
+
+	@Override
+	public void allowEdit() throws Exception {
+		List<PhonConfig> configs = dataManager.publicDao(PhonConfig.class).queryForAll();
+		if(configs != null && !configs.isEmpty()) {
+			PhonConfig config = configs.get(0);
+			config.setEdit(true);
+			dataManager.save(config, PhonConfig.class);
+		}
+	}
 	
 }

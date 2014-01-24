@@ -6,7 +6,7 @@ public class UserDto extends DBase {
 
 	public UserDto(UUID id, boolean isActive, String username, String password,
 			String fullname, int userType, String email, String phoneNumber,
-			UUID clientId, UUID locationId) {
+			UUID clientId, UUID locationId, String clientName) {
 		super(id);
 		Username = username;
 		Password = password;
@@ -16,6 +16,7 @@ public class UserDto extends DBase {
 		PhoneNumber = phoneNumber;
 		ClientId = clientId;
 		LocationId = locationId;
+		ClientName = clientName;
 	}
 
 	private String Username;
@@ -26,6 +27,7 @@ public class UserDto extends DBase {
 	private String PhoneNumber;
 	private UUID ClientId;
 	private UUID LocationId;
+	private String ClientName;
 
 	public String getUsername() {
 		return Username;
@@ -89,6 +91,14 @@ public class UserDto extends DBase {
 
 	public void setLocationId(UUID locationId) {
 		LocationId = locationId;
+	}
+
+	public String getClientName() {
+		return ClientName;
+	}
+
+	public void setClientName(String clientName) {
+		ClientName = clientName;
 	}
 
 	@Override

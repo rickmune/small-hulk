@@ -6,7 +6,7 @@ import com.maina.formdata.repository.Repositoryregistry;
 
 public class GenUtils {
 
-	private static String url = "http://test.icoders-solution.com";
+	private static String url = "http://topimage.icoders-solution.com";
 	
 	public static float roundTo(float number, int places){
 		int sentin = 10 * places;

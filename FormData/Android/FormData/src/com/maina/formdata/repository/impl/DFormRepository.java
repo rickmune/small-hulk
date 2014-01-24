@@ -29,7 +29,13 @@ public class DFormRepository extends RepositoryBase implements IDFormRepository 
 	@Override
 	public Cursor getForms(List<String> params) throws Exception {
 		String sql = "SELECT id as _id, Name as name from DformE df";
-		return executeQuery(sql, params, "df");
+		return executeQuery(sql, params, "df", true);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public int getFormCount() throws Exception {
+		return dataManager.publicDao(DataClass).queryForAll().size();
 	}
 
 }

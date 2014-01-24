@@ -31,11 +31,13 @@ public abstract class RepositoryBase {
 		return dataManager.saveBatch(data, DataClass);
 	}
 	
-	public Cursor executeQuery(String sql, List<String> searchParams, String alias) throws Exception{
-		Log.d(Tag, "saveBatching: " + DataClass.getCanonicalName());
+	public Cursor executeQuery(String sql, List<String> searchParams, String alias, boolean order) throws Exception{
+		Log.d(Tag, "executeQuery: " + DataClass.getCanonicalName());
 		Cursor cursor = null;
 		String sqlfinal = sql;
 		if(searchParams != null && !searchParams.isEmpty())sqlfinal = search(sqlfinal, searchParams, alias);
+		if(order)sqlfinal = sqlfinal +" Order by name asc";
+		Log.d(Tag, "saveBatching sql: " + sqlfinal);
 		cursor = dataManager.executeQuery(sqlfinal);
 		return cursor;
 	}
@@ -61,6 +63,16 @@ public abstract class RepositoryBase {
 	@SuppressWarnings("unchecked")
 	public <T> T getById(UUID id)throws Exception{
 		Log.d(Tag, "getById Id: " + id +" Data: " + DataClass.getCanonicalName());
-		return (T) dataManager.getById(id, DataClass);
+		T t = (T) dataManager.getById(id, DataClass);
+		Log.d(Tag, "getById " + " Data: " + t.toString());
+		return t;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void DeleteAll() throws Exception{		
+		List<?> list = dataManager.publicDao(DataClass).queryForAll();
+		Log.d(Tag, "DeleteAll b4: " + list.size());
+		int x = dataManager.publicDao(DataClass).delete(list);
+		Log.d(Tag, "DeleteAll after: " + x);
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,7 +14,9 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -115,6 +118,10 @@ public class FormItemBase extends BaseActivity {
 		});
 		dynamicView.setFocusableInTouchMode(true);
 		dynamicView.addView(view, p);
+		InputMethodManager imm = (InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+		imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+		view.requestFocus();
+		//getWindow().setSoftInputMode(WindowManager.LayoutParams.so)
 	}
 
 	protected void makeDropdown(final UUID formItemId, int selected){
@@ -129,6 +136,7 @@ public class FormItemBase extends BaseActivity {
 			}
 		});
 		dynamicView.addView(btnSpinner);
+		
 	}
 	
 	protected void makeCheckboxList(final UUID formItemId, String checked){
@@ -160,6 +168,7 @@ public class FormItemBase extends BaseActivity {
 			
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				@SuppressWarnings("unchecked")
 				Pair<String, String> pair = (Pair<String, String>) group.findViewById(checkedId).getTag();
 				AnswerText = pair.second;
 				System.out.println("onCheckedChanged ... "+AnswerText);
@@ -167,9 +176,10 @@ public class FormItemBase extends BaseActivity {
 			}
 		});
 		dynamicView.addView(radioGroup, p);
+		
 	}
 
-	private void callPopUp(Class cName, int resultCode, String formItemId, String t){
+	private void callPopUp(@SuppressWarnings("rawtypes") Class cName, int resultCode, String formItemId, String t){
 		ArrayList<String> map = new ArrayList<String>();
 		map.add("dformItemE_id"); 
 		map.add(formItemId);
@@ -186,10 +196,14 @@ public class FormItemBase extends BaseActivity {
 	private int inputType(String regex){
 		if(regex == null)regex="";
 		int inType = InputType.TYPE_CLASS_TEXT;
-		if(regex.contains("\\d")){
-			inType = InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED;
+		if(regex.equals("")){
+			inType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
 		}else if(regex.contains("\\.")){
-			inType = InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_NUMBER_FLAG_SIGNED;
+			inType = InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED;
+		}/*else if(regex.contains("\\d")){
+			
+		}*/else if(regex.contains("\\d")){
+			inType = InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED;
 		}
 		return inType;
 	}

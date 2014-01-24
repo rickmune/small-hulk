@@ -11,7 +11,9 @@ public interface IRepositoryBase {
 	
 	public <T> int saveBatch(List<T> data) throws Exception;
 	
-	public Cursor executeQuery(String sql, List<String> searchParams, String alias) throws Exception;
+	public Cursor executeQuery(String sql, List<String> searchParams, String alias, boolean order) throws Exception;
 	
 	public <T> T getById(UUID id)throws Exception;
+	
+	public void DeleteAll() throws Exception;
 }

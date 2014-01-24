@@ -19,6 +19,7 @@ public class DUserRepository extends RepositoryBase implements IDUserRepository 
 		setDataManager(dataManager);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T save(T data) throws Exception{
 		Log.d("DUserRepository", "saving: " + DataClass.getCanonicalName()+"\n"+((DUserE)data).toString());
@@ -40,7 +41,7 @@ public class DUserRepository extends RepositoryBase implements IDUserRepository 
 					List<UserDto> t = new ArrayList<UserDto>();
 					t.add(new UserDto(user.getId(), true, user.getUsername(), user.getPassword(), 
 							user.getFullname(), user.getUserTypeId().value, user.getEmail(), user.getPhoneNumber(), 
-							user.getClientId(), user.getLocationId()));
+							user.getClientId(), user.getLocationId(), user.getClientName()));
 					entity.setInfo("success");
 					entity.Status = true;
 					entity.setData(t);

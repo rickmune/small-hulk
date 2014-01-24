@@ -11,7 +11,7 @@ public class DClientId extends DBaseE {
 	public DClientId() {
 	}
 
-	public DClientId(UUID id,String name) {
+	public DClientId(UUID id, String name) {
 		super(id);
 		Name = name;
 	}

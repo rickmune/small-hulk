@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,17 +49,19 @@ public class FormItemActivity extends FormItemBase {
 	private int CurrentItem;
 	DformItemE dformItem = null;
 	DFormLocationListener listener;
+	String formId, formName, userName, locationId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d("FormItemActivity","onCreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.formitem_activity);
+		setTitle("Questions");
 		Bundle bundle = getIntent().getExtras();
-		String formId = bundle.getString(FormListActivity.FORMID);
-		String formName = bundle.getString(FormListActivity.FORMNAME);
-		String userName = bundle.getString(FormListActivity.USERNAME);
-		String locationId = bundle.getString(FormListActivity.LOCATIONID);
+		formId = bundle.getString(FormListActivity.FORMID);
+		formName = bundle.getString(FormListActivity.FORMNAME);
+		userName = bundle.getString(FormListActivity.USERNAME);
+		locationId = bundle.getString(FormListActivity.LOCATIONID);
 		RespondentId = UUID.fromString( bundle.getString(FormListActivity.RESPONDENTTYPE));
 		dynamicView = (LinearLayout)findViewById(R.id.dynamicView);
 		btnSpinner = (Button)findViewById(R.id.pop_up);
@@ -70,10 +74,19 @@ public class FormItemActivity extends FormItemBase {
 		cancel.setOnClickListener(new BtnClicked());
 		save.setOnClickListener(new BtnClicked());
 		lblFormT.setText("Form: "+formName);
-		new GetFormItems().execute(UUID.fromString(formId));
-		
+		new GetFormItems().execute(UUID.fromString(formId));		
 		dformResultE = new DformResultE(UUID.randomUUID(), RespondentId, UUID.fromString(formId), 
 				resultItemEs, false, false, userName, UUID.fromString(locationId));
+	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putString(FormListActivity.FORMID, formId.toString());
+		outState.putString(FormListActivity.FORMNAME, formName);
+		outState.putString(FormListActivity.USERNAME, userName);
+		outState.putString(FormListActivity.LOCATIONID, locationId);
+		outState.putString(FormListActivity.RESPONDENTTYPE, RespondentId.toString());
+		super.onSaveInstanceState(outState);
 	}
 	
 	@Override
@@ -142,6 +155,7 @@ public class FormItemActivity extends FormItemBase {
 	}
 	
 	private void makeItems(){
+		
 		dynamicView.removeAllViews();
 		if(dformItemE != null){
 			Log.d("FormItemActivity"," makeItems(): "+dformItemE.size());
@@ -201,6 +215,14 @@ public class FormItemActivity extends FormItemBase {
 						Toast.makeText(FormItemActivity.this, "Error! "+dformItem.getValidationText(), Toast.LENGTH_LONG)
 						.show();
 						return;
+					}
+					if(view != null){
+						Log.d(TAG, "TextInput is not null");
+						/*view.setInputType(InputType.TYPE_NULL);*/
+						InputMethodManager imm = (InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+						imm.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
+						//getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+						
 					}
 					List<String> results = new ArrayList<String>();
 					results.add(AnswerText);

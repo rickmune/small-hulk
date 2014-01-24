@@ -57,6 +57,7 @@ public class FormListActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_form_list);
+		setTitle("Forms");
 		Log.d("FormListActivity", "onCreate (dataManager== null): "+(dataManager== null));
 		Bundle bundle = getIntent().getExtras();
 		UserName = bundle.getString(USERNAME);
@@ -191,5 +192,25 @@ public class FormListActivity extends BaseActivity {
 			}
 		}
 	}
-
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putString(FORMID, formId.toString());
+		outState.putString(FORMNAME, formName);
+		outState.putString(USERNAME, UserName);
+		outState.putString(LOCATIONID, LocationId);
+		super.onSaveInstanceState(outState);
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		formName = savedInstanceState.getString(FORMNAME);
+		UserName = savedInstanceState.getString(USERNAME);
+		LocationId = savedInstanceState.getString(LOCATIONID);
+		try {
+			formId = UUID.fromString(savedInstanceState.getString(FORMID));
+		} catch (Exception e) { e.printStackTrace();}
+		
+		super.onRestoreInstanceState(savedInstanceState);
+	}
 }
