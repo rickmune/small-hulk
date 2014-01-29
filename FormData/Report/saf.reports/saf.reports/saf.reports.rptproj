@@ -22,16 +22,20 @@
       <FullPath>DailyDataReport.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Report1.rdl</Name>
-      <FullPath>Report1.rdl</FullPath>
+      <Name>OutletCallPerRegion.rdl</Name>
+      <FullPath>OutletCallPerRegion.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>OutletCallsPerUser.rdl</Name>
       <FullPath>OutletCallsPerUser.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>OutletCallPerRegion.rdl</Name>
-      <FullPath>OutletCallPerRegion.rdl</FullPath>
+      <Name>Report1.rdl</Name>
+      <FullPath>Report1.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>SafaricomTrainingListing.rdl</Name>
+      <FullPath>SafaricomTrainingListing.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
@@ -42,9 +46,9 @@
         <OutputPath>bin\Debug</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
         <TargetServerURL>http://barberry.arvixe.com/ReportServer_SQLExpress</TargetServerURL>
-        <TargetFolder>safaricom/reports</TargetFolder>
-        <TargetDataSourceFolder>safaricom/Data Sources</TargetDataSourceFolder>
-        <TargetDatasetFolder>safaricom/Datasets</TargetDatasetFolder>
+        <TargetFolder>TIsafaricom/reports</TargetFolder>
+        <TargetDataSourceFolder>TIsafaricom/Data Sources</TargetDataSourceFolder>
+        <TargetDatasetFolder>TIsafaricom/Datasets</TargetDatasetFolder>
         <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
       </Options>
     </Configuration>

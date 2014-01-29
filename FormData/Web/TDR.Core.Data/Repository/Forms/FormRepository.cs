@@ -192,5 +192,35 @@ namespace TDR.Core.Data.Repository.Forms
             }
             _context.SaveChanges();
         }
+
+        public void DeleteFormItemAnswers(Guid itemid)
+        {
+            var rItem = _context.FormItemAnswers.Where(s => s.FormItemId == itemid);
+            foreach (var item in rItem)
+            {
+                _context.FormItemAnswers.Remove(item);
+            }
+            _context.SaveChanges();
+        }
+
+        public void SaveFormItemAnswers(DformItemAnswerEntity entity)
+        {
+            var answer5 = _context.FormItemAnswers.FirstOrDefault(s => s.Id == entity.Id);
+            if (answer5 == null)
+            {
+                answer5 = new DformItemAnswerEntity
+                {
+                    Id = Guid.NewGuid(),
+
+
+                };
+                _context.FormItemAnswers.Add(answer5);
+            }
+            answer5.Text = entity.Text;
+            answer5.Value = entity.Value;
+            answer5.FormItemId = entity.FormItemId;
+            answer5.IdCode = entity.Value;
+            _context.SaveChanges();
+        }
     }
 }

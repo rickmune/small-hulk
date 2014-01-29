@@ -16,5 +16,7 @@ namespace TDR.Core.Repository
         void SaveFormItem(DformItemEntity entity);
         void SaveFormItemRespondent(DformItemRespondentTypeEntity entity);
         void DeleteFormItemRespondent(Guid itemid);
+        void DeleteFormItemAnswers(Guid itemid);
+        void SaveFormItemAnswers(DformItemAnswerEntity entity);
     }
 }

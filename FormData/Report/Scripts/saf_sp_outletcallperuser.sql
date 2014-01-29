@@ -13,7 +13,9 @@ SELECT
 	count(r.id) as Calls
   FROM dFormResult r
   join [dFormRespondentType] rt on r.respondentTypeId=rt.Id
+  join dForms f on f.Id=rt.FormId
    where (1=1)
+    and f.IdCode='SAF_D_D_F'
   and  ((@startDate is null or @endDate is null) or r.DateInserted between @startDate and  @endDate)
   group by rt.Name ,r.Username
 END;

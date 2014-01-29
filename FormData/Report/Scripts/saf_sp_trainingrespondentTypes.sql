@@ -1,6 +1,6 @@
-DROP PROCEDURE [saf_sp_respondentTypes]
+DROP PROCEDURE [dbo].[saf_sp_trainingrespondentTypes]
 GO
-Create PROCEDURE [saf_sp_respondentTypes]   
+Create PROCEDURE [dbo].[saf_sp_trainingrespondentTypes]   
  
 AS
 BEGIN

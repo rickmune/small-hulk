@@ -1,6 +1,6 @@
-DROP PROCEDURE [saf_sp_dailydata]
+DROP PROCEDURE [dbo].[saf_sp_traininglisting]
 GO
-Create PROCEDURE [saf_sp_dailydata]
+Create PROCEDURE [dbo].[saf_sp_traininglisting]
     @startDate varchar(50)=NULL,
     @endDate varchar(50)=NULL ,   
   @respondentTypeId varchar(50)=NULL,
@@ -33,7 +33,7 @@ SELECT
   left join dFormRespondentType ft on ft.id=r.RespondentTypeId 
   left join dForms f on f.Id= ft.FormId
   where (1=1)
-    and f.IdCode='SAF_D_D_F'
+    and f.IdCode='SAF_ST'
 	and(@respondentTypeId is null or r.RespondentTypeId=@respondentTypeId)
 	and  ((@startDate is null or @endDate is null) or r.DateInserted between @startDate and  @endDate)
 	and(@username is null or r.username=@username)
@@ -41,5 +41,5 @@ SELECT
 	
 END;
 
--- exec [saf_sp_dailydata]  @respondentTypeId='A9F14C73-045A-40F3-86B5-062F1EDE27AD'
+-- exec [saf_sp_traininglisting]  @respondentTypeId='A9F14C73-045A-40F3-86B5-062F1EDE27AD'
 --EXEC saf_sp_dailydata @username = ' ALL'

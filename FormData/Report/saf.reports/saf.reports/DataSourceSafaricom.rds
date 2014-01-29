@@ -2,7 +2,7 @@
 <RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DataSourceSafaricom">
   <ConnectionProperties>
     <Extension>SQL</Extension>
-    <ConnectString>Data Source=localhost;Initial Catalog=tdrdb</ConnectString>
+    <ConnectString>Data Source=barberry.arvixe.com;Initial Catalog=topimagefdDB</ConnectString>
   </ConnectionProperties>
   <DataSourceID>c10b25f1-6f40-4fd0-bcb6-6187abe55b07</DataSourceID>
 </RptDataSource>

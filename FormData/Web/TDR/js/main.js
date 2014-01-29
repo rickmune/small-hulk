@@ -60,7 +60,8 @@
         apputil: 'apputil',
         router: 'router',
        
-      addupdateformitemviewmodel: 'views/addupdateformitem',
+        addupdateformitemviewmodel: 'views/addupdateformitem',
+        addupdateformitemsinglechoice: 'views/addupdateformitemsinglechoice',
 
         
     }

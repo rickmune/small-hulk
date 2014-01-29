@@ -4,15 +4,13 @@
         'backbone',
         'jqueryui',
         'apputil',
-        'text!templates/addupdateformitem_template.html',
-         'text!templates/addupdateformitemtext_template.html',
- 'addupdateformitemsinglechoice'
+ 'text!templates/addupdateformitemsinglechoice_template.html'
 
-], function ($, _, backbone, jqueryui, apputil, template, texttemplate, formViewSingleChoice) {
+], function ($, _, backbone, jqueryui, apputil, template) {
 
     // user form view
 
-    var Model = Backbone.Model.extend({});
+   
    var respondent = Backbone.Model.extend({});
    var respondentList = Backbone.Collection.extend({
        model: respondent,
@@ -33,21 +31,63 @@
             this.respondentList = new respondentList({ formid: option.formid });
         }
     });
-    var formViewText = Backbone.View.extend({
+    var formViewSingleChoice = Backbone.View.extend({
         initialize: function (option) {
             this.$el = $('#itemcontentholder');
             this.cid = "view_addupdateformitemtext";
-            this.template = _.template(texttemplate);
+            this.template = _.template(template);
             this.model = new formItemTextModel({ formid: option.formid });
             if (option != null && option.ItemType != null) {
                 this.ItemType = option.ItemType;
             }
+            this.PossibleOptions = new Array();
         },
         events: {
             'click #btn-save-formitemtext': 'save',
+            'click #btn-add-formitem': 'addanswer',
+            'click .btn-deleterow': 'deleteanswer'
 
         },
-        save: function () {
+        deleteanswer: function (e) {
+            e.preventDefault();
+            var id = $(e.currentTarget).data('name');
+           
+            this.PossibleOptions = _.without(this.PossibleOptions, _.findWhere(this.PossibleOptions, { Value: id }));
+
+            this.reloadAnswerOption();
+           
+        },
+        addanswer: function (e) {
+            e.preventDefault();
+          
+            var anstext = $("#itemanstext").val();
+            var ansvalue = $("#itemansvalue").val();
+            if (!anstext ) {
+                alert("Enter possible answer text field");
+                return;
+            }
+            if (!ansvalue) {
+                alert("Enter possible answer value field");
+                return;
+            }
+            this.PossibleOptions.push({ Text: anstext, Value: ansvalue });
+            $("#itemanstext").val('');
+            $("#itemansvalue").val('');
+            this.reloadAnswerOption();
+        },
+        reloadAnswerOption: function () {
+          
+            var html = '<table class="table table-bordered table-hover "><thead><tr> <th>Text</th> <th>Value</th><th></th></tr></thead><tbody> ';
+            _(this.PossibleOptions).each(function (dv) {
+                html += '<tr> <td>' + dv.Text + '</td> <td>' + dv.Value + '</td><td><a href="#" data-name=' + dv.Value + ' class="btn btn-xs btn-deleterow" ><i class="glyphicon glyphicon-trash"></i> </a></td></tr>';
+               
+
+            });
+            html += '</tbody></table>';
+            $("#possibleansweroption_holder").html(html);
+        },
+        save: function (e) {
+            e.preventDefault();
             var self = this;
             self.model.validate = this.validate;;
             var id = apputil.Guid();
@@ -70,7 +110,8 @@
                 ValidationRegex: this.validationRegex,
                 Section: this.section,
                 RespondentTypes: this.checkedRespondentType,
-                HelpText:this.helpText
+                HelpText: this.helpText,
+                PossibleOptions: this.PossibleOptions,
             });
           
             if (!self.model.isValid()) {
@@ -128,39 +169,42 @@
             if (attrs.RespondentTypes.length ==0) {
                 errors.push({ name: 'itemlabel', message: 'Make sure you have checked atleast one respondent type.' });
             }
+            if (attrs.PossibleOptions.length <2) {
+                errors.push({ name: 'psas', message: 'Make sure you have entered atleast two possible answers.' });
+            }
             return errors.length > 0 ? errors : false;
         },
         loaddata: function (itemid) {
-            
 
+            var self = this;
             $.get(window.app_baseurl + "api/client/form/GetFormItem?itemId=" + itemid, {},
                 function (data) {
                     
                     var checkedRespondentType = new Array();
-                   // $('#respondenttype_holder input:checked').each(function () {
-                    //    checkedRespondentType.push($(this).attr('value'));
-                    //});
+                   
                     _(data.RespondentTypes).each(function (dv) {
-                      
                         $("#" + dv).prop('checked', true);
                     });
-                    this.checkedRespondentType = checkedRespondentType;
-                    this.label = data.Label;
-                    $("#itemlabel").val(this.label);
-                    this.formItemType = data.FormItemTypeId;
-                     $("#itemtype").val(this.formItemType);
-                    this.isRequired = data.IsRequired;
-                    $("#isrequired").prop('checked',this.isRequired);
-                    this.helpText = data.HelpText;
-                    $("#helptext").val(this.helpText);
-                    this.validationText = data.ValidationText;
-                    $("#validationtext").val(this.validationText);
-                    this.validationRegex = data.ValidationRegex;
-                    $("#validationregex").val(this.validationRegex);
-                    this.section = data.Section;
-                    $("#section").val(this.section);
-                    this.itemNo = data.Order;
-                    $("#itemNo").val(this.itemNo);
+                   
+                    self.checkedRespondentType = checkedRespondentType;
+                    self.PossibleOptions = data.PossibleOptions;
+                    self.reloadAnswerOption();
+                    self.label = data.Label;
+                    $("#itemlabel").val(self.label);
+                    self.formItemType = data.FormItemTypeId;
+                    $("#itemtype").val(self.formItemType);
+                     self.isRequired = data.IsRequired;
+                     $("#isrequired").prop('checked', self.isRequired);
+                    self.helpText = data.HelpText;
+                    $("#helptext").val(self.helpText);
+                    self.validationText = data.ValidationText;
+                    $("#validationtext").val(self.validationText);
+                    self.validationRegex = data.ValidationRegex;
+                    $("#validationregex").val(self.validationRegex);
+                    self.section = data.Section;
+                    $("#section").val(self.section);
+                    self.itemNo = data.Order;
+                    $("#itemNo").val(self.itemNo);
                     
                    
                 }
@@ -171,6 +215,7 @@
         render: function () {
             var self = this;
             this.$el.html(this.template);
+           
             $.ajax({
                 url: window.app_baseurl + "api/client/form/GetFormRespodent?formId=" + $("#formid").val(),
                 success: function (data) {
@@ -181,71 +226,24 @@
                 },
                 async: false
             });
-            
+            //this.model.respondentList.fetch({
+            //    async:false,
+            //    success: function () {
+            //        _(self.model.respondentList.toJSON()).each(function (dv) {
+                       
+            //            var r = '<div class="checkbox"><label><input id="' + dv.Id + '" type="checkbox" value="' + dv.Id + '">' + dv.Name + '</label></div>';
+            //            self.$el.find("#respondenttype_holder").append(r);
+                       
+            //        });
+                    
+            //    }
+            //});
+           
             return this;
         },
 
     });
- 
-    var formView = Backbone.View.extend({
-        initialize: function (option) {
-            this.$el = $('#pagecontentholder');
-            this.cid = "view_addupdateformitem";
-            this.template = _.template(template);
-            this.model = new Model();
-        },
-        events: {
-            'change #itemtype': 'showForm',
-
-        },
-        showForm: function (e) {
-           
-            e.preventDefault();
-            var selected = $("#itemtype").val();
-            var formid = $("#formid").val();
-            if (selected==1) {
-                var textview = new formViewText({ ItemType: selected, formid: formid });
-                textview.render();
-            }else if (selected == 2) {
-                var view = new formViewSingleChoice({ ItemType: selected, formid: formid });
-                view.render();
-            } else {
-                this.$el.find("#itemcontentholder").html("");
-            }
-        },
-        
-        bindings: {
-            '#label': 'Label',
-            
-        },
-
-
-        render: function () {
-            //;
-            var self = this;
-            this.$el.html(this.template);
-            var itemId = $("#itemid").val();
-            if (itemId != null) {
-                var selected = $("#itemtypeid").val();
-                $('#itemtype').val(selected);
-                var formid = $("#formid").val();
-                if (selected == 1) {
-                    var textview = new formViewText({ ItemType: selected, formid: formid });
-                    textview.render();
-                    textview.loaddata(itemId);
-                } else if (selected == 2) {
-                    var view = new formViewSingleChoice({ ItemType: selected, formid: formid });
-                    view.render();
-                    view.loaddata(itemId);
-                   
-                }
-                $("#itemtype").prop('disabled', 'disabled');
-            }
-           
-           // this.stickit();
-            return this;
-        },
-
-    });
-    return formView;
+  
+   
+    return formViewSingleChoice;
 });

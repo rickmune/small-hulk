@@ -38,6 +38,7 @@ namespace TDR.WEB.LIB.DTOS.Forms
       public FormItemDTO()
       {
           RespondentTypes = new List<Guid>();
+          PossibleOptions= new List<FormItemOption>();
       }
 
       public int Order { get; set; }
@@ -57,7 +58,17 @@ namespace TDR.WEB.LIB.DTOS.Forms
       
       public string Code { get; set; }
       public List<Guid> RespondentTypes { get; set; }
+      public List<FormItemOption> PossibleOptions { get; set; }
+      
      
 
   }
+
+    public class FormItemOption 
+    {
+
+       
+        public string Text { get; set; }
+         public string Value { get; set; }
+    }
 }

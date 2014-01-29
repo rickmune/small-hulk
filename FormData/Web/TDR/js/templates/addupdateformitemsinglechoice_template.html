@@ -3,12 +3,19 @@
     <div class="row">
         <div class="col-xs-6">
             <form class="form-horizontal" role="form">
-                <h4>Form Item Details </h4>
-                <div class="form-group">
-                    <label for="label" class="col-lg-4 control-label">Label</label>
-                    <div class="col-lg-8">
-                        <input type="text" id="label" class="form-control" placeholder="Label">
-                        <span class="help-inline"></span>
+                 <div class="form-group ">
+                    <label for="itemNo" class="col-lg-4 control-label">No.</label>
+                    <div class="col-lg-8 ">
+                        <input type="text" id="itemNo" class="form-control" placeholder="No">
+                        <span class="help-block"></span>
+                    </div>
+
+                </div>
+                <div class="form-group ">
+                    <label for="itemlabel" class="col-lg-4 control-label">Label</label>
+                    <div class="col-lg-8 ">
+                        <input type="text" id="itemlabel" class="form-control" placeholder="Label">
+                        <span class="help-block"></span>
                     </div>
 
                 </div>
@@ -16,7 +23,7 @@
                     <label for="isrequired" class="col-lg-4 control-label">Is Required</label>
                     <div class="col-lg-8">
                         <input type="checkbox" id="isrequired"  >
-                        <span class="help-inline"></span>
+                        <span class="help-block"></span>
                     </div>
 
                 </div>
@@ -24,69 +31,55 @@
                     <label for="helptext" class="col-lg-4 control-label">Help text</label>
                     <div class="col-lg-8">
                         <input type="text" id="helptext" class="form-control" placeholder="Help Text">
-                        <span class="help-inline"></span>
+                        <span class="help-block"></span>
                     </div>
                 </div>
-                
+               
                 <div class="form-group">
                     <label for="section" class="col-lg-4 control-label">Section</label>
                     <div class="col-lg-8">
                         <input type="text" id="section" class="form-control" placeholder="Section">
-                        <span class="help-inline"></span>
+                        <span class="help-block"></span>
                     </div>
                 </div>
-                <h4>Possible option </h4>
-                
+                 <h4>Possible option </h4>
                 <div class="form-group">
-                    <label for="itemanswertext" class="col-lg-4 control-label">Text</label>
+                    <label for="itemanstext" class="col-lg-4 control-label">Text</label>
                     <div class="col-lg-8">
-                        <input type="text" id="itemanswertext" class="form-control" placeholder="Text">
-                        <span class="help-inline"></span>
+                        <input type="text" id="itemanstext" class="form-control" placeholder="Text">
+                        <span class="help-block"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="itemanswervalue" class="col-lg-4 control-label">Value</label>
+                    <label for="itemansvalue" class="col-lg-4 control-label">Value</label>
                     <div class="col-lg-8">
-                        <input type="text" id="itemanswervalue" class="form-control" placeholder="Value">
-                        <span class="help-inline"></span>
+                        <input type="text" id="itemansvalue" class="form-control" placeholder="Value">
+                        <span class="help-block"></span>
                     </div>
                 </div>
-                <input id="Button1" class="btn btn-default col-lg-offset-11" type="button"  value="add">
-             
+                 <input id="btn-add-formitem" class="btn btn-default col-lg-offset-11" type="button"  value="add">
+               
             </form>
         </div>
         <div class="col-xs-4">
-            <h4>Respondent Types</h4>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="">
-                    M-PESA
-                </label>
+            
+            <div id="respondenttype_holder" >
+                <h4>Respondent Types</h4>
+               
             </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="">
-                    DEALER
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="">
-                    M-PESA-RETAIL
-                </label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="">
-                    RETAIL
-                </label>
+            <div  >
+                <h4>Possible Answer options </h4>
+                <div id="possibleansweroption_holder">
+                    
+                </div>
             </div>
             
-            <h4>Possible Options</h4>
         </div>
     </div>
-     <input id="btn-save-counterparty" class="btn btn-primary" type="button"  value="Save">
+    <script type="text/template" id="artist-list-template">
+
+</script>
+     <input id="btn-save-formitemtext" class="btn btn-primary " type="button"  value="Save">
 
 </section>
 

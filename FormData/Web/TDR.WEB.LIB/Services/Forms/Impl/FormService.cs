@@ -103,6 +103,7 @@ namespace TDR.WEB.LIB.Services.Forms.Impl
                ValidationRegex = s.ValidationRegex,
                ValidationText = s.ValidationText,
                RespondentTypes = s.FormItemRespondentTypes.Select(b=>b.FormRespondentTypeId).ToList(),
+               PossibleOptions = s.FormItemAnswers.Select(b=> new FormItemOption{Text = b.Text,Value = b.Value}).ToList(),
                HelpText = s.HelpText,
                Section = s.Section,
             };
@@ -201,6 +202,20 @@ namespace TDR.WEB.LIB.Services.Forms.Impl
                                                  FormRespondentTypeId = respondent
                                              };
                     _formRepository.SaveFormItemRespondent(respondentItem);
+
+                }
+                _formRepository.DeleteFormItemAnswers(entity.Id);
+                foreach (var ans in dto.PossibleOptions)
+                {
+                    var respondentItem = new DformItemAnswerEntity()
+                    {
+                        Id = dto.Id,
+                       Text =ans.Text,
+                       FormItemId = entity.Id,
+                       Value = ans.Value,
+                        
+                    };
+                    _formRepository.SaveFormItemAnswers(respondentItem);
 
                 }
                 response.Status = true;
