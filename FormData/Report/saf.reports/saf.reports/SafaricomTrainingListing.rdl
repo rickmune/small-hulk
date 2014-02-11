@@ -8,6 +8,39 @@
             <TablixCornerRow>
               <TablixCornerCell>
                 <CellContents>
+                  <Textbox Name="Textbox1">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Date</Value>
+                            <Style>
+                              <FontSize>9pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox1</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>LightGrey</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
+              <TablixCornerCell>
+                <CellContents>
                   <Textbox Name="Textbox5">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
@@ -290,29 +323,30 @@
               </Group>
               <SortExpressions>
                 <SortExpression>
-                  <Value>=Fields!id.Value</Value>
+                  <Value>=Fields!dateinserted.Value</Value>
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>1in</Size>
+                <Size>0.655in</Size>
                 <CellContents>
-                  <Textbox Name="OutletType">
+                  <Textbox Name="dateinserted">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
                     <Paragraphs>
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>=Fields!OutletType.Value</Value>
+                            <Value>=Fields!dateinserted.Value</Value>
                             <Style>
                               <FontSize>8pt</FontSize>
+                              <Format>dd-MMM-yy</Format>
                             </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
                       </Paragraph>
                     </Paragraphs>
-                    <rd:DefaultName>OutletType</rd:DefaultName>
+                    <rd:DefaultName>dateinserted</rd:DefaultName>
                     <Style>
                       <Border>
                         <Color>LightGrey</Color>
@@ -326,6 +360,43 @@
                   </Textbox>
                 </CellContents>
               </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>1in</Size>
+                    <CellContents>
+                      <Textbox Name="OutletType">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!OutletType.Value</Value>
+                                <Style>
+                                  <FontSize>8pt</FontSize>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>OutletType</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                </TablixMember>
+              </TablixMembers>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
@@ -333,7 +404,7 @@
         <Top>0.12375in</Top>
         <Left>0.125in</Left>
         <Height>0.39583in</Height>
-        <Width>4in</Width>
+        <Width>4.655in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -341,13 +412,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>5.08cm</Height>
     <Style />
   </Body>
-  <Width>6.5in</Width>
+  <Width>16.51cm</Width>
   <Page>
     <PageHeader>
-      <Height>0.625in</Height>
+      <Height>1.5875cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -406,10 +477,13 @@
         </Border>
       </Style>
     </PageHeader>
-    <LeftMargin>1in</LeftMargin>
-    <RightMargin>1in</RightMargin>
-    <TopMargin>1in</TopMargin>
-    <BottomMargin>1in</BottomMargin>
+    <PageHeight>27.94cm</PageHeight>
+    <PageWidth>21.59cm</PageWidth>
+    <LeftMargin>2.54cm</LeftMargin>
+    <RightMargin>2.54cm</RightMargin>
+    <TopMargin>2.54cm</TopMargin>
+    <BottomMargin>2.54cm</BottomMargin>
+    <ColumnSpacing>1.27cm</ColumnSpacing>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -494,6 +568,10 @@
           <DataField>Fullname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="dateinserted">
+          <DataField>dateinserted</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="trainingrespondenttypes">
@@ -574,7 +652,7 @@
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value> ALL</Value>
+          <Value>ALL</Value>
         </Values>
       </DefaultValue>
       <Prompt>TDR</Prompt>
@@ -602,6 +680,6 @@ gPA4TT5XY+U12cv2Lw6ojqrfXr3Rh2sVHgPJ8SMIochmIbmCdNyQPn9bu0w/Z5LB+pkhn3dg8GyFf5gG
 LoR172ljsx6CTEKYoGwNguxCWEa49hCC7EJY4CgTBNmFMMGhXgiyC+FFfnQGG0OQUQgvFoUT2BiCzELoIhqFILsQerhsDYLsQjhB4SgE2YXQx049BHUJQjhCCDIOYQhHCEF2ISzhCCGoOxDiXTQIsgshnkWDIMsQonQbguxCiH16CLIC4SE7miEYhSArEPq4eBuCugEhnsmGIEsQJtidgCC7EHoolYEguxC+XzIzQ1IGgqxBOAODEGQXQmxOQJBdCP3tNsLmBARZhHCyneEBGAiyCWGB9SAE2YXQBYMQZBdCMAhBliGEIAgQQhAghCAIEEIQIIQgCBBC0G3o/wIMAAB6IvzNpwkuAAAAAElFTkSuQmCC</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>029a453b-624d-469c-8ee3-b326f45c75f4</rd:ReportID>
 </Report>

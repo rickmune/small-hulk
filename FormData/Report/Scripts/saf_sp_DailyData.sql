@@ -26,7 +26,8 @@ SELECT
        PARSENAME(REPLACE(fi.section,'|','.'),3) MainSection,
        PARSENAME(REPLACE(fi.section,'|','.'),2) SubSectionOrder,
        PARSENAME(REPLACE(fi.section,'|','.'),1) SubSection,
-	   (select [Fullname] from tbluser where Username= r.username)  Fullname
+	   (select [Fullname] from tbluser where Username= r.username)  Fullname,
+	     r.dateinserted
   FROM [dFormResult] r
   left join dFormResultItem ri on ri.formresultid=r.id
   left join dFormItems fi on fi.id=ri.FormItemId

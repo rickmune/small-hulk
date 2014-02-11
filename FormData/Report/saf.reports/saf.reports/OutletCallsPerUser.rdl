@@ -379,6 +379,9 @@
           <QueryParameter Name="@endDate">
             <Value>=Parameters!endDate.Value</Value>
           </QueryParameter>
+          <QueryParameter Name="@username">
+            <Value>=Parameters!username.Value</Value>
+          </QueryParameter>
         </QueryParameters>
         <CommandType>StoredProcedure</CommandType>
         <CommandText>saf_sp_outletcallperuser</CommandText>
@@ -394,6 +397,27 @@
         </Field>
         <Field Name="Username">
           <DataField>Username</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="users">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>saf_sp_users</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Username">
+          <DataField>Username</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Fullname">
+          <DataField>Fullname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
@@ -417,6 +441,22 @@
         </Values>
       </DefaultValue>
       <Prompt>To</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="username">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>TDR</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>users</DataSetName>
+          <ValueField>Username</ValueField>
+          <LabelField>Fullname</LabelField>
+        </DataSetReference>
+      </ValidValues>
     </ReportParameter>
   </ReportParameters>
   <EmbeddedImages>

@@ -37,6 +37,10 @@
       <Name>SafaricomTrainingListing.rdl</Name>
       <FullPath>SafaricomTrainingListing.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>SafaricomDashboard.rdl</Name>
+      <FullPath>SafaricomDashboard.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>

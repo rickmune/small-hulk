@@ -1,6 +1,6 @@
-DROP PROCEDURE [dbo].[saf_sp_traininglisting]
+DROP PROCEDURE [saf_sp_traininglisting]
 GO
-Create PROCEDURE [dbo].[saf_sp_traininglisting]
+Create PROCEDURE [saf_sp_traininglisting]
     @startDate varchar(50)=NULL,
     @endDate varchar(50)=NULL ,   
   @respondentTypeId varchar(50)=NULL,
@@ -11,6 +11,7 @@ BEGIN
  set @username=LTRIM(RTRIM( @username)) ;
   if(@respondentTypeId='' or @respondentTypeId='ALL') set @respondentTypeId=null;
   if(@username='' or @username='ALL') set @username=null;
+
   IF(isdate(@startDate)=0) SET @startDate=null;
   IF(isdate(@endDate)=0)	SET @endDate=null;
 SELECT 
@@ -26,7 +27,8 @@ SELECT
        PARSENAME(REPLACE(fi.section,'|','.'),3) MainSection,
        PARSENAME(REPLACE(fi.section,'|','.'),2) SubSectionOrder,
        PARSENAME(REPLACE(fi.section,'|','.'),1) SubSection,
-	   (select [Fullname] from tbluser where Username= r.username)  Fullname
+	   (select [Fullname] from tbluser where Username= r.username)  Fullname,
+	   r.dateinserted
   FROM [dFormResult] r
   left join dFormResultItem ri on ri.formresultid=r.id
   left join dFormItems fi on fi.id=ri.FormItemId
