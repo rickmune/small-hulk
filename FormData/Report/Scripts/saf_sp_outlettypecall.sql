@@ -11,7 +11,12 @@ BEGIN
  
 SELECT        
      rt.Name,	
-	count(r.id) as Calls
+		count(r.id) as Calls
+		, ( case rt.Name 
+		when 'DEALER' then 'LIME'
+		when 'RETAIL' then 'ORANGE'
+		when 'M-PESA & RETAIL' then 'YELLOW' 
+		when 'M-PESA' then 'RED' end ) as Color
   FROM dFormResult r
   join [dFormRespondentType] rt on r.respondentTypeId=rt.Id
   

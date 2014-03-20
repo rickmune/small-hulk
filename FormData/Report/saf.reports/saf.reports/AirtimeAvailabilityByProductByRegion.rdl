@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Chart Name="Chart2">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart2_CategoryGroup1">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!Name.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!Name.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="Chart2_CategoryGroup">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!HelpText.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Order.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <Label>=Fields!HelpText.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+              <Label>=Fields!Name.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Label>Total Count</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="TotalCount">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=Sum(Fields!TotalCount.Value)</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style />
+                  </ChartDataLabel>
+                  <Style />
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Airtime Per Region</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Availabitity count</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartValueAxes>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <ChartTitles>
+          <ChartTitle Name="Default">
+            <Caption>Airtime Availability Per Product by Region
+</Caption>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontWeight>Bold</FontWeight>
+              <TextAlign>General</TextAlign>
+              <VerticalAlign>Top</VerticalAlign>
+            </Style>
+          </ChartTitle>
+        </ChartTitles>
+        <Palette>BrightPastel</Palette>
+        <ChartBorderSkin>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available</Caption>
+          <Style>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <TextAlign>General</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+        </ChartNoDataMessage>
+        <DataSetName>data</DataSetName>
+        <Top>0.48833in</Top>
+        <Left>0.125in</Left>
+        <Height>3.25in</Height>
+        <Width>6.155in</Width>
+        <Style>
+          <Border>
+            <Color>LightGrey</Color>
+            <Style>Solid</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientType>None</BackgroundGradientType>
+        </Style>
+      </Chart>
+    </ReportItems>
+    <Height>5.19666in</Height>
+    <Style />
+  </Body>
+  <Width>6.5in</Width>
+  <Page>
+    <PageHeader>
+      <Height>0.61458in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Image Name="logo">
+          <Source>Embedded</Source>
+          <Value>logofinal</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.125in</Top>
+          <Left>0.125in</Left>
+          <Height>0.38417in</Height>
+          <Width>1.35542in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Textbox Name="Textbox18">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Airtime Availability Per Product by Region</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value />
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox18</rd:DefaultName>
+          <Top>0.14208in</Top>
+          <Left>1.80042in</Left>
+          <Height>0.25in</Height>
+          <Width>3.02083in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>1in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource1">
+      <DataSourceReference>DataSourceSafaricom</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>83df17d0-0ea0-4c27-9f41-e225e4ab84b3</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="data">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@startDate">
+            <Value>=Parameters!startDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@endDate">
+            <Value>=Parameters!endDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@locationId">
+            <Value>=Parameters!locationId.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>saf_sp_airtimeAvailabilityByProductByRegion</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Label">
+          <DataField>Label</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HelpText">
+          <DataField>HelpText</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Order">
+          <DataField>Order</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TotalCount">
+          <DataField>TotalCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="regions">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>saf_sp_locations</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SortOrder">
+          <DataField>SortOrder</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="startDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Today.AddDays(1-Today.Day)</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Start Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="endDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Today.AddDays(1-Today.Day).AddMonths(1).AddDays(-1)</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>End Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="locationId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ALL</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Region</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>regions</DataSetName>
+          <ValueField>Id</ValueField>
+          <LabelField>Name</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="logofinal">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>430ed3a1-c745-40db-ba44-d8f1b51f03e3</rd:ReportID>
+</Report>

@@ -14,8 +14,24 @@
       <FullPath>AirtimeAvailability.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
+      <Name>AirtimeAvailabilityByProductByRegion.rdl</Name>
+      <FullPath>AirtimeAvailabilityByProductByRegion.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>AirtimeAvailabilityByRegion.rdl</Name>
+      <FullPath>AirtimeAvailabilityByRegion.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>AirtimeAvailabilityByTown.rdl</Name>
+      <FullPath>AirtimeAvailabilityByTown.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>CompetitorAirtimeAvailability.rdl</Name>
       <FullPath>CompetitorAirtimeAvailability.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>CompetitorAirtimeAvailabilityByProductByRegion.rdl</Name>
+      <FullPath>CompetitorAirtimeAvailabilityByProductByRegion.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>DailyDataReport.rdl</Name>
@@ -30,16 +46,36 @@
       <FullPath>OutletCallsPerUser.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
+      <Name>OutletVisitedByOutletTypeByRegion.rdl</Name>
+      <FullPath>OutletVisitedByOutletTypeByRegion.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
       <Name>Report1.rdl</Name>
       <FullPath>Report1.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>SafaricomDashboard.rdl</Name>
+      <FullPath>SafaricomDashboard.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>SafaricomTrainingListing.rdl</Name>
       <FullPath>SafaricomTrainingListing.rdl</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>SafaricomDashboard.rdl</Name>
-      <FullPath>SafaricomDashboard.rdl</FullPath>
+      <Name>AgentIncidentReport.rdl</Name>
+      <FullPath>AgentIncidentReport.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>NetworkIssuesReport.rdl</Name>
+      <FullPath>NetworkIssuesReport.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>AssistantForumsReport.rdl</Name>
+      <FullPath>AssistantForumsReport.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>CompetitorSummaryReport.rdl</Name>
+      <FullPath>CompetitorSummaryReport.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
@@ -49,7 +85,7 @@
       <Options>
         <OutputPath>bin\Debug</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
-        <TargetServerURL>http://barberry.arvixe.com/ReportServer_SQLExpress</TargetServerURL>
+        <TargetServerURL>http://barberry.arvixe.com/ReportServer_SQL</TargetServerURL>
         <TargetFolder>TIsafaricom/reports</TargetFolder>
         <TargetDataSourceFolder>TIsafaricom/Data Sources</TargetDataSourceFolder>
         <TargetDatasetFolder>TIsafaricom/Datasets</TargetDatasetFolder>

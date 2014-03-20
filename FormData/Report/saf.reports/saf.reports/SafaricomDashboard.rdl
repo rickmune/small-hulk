@@ -6,17 +6,7 @@
         <ChartCategoryHierarchy>
           <ChartMembers>
             <ChartMember>
-              <Group Name="Chart1_CategoryGroup">
-                <GroupExpressions>
-                  <GroupExpression>=Fields!Name.Value</GroupExpression>
-                </GroupExpressions>
-              </Group>
-              <SortExpressions>
-                <SortExpression>
-                  <Value>=Fields!Name.Value</Value>
-                </SortExpression>
-              </SortExpressions>
-              <Label>=Fields!Name.Value</Label>
+              <Label />
             </ChartMember>
           </ChartMembers>
         </ChartCategoryHierarchy>
@@ -50,7 +40,26 @@
                     <UseValueAsLabel>true</UseValueAsLabel>
                     <Visible>true</Visible>
                   </ChartDataLabel>
-                  <Style />
+                  <ActionInfo>
+                    <Actions>
+                      <Action>
+                        <Drillthrough>
+                          <ReportName>OutletVisitedByOutletTypeByRegion</ReportName>
+                          <Parameters>
+                            <Parameter Name="startDate">
+                              <Value>=Parameters!startDate.Value</Value>
+                            </Parameter>
+                            <Parameter Name="endDate">
+                              <Value>=Parameters!endDate.Value</Value>
+                            </Parameter>
+                          </Parameters>
+                        </Drillthrough>
+                      </Action>
+                    </Actions>
+                  </ActionInfo>
+                  <Style>
+                    <Color>=Fields!Color.Value</Color>
+                  </Style>
                   <ChartMarker>
                     <Style />
                   </ChartMarker>
@@ -320,18 +329,39 @@
         </ChartSeriesHierarchy>
         <ChartData>
           <ChartSeriesCollection>
-            <ChartSeries Name="TotalCount">
+            <ChartSeries Name="AirTimeAvailability">
               <ChartDataPoints>
                 <ChartDataPoint>
                   <ChartDataPointValues>
-                    <Y>=Sum(Fields!TotalCount.Value)</Y>
+                    <Y>=Sum(Fields!TotalCount.Value)/Sum(Fields!TotalCount.Value, "airtimeavailabilitydataoverall")</Y>
                   </ChartDataPointValues>
                   <ChartDataLabel>
-                    <Style />
+                    <Style>
+                      <Format>#,0.00%</Format>
+                    </Style>
                     <UseValueAsLabel>true</UseValueAsLabel>
                     <Visible>true</Visible>
                   </ChartDataLabel>
-                  <Style />
+                  <ActionInfo>
+                    <Actions>
+                      <Action>
+                        <Drillthrough>
+                          <ReportName>AirtimeAvailabilityByRegion</ReportName>
+                          <Parameters>
+                            <Parameter Name="startDate">
+                              <Value>=Parameters!startDate.Value</Value>
+                            </Parameter>
+                            <Parameter Name="endDate">
+                              <Value>=Parameters!endDate.Value</Value>
+                            </Parameter>
+                          </Parameters>
+                        </Drillthrough>
+                      </Action>
+                    </Actions>
+                  </ActionInfo>
+                  <Style>
+                    <Color>=Fields!Color.Value</Color>
+                  </Style>
                   <ChartMarker>
                     <Style />
                   </ChartMarker>
@@ -534,7 +564,7 @@
         </ChartLegends>
         <ChartTitles>
           <ChartTitle Name="Default">
-            <Caption>Airtime Availability</Caption>
+            <Caption>Overall Airtime Availability</Caption>
             <Style>
               <BackgroundGradientType>None</BackgroundGradientType>
               <FontWeight>Bold</FontWeight>
@@ -559,8 +589,8 @@
             <VerticalAlign>Top</VerticalAlign>
           </Style>
         </ChartNoDataMessage>
-        <DataSetName>airtimeavailabilitydata</DataSetName>
-        <Top>0.18204cm</Top>
+        <DataSetName>airtimeavailabilitydataoverall</DataSetName>
+        <Top>0.10583cm</Top>
         <Left>11.95599cm</Left>
         <Height>7.35479cm</Height>
         <Width>10.83375cm</Width>
@@ -620,14 +650,32 @@
                   <ChartDataLabel>
                     <Style />
                   </ChartDataLabel>
-                  <Style />
+                  <ActionInfo>
+                    <Actions>
+                      <Action>
+                        <Drillthrough>
+                          <ReportName>CompetitorAirtimeAvailabilityByProductByRegion</ReportName>
+                          <Parameters>
+                            <Parameter Name="startDate">
+                              <Value>=Parameters!startDate.Value</Value>
+                            </Parameter>
+                            <Parameter Name="endDate">
+                              <Value>=Parameters!endDate.Value</Value>
+                            </Parameter>
+                          </Parameters>
+                        </Drillthrough>
+                      </Action>
+                    </Actions>
+                  </ActionInfo>
+                  <Style>
+                    <Color>=Fields!Color.Value</Color>
+                  </Style>
                   <ChartMarker>
                     <Style />
                   </ChartMarker>
                   <DataElementOutput>Output</DataElementOutput>
                 </ChartDataPoint>
               </ChartDataPoints>
-              <Type>Bar</Type>
               <Style />
               <ChartEmptyPoints>
                 <Style />
@@ -864,8 +912,317 @@
           <BackgroundGradientType>None</BackgroundGradientType>
         </Style>
       </Chart>
+      <Chart Name="Chart6">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart6_CategoryGroup">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!HelpText.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!Order.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!HelpText.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart6_SeriesGroup">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!AirTimeAvailability.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!AirTimeAvailability.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!AirTimeAvailability.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="TotalCount">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=Sum(Fields!TotalCount.Value)</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style />
+                  </ChartDataLabel>
+                  <ActionInfo>
+                    <Actions>
+                      <Action>
+                        <Drillthrough>
+                          <ReportName>AirtimeAvailabilityByProductByRegion</ReportName>
+                          <Parameters>
+                            <Parameter Name="startDate">
+                              <Value>=Parameters!startDate.Value</Value>
+                              <Omit>=Parameters!startDate.Value</Omit>
+                            </Parameter>
+                            <Parameter Name="endDate">
+                              <Value>=Parameters!endDate.Value</Value>
+                            </Parameter>
+                          </Parameters>
+                        </Drillthrough>
+                      </Action>
+                    </Actions>
+                  </ActionInfo>
+                  <Style>
+                    <Color>=Fields!Color.Value</Color>
+                  </Style>
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Product</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Availability</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartValueAxes>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <ChartLegends>
+          <ChartLegend Name="Default">
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontSize>8pt</FontSize>
+            </Style>
+            <Position>TopCenter</Position>
+            <DockOutsideChartArea>true</DockOutsideChartArea>
+            <ChartLegendTitle>
+              <Caption />
+              <Style>
+                <FontSize>8pt</FontSize>
+                <FontWeight>Bold</FontWeight>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </ChartLegendTitle>
+            <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+            <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+          </ChartLegend>
+        </ChartLegends>
+        <ChartTitles>
+          <ChartTitle Name="Default">
+            <Caption>Airtime  Availability</Caption>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontWeight>Bold</FontWeight>
+              <TextAlign>General</TextAlign>
+              <VerticalAlign>Top</VerticalAlign>
+            </Style>
+          </ChartTitle>
+        </ChartTitles>
+        <Palette>BrightPastel</Palette>
+        <ChartBorderSkin>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available</Caption>
+          <Style>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <TextAlign>General</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+        </ChartNoDataMessage>
+        <DataSetName>airtimeavailabilitybyproductdata</DataSetName>
+        <Top>7.77812cm</Top>
+        <Left>11.95599cm</Left>
+        <Height>8.19264cm</Height>
+        <Width>10.83375cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Color>LightGrey</Color>
+            <Style>Solid</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientType>None</BackgroundGradientType>
+        </Style>
+      </Chart>
     </ReportItems>
-    <Height>16.00604cm</Height>
+    <Height>16.19125cm</Height>
     <Style />
   </Body>
   <Width>31.75912cm</Width>
@@ -944,7 +1301,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.02646cm</Height>
+      <Height>1.40229cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <Style>
@@ -994,9 +1351,13 @@
           <DataField>Calls</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="Color">
+          <DataField>Color</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="airtimeavailabilitydata">
+    <DataSet Name="airtimeavailabilitydataoverall">
       <Query>
         <DataSourceName>DataSource1</DataSourceName>
         <QueryParameters>
@@ -1018,6 +1379,10 @@
         <Field Name="TotalCount">
           <DataField>TotalCount</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Color">
+          <DataField>Color</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -1047,6 +1412,47 @@
         <Field Name="TotalCount">
           <DataField>TotalCount</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Color">
+          <DataField>Color</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="airtimeavailabilitybyproductdata">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@startDate">
+            <Value>=Parameters!startDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@endDate">
+            <Value>=Parameters!endDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>saf_sp_dsb_airtimeavailabilitybyproduct</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="HelpText">
+          <DataField>HelpText</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Order">
+          <DataField>Order</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AirTimeAvailability">
+          <DataField>AirTimeAvailability</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TotalCount">
+          <DataField>TotalCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Color">
+          <DataField>Color</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>

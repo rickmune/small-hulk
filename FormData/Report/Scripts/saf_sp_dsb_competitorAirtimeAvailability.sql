@@ -10,8 +10,11 @@ IF(isdate(@startDate)=0) SET @startDate=null;
 
 SELECT 
      q.HelpText,
+	
 	  (case r.FormItemAnswer when '1' then 'YES' when '0' then 'NO' end ) as CompetitorAvailability,
-	  count(case r.FormItemAnswer when '1' then r.FormItemAnswer when '0' then r.FormItemAnswer end)  as TotalCount     
+	   (case r.FormItemAnswer when '1' then 'LIME' when '0' then 'RED' end ) as Color,
+	  count(case r.FormItemAnswer when '1' then r.FormItemAnswer when '0' then r.FormItemAnswer end)  as TotalCount
+	     
   FROM [dFormItems] q
   right join [dFormResultItem] r on r.FormItemId=q.Id
    join dFormResult f on f.Id=r.FormResultId
