@@ -6,12 +6,15 @@ import java.util.UUID;
 import android.database.Cursor;
 import android.util.Log;
 
+import com.maina.formdata.datamanager.Datamanager;
 import com.maina.formdata.datamanager.IDataManager;
- 
+import com.maina.formdata.utils.CloudConstants;
+import com.maina.formdata.utils.CloudManager;
+
 public abstract class RepositoryBase {
 
 	private static final String Tag = "RepositoryBase";
-	protected IDataManager dataManager;
+	private IDataManager dataManager;
 	@SuppressWarnings("rawtypes")
 	protected Class DataClass;
 	
@@ -75,4 +78,15 @@ public abstract class RepositoryBase {
 		int x = dataManager.publicDao(DataClass).delete(list);
 		Log.d(Tag, "DeleteAll after: " + x);
 	}
+
+    public IDataManager getDataManager(){
+        if(dataManager == null){
+            dataManager = (IDataManager) CloudManager.getObject(CloudConstants.DATABASEMANAGER.value);
+        }
+        return dataManager;
+    }
+
+    public void setData(IDataManager dataManager){
+        this.dataManager = dataManager;
+    }
 }

@@ -1,14 +1,6 @@
 package com.maina.formdata.enums;
 
-import com.maina.formdata.entity.DUserE;
-import com.maina.formdata.entity.DformE;
-import com.maina.formdata.entity.DformItemAnswerE;
-import com.maina.formdata.entity.DformItemE;
-import com.maina.formdata.entity.DformItemRespondentTypeE;
-import com.maina.formdata.entity.DformRespondentTypeE;
-import com.maina.formdata.entity.DformResultE;
-import com.maina.formdata.entity.DformResultItemE;
-import com.maina.formdata.entity.PhonConfig;
+import com.maina.formdata.entity.*;
 
 public enum Entities {
 
@@ -20,7 +12,11 @@ public enum Entities {
 	DFORMRESULT(DformResultE.class),
 	DFORMRESULTITEM(DformResultItemE.class),
 	DUSERE(DUserE.class),
-	CONFIG(PhonConfig.class);
+	CONFIG(PhonConfig.class),
+	SECQUESTION(QuestionList.class),
+	MESSAGES(DFormMessages.class),
+	TOWN(DTownE.class),
+    IMAGEPATH(ImagePath.class);
 	
 	@SuppressWarnings("rawtypes")
 	public final Class Value;

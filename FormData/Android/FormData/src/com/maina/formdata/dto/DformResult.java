@@ -1,5 +1,6 @@
 package com.maina.formdata.dto;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,7 +13,7 @@ public class DformResult extends DBase {
 	
 	public DformResult(UUID id, UUID respondentTypeId, UUID formId,
 			List<DformResultItemE> formResultItem, double longitude,
-    		double latitude, UUID locationId) {
+    		double latitude, UUID locationId, Date resultDateTime, String appVersion) {
 		super(id);
 		RespondentTypeId = respondentTypeId;
 		FormId = formId;
@@ -26,6 +27,8 @@ public class DformResult extends DBase {
     private double Latitude;
     private String Username;
     private UUID LocationId;
+    private Date resultDateTime;
+    private String appVersion;
 	
 	private List<DformResultItemE> FormResultItem;
 	
@@ -83,5 +86,21 @@ public class DformResult extends DBase {
 
 	public void setLocationId(UUID locationId) {
 		LocationId = locationId;
+	}
+
+	public Date getResultDateTime() {
+		return resultDateTime;
+	}
+
+	public void setResultDateTime(Date resultDateTime) {
+		this.resultDateTime = resultDateTime;
+	}
+
+	public String getAppVersion() {
+		return appVersion;
+	}
+
+	public void setAppVersion(String appVersion) {
+		this.appVersion = appVersion;
 	}
 }

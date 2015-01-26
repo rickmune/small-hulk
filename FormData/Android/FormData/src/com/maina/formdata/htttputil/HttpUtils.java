@@ -137,4 +137,73 @@ public class HttpUtils implements IHttpUtils {
 		return message;
 	}
 
+	public String PostRequestWithKey(String url, Hashtable<String, String> table) throws Exception {
+		String message = "";
+		Log.d("HttpUtils ", "PostRequest: url: " + url);
+
+		//List<NameValuePair> postParameters = new ArrayList<NameValuePair>();
+		String postParameters = "";
+		BufferedReader in = null;
+		try {
+			HttpParams params = new BasicHttpParams();
+			HttpConnectionParams.setStaleCheckingEnabled(params, false);
+		    HttpConnectionParams.setConnectionTimeout(params, 300000);
+		    HttpConnectionParams.setSoTimeout(params, 300000);
+
+			HttpClient client = new DefaultHttpClient(params);
+			
+			
+			
+			if (table != null) {
+				Enumeration<String> names = table.keys();
+				int x = 0;
+				while (names.hasMoreElements()) {
+					String key = names.nextElement();
+					String value = (String) table.get(key);
+					String kv = (x == 0 ? "?" : "&") + key + "=" + value;
+					
+					x++;
+					Log.d("HttpUtils ", "PostRequest: " + kv);
+					postParameters += kv;
+					//postParameters.add(new BasicNameValuePair(key, value));
+				}
+			}
+			StringEntity entity = new StringEntity(postParameters);
+			url += postParameters;
+			Log.d("HttpUtils ", "URL: " + url +"entity: " + entity);
+			//request.setEntity(postParameters);
+			HttpPost request = new HttpPost(url);
+			request.setHeader("Accept", "application/json");
+			request.setHeader("Content-type", "application/json");
+			//request.setEntity(formEntity);
+			HttpResponse response = client.execute(request);
+			in = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+			ByteArrayOutputStream bStrm = new ByteArrayOutputStream();
+			int ch;
+			while ((ch = in.read()) != -1) {
+				bStrm.write(ch);
+			}
+			message = new String(bStrm.toByteArray());
+			
+			try{
+				bStrm.flush();
+				bStrm.close();
+				Log.d("HttpUtils ", "HTTP RESPONSE ANDROID CHECK IN SERVICES: ");
+			}catch (Exception e) {
+				e.printStackTrace();
+			}catch (OutOfMemoryError e) {
+				e.printStackTrace();
+			}
+			return message;
+		} finally {
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+	}
 }

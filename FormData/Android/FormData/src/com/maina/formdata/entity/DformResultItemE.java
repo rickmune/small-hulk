@@ -13,12 +13,13 @@ public class DformResultItemE extends DBaseE {
 	}
 	
 	public DformResultItemE(UUID id, UUID formItemId, List<String> formItemAnswer,
-			DformResultE dformResultE, String itemAnswer) {
+			DformResultE dformResultE, String itemAnswer, boolean image) {
 		super(id);
 		FormItemId = formItemId;
 		FormItemAnswer = formItemAnswer;
 		ItemAnswer = itemAnswer;
 		DformResultE = dformResultE;
+        Image = image;
 	}
 	
 	@DatabaseField
@@ -28,8 +29,17 @@ public class DformResultItemE extends DBaseE {
 	private String ItemAnswer;
 	@DatabaseField(foreign = true)
 	private DformResultE DformResultE;
-	
-	public UUID getFormItemId() {
+    private boolean Image;
+
+    public boolean isImage() {
+        return Image;
+    }
+
+    public void setImage(boolean image) {
+        Image = image;
+    }
+
+    public UUID getFormItemId() {
 		return FormItemId;
 	}
 	public void setFormItemId(UUID formItemId) {

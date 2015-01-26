@@ -8,6 +8,8 @@ import java.util.UUID;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import com.maina.formdata.datamanager.IDataManager;
 import com.maina.formdata.repository.Repositoryregistry;
 import com.maina.formdata.ui.BaseActivity;
 import com.maina.formdata.ui.FormItemActivity;
+import com.maina.formdata.ui.SelectTown;
 import com.maina.formdata.utils.CloudConstants;
 import com.maina.formdata.utils.CloudManager;
 import com.maina.formdata.utils.ui.CustomCursorAdapter;
@@ -45,6 +48,7 @@ public class FormListActivity extends BaseActivity {
 	private ProgressDialog dialog;
 	private CustomCursorAdapter customAdapter;
 	public static final int RespondentTypeId = 200;
+	public static final int LocationTypeId = 201;
 	private UUID formId;
 	String formName, UserName, LocationId;
 	public static final String RESPONDENTTYPE = "_RESPONDENTTYPE";
@@ -56,7 +60,8 @@ public class FormListActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_form_list);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setContentView(R.layout.activity_form_list);
 		setTitle("Forms");
 		Log.d("FormListActivity", "onCreate (dataManager== null): "+(dataManager== null));
 		Bundle bundle = getIntent().getExtras();
@@ -71,7 +76,13 @@ public class FormListActivity extends BaseActivity {
 				Log.d(TAG, "clicked on item: " + position+ " : "+v.getTag());
 				formId = UUID.fromString(v.getTag().toString());
 				formName = (String) v.getText();
-				chooseRespondentType();
+				//chooseRespondentType();
+				Intent intent = new Intent(FormListActivity.this, SelectTown.class);
+				Bundle bundle = new Bundle();
+				bundle.putString(USERNAME, UserName);
+				bundle.putString(LOCATIONID, LocationId);
+				intent.putExtras(bundle);
+				startActivityForResult(intent, LocationTypeId);
 			}
 		});
         try {
@@ -85,6 +96,11 @@ public class FormListActivity extends BaseActivity {
         
 	}
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        //super.onConfigurationChanged(newConfig);
+    }
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		//getMenuInflater().inflate(R.menu.form_list, menu);
@@ -189,6 +205,10 @@ public class FormListActivity extends BaseActivity {
 				bundle.putString(LOCATIONID, LocationId);
 				intent.putExtras(bundle);
 				startActivity(intent);
+				//finish();
+			}else if(requestCode == LocationTypeId){
+				LocationId = data.getStringExtra(LOCATIONID);
+				chooseRespondentType();
 			}
 		}
 	}

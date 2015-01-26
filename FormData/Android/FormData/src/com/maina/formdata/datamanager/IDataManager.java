@@ -3,9 +3,10 @@ package com.maina.formdata.datamanager;
 import java.util.List;
 import java.util.UUID;
 
-import com.j256.ormlite.dao.Dao;
-
 import android.database.Cursor;
+
+import com.j256.ormlite.dao.Dao;
+import com.maina.formdata.utils.SortedArray;
 
 public interface IDataManager {
 
@@ -18,4 +19,8 @@ public interface IDataManager {
 	public <T> T getById(UUID id, Class<T> dataClass)throws Exception;
 	
 	public <T> Dao<T, UUID> publicDao(Class<T> dataClass) throws Exception;
+	
+	public <T> List<T> getAll(Class<T> dataClass) throws Exception;
+	
+	public SortedArray getListDataHolder(String query) throws Exception;
 }

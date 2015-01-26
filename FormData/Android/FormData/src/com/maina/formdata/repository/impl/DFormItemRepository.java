@@ -29,17 +29,18 @@ public class DFormItemRepository extends RepositoryBase implements IDFormItemRep
 
 	@Override
 	public void setDataManager(IDataManager dataManager) {
-		this.dataManager = dataManager;
+		setData(dataManager);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DformItemE> getByFormId(UUID formId) throws Exception {
-		Log.d("DFormItemRepository", "dataManager == null): "+(dataManager == null));
-		List<DformItemE> dformItemEs = dataManager.publicDao(DataClass).queryForEq(DformItemE.DformEID, formId);
+		Log.d("DFormItemRepository", "dataManager == null): "+(getDataManager() == null));
+		List<DformItemE> dformItemEs = getDataManager().publicDao(DataClass).queryForEq(DformItemE.DformEID, formId);
 		SortedArrayList arrayList = new SortedArrayList();
 		for(DformItemE itemE : dformItemEs){
 			itemE.setFormItemRespondentTypes(formItemRespondentTypes.getByFormItemId(itemE.getId()));
+            Log.d("DFormItemRepository", "itemE: " + itemE.toString());
 			arrayList.insertSorted(itemE);
 		}
 		return arrayList;

@@ -1,14 +1,15 @@
 package com.maina.formdata.repository.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import android.util.Log;
 
 import com.maina.formdata.datamanager.IDataManager;
 import com.maina.formdata.entity.DformResultE;
-import com.maina.formdata.repository.IDFormResultItemRepository;
-import com.maina.formdata.repository.IDFormResultRepository;
-import com.maina.formdata.repository.RepositoryBase;
+import com.maina.formdata.entity.DformResultItemE;
+import com.maina.formdata.entity.ImagePath;
+import com.maina.formdata.repository.*;
 
 /**
  * @author Patrick
@@ -31,23 +32,30 @@ public class DFormResultRepository extends RepositoryBase implements IDFormResul
 
 	@Override
 	public void setDataManager(IDataManager dataManager) {
-		this.dataManager = dataManager;
+		setData(dataManager);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public int Saveresult(DformResultE dformResultE) throws Exception {
-		DformResultE resultE = dataManager.save(dformResultE, DataClass);
+		DformResultE resultE = (DformResultE) getDataManager().save(dformResultE, DataClass);
 		Log.d("DFormResultRepository", "Saveresult: "+resultE.getId());
-		int x = resultItemRepository.saveBatch(dformResultE.getFormResultItem());
-		Log.d("DFormResultRepository", "Saveresult items: "+x);
-		return 0;
+        List<DformResultItemE> items = dformResultE.getFormResultItem();
+        IImagePathRepository imagePathRepository = null;
+        for (DformResultItemE itemE : items){
+            if(itemE.isImage()){
+                if(imagePathRepository == null) imagePathRepository = Repositoryregistry.get(IImagePathRepository.class, getDataManager());
+                imagePathRepository.save(new ImagePath(UUID.randomUUID(), itemE.getFormItemAnswer().get(0),
+                        "jpeg", false, resultE.getId(), itemE.getId()));
+            }
+            resultItemRepository.save(itemE);
+        }
+		return items.size();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public DformResultE getReadyToSend() throws Exception {
-		List<DformResultE> list = dataManager.publicDao(DataClass).queryForEq("Sent", false);
+		List<DformResultE> list = getDataManager().publicDao(DataClass).queryForEq("Sent", false);
 		for(DformResultE resultE : list){
 			if(resultE.isDone()){
 				resultE.setFormResultItem(resultItemRepository.getByResultId(resultE.getId()));
@@ -65,7 +73,7 @@ public class DFormResultRepository extends RepositoryBase implements IDFormResul
 	@Override
 	public int[] getStatusNumbers() throws Exception {
 		int[] status = new int[3];
-		List<DformResultE> list = dataManager.publicDao(DataClass).queryForAll();
+		List<DformResultE> list = getDataManager().publicDao(DataClass).queryForAll();
 		for (DformResultE form : list) {
 			if (form.isDone()){
 				status[0] += 1;

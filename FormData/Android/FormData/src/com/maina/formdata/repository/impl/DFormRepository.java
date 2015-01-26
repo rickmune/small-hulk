@@ -1,9 +1,12 @@
 package com.maina.formdata.repository.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import android.database.Cursor;
 
+import android.util.Pair;
 import com.maina.formdata.datamanager.IDataManager;
 import com.maina.formdata.entity.DformE;
 import com.maina.formdata.repository.IDFormRepository;
@@ -23,7 +26,7 @@ public class DFormRepository extends RepositoryBase implements IDFormRepository 
 
 	@Override
 	public void setDataManager(IDataManager dataManager) {
-		this.dataManager = dataManager;
+		setData(dataManager);
 	}
 
 	@Override
@@ -35,7 +38,15 @@ public class DFormRepository extends RepositoryBase implements IDFormRepository 
 	@SuppressWarnings("unchecked")
 	@Override
 	public int getFormCount() throws Exception {
-		return dataManager.publicDao(DataClass).queryForAll().size();
+		return getDataManager().publicDao(DataClass).queryForAll().size();
 	}
 
+    public List<Pair<UUID, String>> getForms() throws Exception{
+        List<Pair<UUID, String>> pairs = new ArrayList<>();
+        List<DformE> list = getDataManager().getAll(DformE.class);
+        for(DformE dformE : list) {
+            pairs.add(new Pair<>(dformE.getId(), dformE.getName()));
+        }
+        return pairs;
+    }
 }

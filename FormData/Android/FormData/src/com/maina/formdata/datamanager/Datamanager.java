@@ -17,12 +17,14 @@ import com.j256.ormlite.dao.Dao.CreateOrUpdateStatus;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.maina.formdata.enums.Entities;
+import com.maina.formdata.utils.SortedArray;
+import com.maina.formdata.utils.ui.ListDataHolder;
 
 
 public class Datamanager extends OrmLiteSqliteOpenHelper implements IDataManager {
 
 	public Datamanager(Context context) {
-		super(context, "DForm", null, 1);
+		super(context, "DForm", null, 7);
 	}
 	
 	@Override
@@ -70,7 +72,7 @@ public class Datamanager extends OrmLiteSqliteOpenHelper implements IDataManager
 		
 	}
 
-	@Override
+    @Override
 	public <T> T save(T data, Class<T> dataClass) throws Exception {
 		Log.d("Datamanager", "save");
 		CreateOrUpdateStatus cus = getDao(dataClass).createOrUpdate(data);
@@ -128,6 +130,42 @@ public class Datamanager extends OrmLiteSqliteOpenHelper implements IDataManager
 	@Override
 	public <T> Dao<T, UUID> publicDao(Class<T> dataClass) throws Exception {
 		return getDao(dataClass);
+	}
+
+	@Override
+	public <T> List<T> getAll(Class<T> dataClass) throws Exception {
+		return publicDao(dataClass).queryForAll();
+	}
+
+	@Override
+	public SortedArray getListDataHolder(String query) throws Exception {
+		Cursor cursor = null;
+		SortedArray dataHolders = new SortedArray();
+		SQLiteDatabase database = this.getReadableDatabase();
+		while(true) {
+			try {
+				if(database == null || !database.isOpen()) {
+					database = getWritableDatabase();
+				}
+				cursor = database.rawQuery(query, null);
+			}catch(Exception e) {
+				if(e.getMessage() != null && e.getMessage().trim()
+						.equalsIgnoreCase("Getting a writable database from SQLiteOpenHelper failed")) {
+					continue;
+				}
+			}
+			break;
+		}
+		if(cursor.moveToFirst()){
+			while (!cursor.isAfterLast()) {
+				ListDataHolder dataHolder = new ListDataHolder(
+						UUID.fromString(cursor.getString(0)), 
+						cursor.getString(1));
+				dataHolders.insertSorted(dataHolder);
+				cursor.moveToNext();
+			}
+		}
+		return dataHolders;
 	}
 
 }

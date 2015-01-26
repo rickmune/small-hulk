@@ -2,11 +2,16 @@ package com.maina.formdata.dto;
 
 import java.util.UUID;
 
-public class UserDto extends DBase {
+public class UserDto extends DBase{
+	
+
+	public UserDto() {
+	}
 
 	public UserDto(UUID id, boolean isActive, String username, String password,
 			String fullname, int userType, String email, String phoneNumber,
-			UUID clientId, UUID locationId, String clientName) {
+			UUID clientId, UUID locationId, String clientName, boolean isPasswordChanged,
+			boolean isSecuritySet, int securityQuestionId, String securityAnswer) {
 		super(id);
 		Username = username;
 		Password = password;
@@ -17,6 +22,10 @@ public class UserDto extends DBase {
 		ClientId = clientId;
 		LocationId = locationId;
 		ClientName = clientName;
+		IsPasswordChanged = isPasswordChanged;
+		IsSecuritySet = isSecuritySet;
+		SecurityQuestionId = securityQuestionId;
+		SecurityAnswer = securityAnswer;
 	}
 
 	private String Username;
@@ -28,6 +37,10 @@ public class UserDto extends DBase {
 	private UUID ClientId;
 	private UUID LocationId;
 	private String ClientName;
+	private boolean IsPasswordChanged;
+	private boolean IsSecuritySet;
+	private int SecurityQuestionId;
+	private String SecurityAnswer;
 
 	public String getUsername() {
 		return Username;
@@ -101,12 +114,48 @@ public class UserDto extends DBase {
 		ClientName = clientName;
 	}
 
+	public boolean isIsPasswordChanged() {
+		return IsPasswordChanged;
+	}
+
+	public void setIsPasswordChanged(boolean isPasswordChanged) {
+		IsPasswordChanged = isPasswordChanged;
+	}
+
+	public boolean isIsSecuritySet() {
+		return IsSecuritySet;
+	}
+
+	public void setIsSecuritySet(boolean isSecuritySet) {
+		IsSecuritySet = isSecuritySet;
+	}
+
+	public int getSecurityQuestionId() {
+		return SecurityQuestionId;
+	}
+
+	public void setSecurityQuestionId(int securityQuestionId) {
+		SecurityQuestionId = securityQuestionId;
+	}
+
+	public String getSecurityAnswer() {
+		return SecurityAnswer;
+	}
+
+	public void setSecurityAnswer(String securityAnswer) {
+		SecurityAnswer = securityAnswer;
+	}
+
 	@Override
 	public String toString() {
 		return "UserDto [Username=" + Username + ", Password=" + Password
 				+ ", Fullname=" + Fullname + ", UserTypeId=" + UserTypeId
 				+ ", Email=" + Email + ", PhoneNumber=" + PhoneNumber
-				+ ", ClientId=" + ClientId + ", LocationId=" + LocationId + "]";
-	}
+				+ ", ClientId=" + ClientId + ", LocationId=" + LocationId
+				+ ", ClientName=" + ClientName + ", IsPasswordChanged="
+				+ IsPasswordChanged + ", IsSecuritySet=" + IsSecuritySet
+				+ ", SecurityQuestionId=" + SecurityQuestionId
+				+ ", SecurityAnswer=" + SecurityAnswer + "]";
+	}	
 	
 }

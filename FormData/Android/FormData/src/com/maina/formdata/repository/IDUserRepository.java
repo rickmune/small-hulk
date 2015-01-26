@@ -8,4 +8,6 @@ public interface IDUserRepository extends IRepositoryBase {
 	public SyncEntity<UserDto> login(String userName, String password) throws Exception;
 	
 	public String getuserName() throws Exception;
+	
+	public UserDto getUser() throws Exception;
 }

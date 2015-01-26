@@ -1,6 +1,7 @@
 package com.maina.formdata.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ public class DformResultE extends DBaseE {
 	
 	public DformResultE(UUID id, UUID respondentTypeId, UUID formId,
 			List<DformResultItemE> formResultItem, boolean done, boolean sent,
-			String username, UUID locationId) {
+			String username, UUID locationId, Date resultDateTime, String appVersion) {
 		super(id);
 		RespondentTypeId = respondentTypeId;
 		FormId = formId;
@@ -23,6 +24,8 @@ public class DformResultE extends DBaseE {
 		Sent = sent;
 		Username = username;
 		LocationId = locationId;
+		ResultDateTime = resultDateTime;
+		AppVersion = appVersion;
 	}
 	@DatabaseField
 	private UUID RespondentTypeId;
@@ -41,6 +44,10 @@ public class DformResultE extends DBaseE {
 	private String Username;
 	@DatabaseField
 	private UUID LocationId;
+	@DatabaseField
+	private Date ResultDateTime;
+	@DatabaseField
+	private String AppVersion;
 	
 	public UUID getRespondentTypeId() {
 		return RespondentTypeId;
@@ -117,5 +124,21 @@ public class DformResultE extends DBaseE {
 
 	public void setLocationId(UUID locationId) {
 		this.LocationId = locationId;
+	}
+
+	public Date getResultDateTime() {
+		return ResultDateTime;
+	}
+
+	public void setResultDateTime(Date resultDateTime) {
+		ResultDateTime = resultDateTime;
+	}
+
+	public String getAppVersion() {
+		return AppVersion;
+	}
+
+	public void setAppVersion(String appVersion) {
+		AppVersion = appVersion;
 	}
 }

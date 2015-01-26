@@ -3,14 +3,20 @@ package com.maina.formdata;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.UUID;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,19 +30,30 @@ import android.widget.Toast;
 
 import com.maina.formdata.datamanager.IDataManager;
 import com.maina.formdata.dto.UserDto;
+import com.maina.formdata.entity.DUserE;
 import com.maina.formdata.entity.PhonConfig;
+import com.maina.formdata.enums.MessageTypes;
+import com.maina.formdata.enums.RepositoryEnum;
+import com.maina.formdata.enums.UserType;
 import com.maina.formdata.htttputil.HttpUtils;
 import com.maina.formdata.repository.IDFormItemAnswerRepository;
 import com.maina.formdata.repository.IDFormItemRepository;
 import com.maina.formdata.repository.IDFormItemRespondentTypeRepository;
 import com.maina.formdata.repository.IDFormRepository;
 import com.maina.formdata.repository.IDFormRespondentTypeRepository;
+import com.maina.formdata.repository.IDTownRepository;
 import com.maina.formdata.repository.IDUserRepository;
 import com.maina.formdata.repository.IPhonConfig;
+import com.maina.formdata.repository.IRepositoryBase;
+import com.maina.formdata.repository.ISecurityQuestionRepository;
 import com.maina.formdata.repository.Repositoryregistry;
 import com.maina.formdata.service.ILoginService;
 import com.maina.formdata.service.LoginService;
 import com.maina.formdata.ui.BaseActivity;
+import com.maina.formdata.ui.ChangePassword;
+import com.maina.formdata.ui.MessageNotification;
+import com.maina.formdata.ui.ResetPassword;
+import com.maina.formdata.ui.SetSecurityQuestion;
 import com.maina.formdata.utils.CloudConstants;
 import com.maina.formdata.utils.CloudManager;
 import com.maina.formdata.utils.MakePWD;
@@ -45,9 +62,10 @@ import com.maina.formdata.utils.ui.GenUtils;
 
 public class FormData extends BaseActivity{
 	private static final String TAG = "LoginActivity";
-	public static final String USERID = "USERID";
-	public static final String CLIENTID = "CLIENTID";
-	public static final String CLIENTNAME = "_CLIENTNAME";
+	public static final int CHANGEPWD = 500;
+	public static final int SECURITYQ = 501;
+	public static final int RESETPASSWORD = 502;
+	public static final int MESSAGES = 501;
 	@SuppressWarnings("rawtypes")
 	private Class classInstance = null;
 	private Method methodInstance = null;
@@ -59,11 +77,15 @@ public class FormData extends BaseActivity{
 	private String Error = "";
 	boolean pass = false;
 	PhonConfig config = null;
+    PowerManager.WakeLock wl;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "E-DataForm");
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login_activity);
+        wl.acquire();
+		setContentView(R.layout.login_activity_new);
 		username = (EditText)findViewById(R.id.username_f);
 		password = (EditText)findViewById(R.id.password_f);
 		login = (Button)findViewById(R.id.login_btn);
@@ -74,7 +96,7 @@ public class FormData extends BaseActivity{
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		 new InitilizeAsyncTask().execute();
+
 		login.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -82,23 +104,114 @@ public class FormData extends BaseActivity{
 				if(GenUtils.getUrl(dataManager) == null){
 					
 				}else{
+					
 					SyncEntity<UserDto> entity = Login();
 					if(entity == null){
-						Toast.makeText(FormData.this, "Error during login. Stop app and restart it again"
+						System.out.println("ISSUE WITH DB CONNECTION");
+						dataManager = controller.getDatabaseAccess();
+						entity = Login();
+					}
+					if(entity == null){
+						System.out.println("ISSUE WITH DB CONNECTION");
+						Toast.makeText(FormData.this, "Error during login. Stopping application. Restart it again"
 								, Toast.LENGTH_LONG).show();
 						System.out.println("entity == null");
-					}else{
+                        try {
+                            Thread.sleep(1000 * 3);
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }else{
 						if(entity.getStatus()){
-							moveToNext(entity);
+							progressAfterLogin(entity);
 						}else{
 							Toast.makeText(FormData.this, entity.getInfo(), Toast.LENGTH_LONG).show();
-							remoteRequest(entity.getInfo());
-							System.out.println("after remoteRequest");
+							
+							WrongPwd(entity);
 						}
 					}
 				}
 			}
 		});
+	}
+
+    @Override
+    protected void onDestroy() {
+        wl.release();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new InitilizeAsyncTask().execute();
+    }
+
+    private void WrongPwd(final SyncEntity<UserDto> entity){
+		AlertDialog.Builder builder = new AlertDialog.Builder(FormData.this);
+		builder.setTitle("Warning");
+		builder
+		.setMessage(entity.getInfo())
+		.setCancelable(false)
+		.setPositiveButton("From Server",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				remoteRequest(entity.getInfo());
+				System.out.println("after remoteRequest");
+				
+			}
+		  })
+		.setNegativeButton("Retry",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				dialog.cancel();
+			}
+		});
+		// create alert dialog and show it
+		AlertDialog dialog = builder.create();
+		dialog.show();
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(requestCode == CHANGEPWD){
+			if(resultCode == RESULT_OK){
+				if(data != null){dto = FromBundle(data.getExtras(), dto);}
+					
+				dto.setIsPasswordChanged(true);
+				try {					
+					UserType t = (dto.getUserType() == 2 ? UserType.TDR : UserType.Admin);
+					Repositoryregistry.get(IDUserRepository.class, dataManager).save(new DUserE(dto.getId(), dto.getUsername(), dto.getPassword(), 
+							dto.getFullname(), t, dto.getEmail(), dto.getPhoneNumber(), dto.getClientId(),
+							dto.getLocationId(), dto.getClientName(), dto.isIsPasswordChanged(),
+							dto.isIsSecuritySet(), dto.getSecurityQuestionId(), dto.getSecurityAnswer()));
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				securityQuestion(dto);
+			}
+		}else if(requestCode == SECURITYQ){
+			if(resultCode == RESULT_OK){
+				dto.setIsSecuritySet(true);
+				try {
+					UserType t = (dto.getUserType() == 2 ? UserType.TDR : UserType.Admin);
+					Repositoryregistry.get(IDUserRepository.class, dataManager).save(new DUserE(dto.getId(), dto.getUsername(), dto.getPassword(), 
+							dto.getFullname(), t, dto.getEmail(), dto.getPhoneNumber(), dto.getClientId(),
+							dto.getLocationId(), dto.getClientName(), dto.isIsPasswordChanged(),
+							dto.isIsSecuritySet(), dto.getSecurityQuestionId(), dto.getSecurityAnswer()));
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				SyncEntity<UserDto> entity = new SyncEntity<UserDto>();
+				entity.Status = true;
+				List<UserDto> list = new ArrayList<UserDto>();
+				list.add(dto);
+				entity.setData(list);
+				moveToNext(entity);
+			}
+		}
+		
 	}
 	
 	private void moveToNext(SyncEntity<UserDto> entity){
@@ -106,12 +219,12 @@ public class FormData extends BaseActivity{
 		if(entity.getStatus()){
 			dto = entity.getData().get(0);
 			System.out.println(dto.toString());
-			Bundle bundle = new Bundle();
+			Bundle bundle = ToBundle( new Bundle(), dto);/*
 			bundle.putString(CLIENTID, dto.getClientId().toString());
 			bundle.putString(USERID, dto.getId().toString());
 			bundle.putString(CLIENTNAME, dto.getClientName());
 			bundle.putString(FormListActivity.USERNAME, dto.getUsername());
-			bundle.putString(FormListActivity.LOCATIONID, dto.getLocationId().toString());
+			bundle.putString(FormListActivity.LOCATIONID, dto.getLocationId().toString());*/
 			Intent intent = new Intent(FormData.this, Home.class);
 			intent.putExtras(bundle);
 			startActivity(intent);
@@ -138,8 +251,53 @@ public class FormData extends BaseActivity{
 			Log.d(TAG, "onOptionsItemSelected action_settings");
 			setURL();
 			return true;
+		}else if(itemId == R.id.action_reset){
+			resetPWD();
+			return true;
+		}else if(itemId == R.id.action_message){
+			getMessages();
+			return true;
+		}else if(itemId == R.id.action_reset_db){
+			RestDB();
+			return true;
 		}else{
 			return super.onOptionsItemSelected(item);
+		}
+	}
+	
+	void RestDB(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(FormData.this);
+		builder.setTitle("Warning");
+		builder
+		.setMessage("This will Delete all Data. Ensure there are no unsent responses")
+		.setCancelable(false)
+		.setPositiveButton("Continue",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				try {
+					delete();
+				} catch (Exception e) { e.printStackTrace(); }
+				dialog.cancel();
+			}
+		  })
+		.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				dialog.cancel();
+			}
+		});
+		// create alert dialog and show it
+		AlertDialog dialog = builder.create();
+		dialog.show();
+	}
+	
+	@SuppressWarnings("unchecked")
+	void delete() throws Exception{
+		for (RepositoryEnum dir : EnumSet.allOf(RepositoryEnum.class)) {
+			IRepositoryBase repo = Repositoryregistry.get(dir.IRepo, dataManager);
+			if(repo instanceof IPhonConfig){
+				((IPhonConfig)repo).allowEdit();
+			}else{ 
+				repo.DeleteAll();
+			}
 		}
 	}
 	
@@ -147,7 +305,7 @@ public class FormData extends BaseActivity{
 		if(validate()){
 			SyncEntity<UserDto>entity = Login();
 			if(entity.getStatus())
-				new SyncTask().execute(new String[]{entity.getData().get(0).getClientId().toString()});
+				new SyncTask().execute(entity.getData().get(0).getClientId().toString());
 			else
 				remoteRequest(entity.getInfo());
 		}else{
@@ -173,7 +331,6 @@ public class FormData extends BaseActivity{
 			dUserE = new SyncEntity<UserDto>();
 			dUserE.setInfo(Error);dUserE.setStatus(false);
 		}
-		
 		return dUserE;
 	}
 	
@@ -197,6 +354,9 @@ public class FormData extends BaseActivity{
 				if(pc == null){
 					PhonConfig config2 = new PhonConfig();
 					config2.setId(UUID.randomUUID());
+                    //config2.setURL("http://test.icoders-solution.com");
+					//config2.setURL("http://equity.icoders-solution.com");
+					//config2.setURL("http://10.0.0.194:62093");
 					config2.setURL("http://topimage.icoders-solution.com");
 					config2.setEdit(false);
 					config.save(config2);
@@ -215,8 +375,7 @@ public class FormData extends BaseActivity{
             //startService(new Intent(LoginActivity.this, SyncService.class));
 		}
 	}
-	
-	
+		
 	@SuppressWarnings("unchecked")
 	private String getuserName(){
 		String ret = null;
@@ -260,7 +419,9 @@ public class FormData extends BaseActivity{
 					Repositoryregistry.get(IDFormItemRepository.class, dataManager), 
 					Repositoryregistry.get(IDFormItemAnswerRepository.class, dataManager), 
 					Repositoryregistry.get(IDFormItemRespondentTypeRepository.class, dataManager),
-					Repositoryregistry.get(IDUserRepository.class, dataManager), dataManager);
+					Repositoryregistry.get(IDUserRepository.class, dataManager), dataManager, 
+					Repositoryregistry.get(ISecurityQuestionRepository.class, dataManager),
+					Repositoryregistry.get(IDTownRepository.class, dataManager));
 			try {
 				Log.d("SyncService", "SyncForm() called with params.length: "+ params.length);
 				if(loginService.SyncForm(params)){
@@ -278,20 +439,23 @@ public class FormData extends BaseActivity{
 		@Override
 		protected void onPostExecute(String[] returns) {
 			if(dialog == null)return;
-			else if(dialog != null && dialog.isShowing())dialog.dismiss();
+			else if(dialog.isShowing())dialog.dismiss();
 			if(returns != null && returns.length > 1){
+				Log.d("SyncService", "onPostExecute() : "+ returns.length);
 				try {
 					SyncEntity<UserDto> entity = Repositoryregistry.get(IDUserRepository.class, dataManager).login(
 							username.getText().toString(), MakePWD.getMD5(password.getText().toString()));
-					moveToNext(entity);
+					progressAfterLogin(entity);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}else{
+				Log.d("SyncService", "onPostExecute() some problem");
 				Toast.makeText(FormData.this, (String)CloudManager.getObject(CloudConstants.LOGINERROR.value), 
 						Toast.LENGTH_LONG).show();
 			}
 		}
+		
 	}
 
 	private boolean validate(){
@@ -335,8 +499,8 @@ public class FormData extends BaseActivity{
 				try {
 					pwd = MakePWD.getMD5(password.getText().toString());
 				} catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
-				new SyncTask().execute(new String[]{username.getText().toString(), pwd});
-			};
+				new SyncTask().execute(username.getText().toString(), pwd);
+			}
 		});
 		dialog.show();
 	}
@@ -347,8 +511,10 @@ public class FormData extends BaseActivity{
 		View view = infalInflater.inflate(R.layout.url_settings, null);
 		dialog.setContentView(view);
 		dialog.setTitle("Settings");
+        final String http = "http://";
 		final IPhonConfig phonConfig = Repositoryregistry.get(IPhonConfig.class, dataManager);
 		final EditText urlEdit = (EditText)view.findViewById(R.id.url_input);
+        urlEdit.setText(http);
 		try {
 			config = phonConfig.getConfig();
 			if(config != null && config.getURL() != null && !config.getURL().equals("")){
@@ -363,19 +529,19 @@ public class FormData extends BaseActivity{
 				((TextView)view.findViewById(R.id.url_text)).setText("Not Set");
 			}
 		} catch (Exception e) { e.printStackTrace(); }
-		((Button)view.findViewById(R.id.btn_cancel)).setOnClickListener(new OnClickListener() {
+		(view.findViewById(R.id.btn_cancel)).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		((Button)view.findViewById(R.id.btn_ok)).setOnClickListener(new OnClickListener() {
+		(view.findViewById(R.id.btn_ok)).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				Object object = urlEdit.getText();
-				if(object == null || object.toString().equals("")){
+				if(object == null || object.toString().equals("") || object.toString().endsWith(http)){
 					Toast.makeText(FormData.this, "Must enter url", Toast.LENGTH_LONG).show();
 				}else{
 					Log.d("setURL", "config != null: " + object.toString());
@@ -393,5 +559,53 @@ public class FormData extends BaseActivity{
 			}
 		});
 		dialog.show();
+	}
+	
+	private void progressAfterLogin(SyncEntity<UserDto> entityEnv){
+		UserDto entity = entityEnv.getData().get(0);
+		if(!entity.isIsPasswordChanged()){
+			changePWD(entity);
+		}else if(!entity.isIsSecuritySet()){
+			securityQuestion(entity);
+		}else{
+			moveToNext(entityEnv);
+		}
+	}
+	
+	private void changePWD(UserDto dto){
+		System.out.println("in changePWD");
+		System.out.println(dto.toString());
+		Bundle bundle = ToBundle( new Bundle(), dto);
+		
+		Intent intent = new Intent(FormData.this, ChangePassword.class);
+		intent.putExtras(bundle);
+		startActivityForResult(intent, CHANGEPWD);
+	}
+	
+	private void securityQuestion(UserDto dto){
+		System.out.println("in securityQuestion");
+		System.out.println(dto.toString());
+		Bundle bundle = ToBundle( new Bundle(), dto);
+		
+		Intent intent = new Intent(FormData.this, SetSecurityQuestion.class);
+		intent.putExtras(bundle);
+		startActivityForResult(intent, SECURITYQ);
+	}
+	
+	private void resetPWD(){
+		System.out.println("in resetPWD");
+		
+		Intent intent = new Intent(FormData.this, ResetPassword.class);
+		//intent.putExtras(bundle);
+		startActivityForResult(intent, RESETPASSWORD);
+	}
+	
+	private void getMessages(){
+		System.out.println("in getMessages");
+		Intent intent = new Intent(FormData.this, MessageNotification.class);
+		Bundle bundle = new Bundle();
+		bundle.putInt("messageType", MessageTypes.Password.value);
+		intent.putExtras(bundle);
+		startActivityForResult(intent, MESSAGES);
 	}
 }

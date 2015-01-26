@@ -13,7 +13,9 @@ import com.maina.formdata.repository.IDFormItemRepository;
 import com.maina.formdata.repository.IDFormItemRespondentTypeRepository;
 import com.maina.formdata.repository.IDFormRepository;
 import com.maina.formdata.repository.IDFormRespondentTypeRepository;
+import com.maina.formdata.repository.IDTownRepository;
 import com.maina.formdata.repository.IDUserRepository;
+import com.maina.formdata.repository.ISecurityQuestionRepository;
 import com.maina.formdata.repository.Repositoryregistry;
 import com.maina.formdata.service.ILoginService;
 import com.maina.formdata.service.LoginService;
@@ -49,7 +51,10 @@ public class SyncAsyncTask extends AsyncTask<String, Void, String[]> {
 				Repositoryregistry.get(IDFormItemRepository.class, dataManager), 
 				Repositoryregistry.get(IDFormItemAnswerRepository.class, dataManager), 
 				Repositoryregistry.get(IDFormItemRespondentTypeRepository.class, dataManager),
-				Repositoryregistry.get(IDUserRepository.class, dataManager), dataManager);
+				Repositoryregistry.get(IDUserRepository.class, dataManager),
+				dataManager, 
+				Repositoryregistry.get(ISecurityQuestionRepository.class, dataManager),
+				Repositoryregistry.get(IDTownRepository.class, dataManager));
 		try {
 			Log.d("SyncService", "SyncForm() called with params.length: "+ params.length);
 			loginService.SyncForm(params);

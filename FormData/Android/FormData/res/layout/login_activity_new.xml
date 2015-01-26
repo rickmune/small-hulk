@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical" android:layout_width="match_parent"
+              android:layout_marginRight="20dip" android:layout_marginTop="20dip"
+              android:layout_marginLeft="20dip" android:layout_height="match_parent">
+    <TextView android:id="@+id/appname" android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:text="@string/app_name" android:textIsSelectable="false" android:textSize="24sp"
+              android:layout_alignParentTop="true"/>
+    <TextView android:id="@+id/line" android:layout_width="fill_parent" android:layout_height="2dip"
+              android:textIsSelectable="false" android:background="@color/orange" android:layout_below="@+id/appname"/>
+
+    <EditText android:id="@+id/username_f" android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:layout_below="@+id/line" android:hint="@string/username_email" android:layout_marginTop="50dip"
+              android:imeOptions="actionNext"/>
+    <EditText android:id="@+id/password_f" android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:layout_below="@+id/username_f"  android:hint="@string/password" android:layout_marginTop="20dp"
+              android:inputType="textPassword" android:imeOptions="actionDone"/>
+
+    <Button android:id="@+id/login_btn" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/login" android:textSize="24sp" android:layout_below="@+id/password_f"
+            android:layout_marginTop="20dp" android:background="@color/blue"
+            android:textColor="@android:color/black"/>
+    <LinearLayout android:id="@+id/version_l" android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal" android:layout_below="@+id/login_btn" android:layout_marginTop="20dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@string/version" android:textSize="24sp" android:layout_marginTop="10dp"/>
+        <TextView  android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/v_number" android:textSize="24sp" android:layout_marginTop="10dp"
+                android:textStyle="bold" android:layout_marginLeft="7dip" android:paddingRight="7dp"
+                android:paddingBottom="3dp"/>
+    </LinearLayout>
+</RelativeLayout>

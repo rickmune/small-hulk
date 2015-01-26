@@ -129,5 +129,19 @@ public class DformItemE extends DBaseE {
 	public void setValidationRegex(String validationRegex) {
 		ValidationRegex = validationRegex;
 	}
-	
+
+    @Override
+    public String toString() {
+        return "DformItemE{" +
+                "Label='" + Label + '\'' +
+                ", FormItemType=" + FormItemType +
+                ", FormItemRespondentTypes=" + FormItemRespondentTypes +
+                ", FormItemAnswer=" + FormItemAnswer +
+                ", IsRequired=" + IsRequired +
+                ", DformE=" + DformE +
+                ", Order=" + Order +
+                ", ValidationText='" + ValidationText + '\'' +
+                ", ValidationRegex='" + ValidationRegex + '\'' +
+                '}';
+    }
 }

@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Form App</string>
+    <string name="app_name">E-Data Form</string>
     <string name="action_settings">Settings</string>
     <string name="search">Search</string>
     <string name="sync">Sync</string>
+    <string name="reset">Forgot Password</string>
+    <string name="message">Notifications</string>
+    <string name="rest_db">Re-Initiallize App</string>
     <string name="user_name">UserName: </string>
     <string name="client_name">Client Name: </string>
     <string name="last_sync">Last Sync: </string>
     <string name="next">Next</string>
     <string name="survey">Survey</string>
     <string name="cancel">Cancel</string>
-    <string name="v_number"> 1.1.1 </string>
+    <string name="v_number"> 1.2.6  </string>
     <string name="version">Version: </string>
+    <string name="dismiss">Dismiss</string>
     <!-- infor page -->
     <string name="nof">No. of forms</string>
     <string name="unsentresp">Unsent Responses</string>
@@ -21,8 +25,32 @@
     <!-- Login -->
     <string name="username">UserName</string>
     <string name="login">Login</string>
-    <string name="password">Password</string>
-    <string name="username_email">username or email</string>
+    <string name="password">PASSWORD</string>
+    <string name="username_email">USERNAME or EMAIL</string>
     <string name="passwrd">Password: </string>
     <string name="usernm">UserName: </string>
+    <!-- Changes Password -->
+    <string name="chg_title">Changes Password</string>
+    <string name="chg_oldpwd">Old Password</string>
+    <string name="chg_newpwd">New Password</string>
+    <string name="chg_confrimpwd">Confirm Password</string>
+    <!-- Reset Password -->
+    <string name="rst_title">Reset Password</string>
+    <string name="rst_question">Question</string>
+    <string name="rst_answer">Answer</string>
+    <!-- Security Question -->
+    <string name="sq_title">Security Question</string>
+    <string name="sq_question">Question</string>
+    <string name="sq_answer">Answer</string>
+    <!-- town -->
+    <string name="town_select">Select Town</string>
+    <!-- charts -->
+	<string name="add_values">Simple Chart</string>    
+	<string name="x">X</string>    
+	<string name="y">Y</string>
+	<string name="add">Add</string>
+	<string name="new_series">New series</string>
+    <string name="form_cancel">Cancel</string>
+    <string name="form_next">Next</string>
+    <string name="form_save">Save</string>
 </resources>

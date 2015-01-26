@@ -10,5 +10,20 @@
         android:icon="@drawable/sync"
         android:showAsAction="ifRoom|withText"
         android:title="@string/sync"/>
-
+    <item
+        android:id="@+id/action_reset"
+        android:icon="@drawable/reset_pwd"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/reset"/>
+    <item
+        android:id="@+id/action_message"
+        android:icon="@drawable/message_icon"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/message"/>
+    
+    <item
+        android:id="@+id/action_reset_db"
+        android:icon="@drawable/message_icon"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/rest_db"/>
 </menu>

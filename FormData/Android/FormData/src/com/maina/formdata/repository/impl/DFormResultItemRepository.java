@@ -25,12 +25,12 @@ public class DFormResultItemRepository extends RepositoryBase implements IDFormR
 
 	@Override
 	public void setDataManager(IDataManager dataManager) {
-		this.dataManager = dataManager;
+		setData(dataManager);
 	}
 
 	@Override
 	public List<DformResultItemE> getByResultId(UUID resultId) throws Exception {
-		List<DformResultItemE> list = dataManager.publicDao(DformResultItemE.class)
+		List<DformResultItemE> list = getDataManager().publicDao(DformResultItemE.class)
 				.queryForEq("DformResultE_id", resultId);
 		List<DformResultItemE> listFinal = new ArrayList<DformResultItemE>(); 
 		for(DformResultItemE itemE : list){

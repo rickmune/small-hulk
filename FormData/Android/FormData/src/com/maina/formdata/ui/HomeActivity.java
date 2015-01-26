@@ -40,14 +40,15 @@ public class HomeActivity extends BaseActivity{
 		userName.setText( UserName );
 		clientName.setText( ClientName );
 		lastSync.setText(lastSync.getTag().toString());
-		((Button)findViewById(R.id.survey_btn)).setOnClickListener(new OnClickListener() {
+		(findViewById(R.id.survey_btn)).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				moveToNext();
 			}
 		});
-		((Button)findViewById(R.id.dismiss_button)).setOnClickListener(new OnClickListener() {
+
+        (findViewById(R.id.dismiss_button)).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -104,7 +105,8 @@ public class HomeActivity extends BaseActivity{
 		bundle.putString(FormData.USERID, UserId);
 		bundle.putString(FormListActivity.USERNAME, UserName);
 		bundle.putString(FormListActivity.LOCATIONID, LocationId);
-		Intent intent = new Intent(HomeActivity.this, FormListActivity.class);
+		//Intent intent = new Intent(HomeActivity.this, FormListActivity.class);
+		Intent intent = new Intent(HomeActivity.this, SelectTown.class);
 		intent.putExtras(bundle);
 		startActivity(intent);
 		finish();

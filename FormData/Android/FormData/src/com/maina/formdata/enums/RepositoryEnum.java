@@ -1,23 +1,7 @@
 package com.maina.formdata.enums;
 
-import com.maina.formdata.repository.IDFormItemAnswerRepository;
-import com.maina.formdata.repository.IDFormItemRepository;
-import com.maina.formdata.repository.IDFormItemRespondentTypeRepository;
-import com.maina.formdata.repository.IDFormRepository;
-import com.maina.formdata.repository.IDFormRespondentTypeRepository;
-import com.maina.formdata.repository.IDFormResultItemRepository;
-import com.maina.formdata.repository.IDFormResultRepository;
-import com.maina.formdata.repository.IDUserRepository;
-import com.maina.formdata.repository.IPhonConfig;
-import com.maina.formdata.repository.impl.DFormItemAnswerRepository;
-import com.maina.formdata.repository.impl.DFormItemRepository;
-import com.maina.formdata.repository.impl.DFormItemRespondentTypeRepository;
-import com.maina.formdata.repository.impl.DFormRepository;
-import com.maina.formdata.repository.impl.DFormRespondentTypeRepository;
-import com.maina.formdata.repository.impl.DFormResultItemRepository;
-import com.maina.formdata.repository.impl.DFormResultRepository;
-import com.maina.formdata.repository.impl.DUserRepository;
-import com.maina.formdata.repository.impl.PhoneConfigRepository;
+import com.maina.formdata.repository.*;
+import com.maina.formdata.repository.impl.*;
 
 public enum RepositoryEnum {
 
@@ -29,7 +13,11 @@ public enum RepositoryEnum {
 	DFormResultItem(IDFormResultItemRepository.class, DFormResultItemRepository.class),
 	DFormResult(IDFormResultRepository.class, DFormResultRepository.class),
 	DUserRepository(IDUserRepository.class, DUserRepository.class),
-	PhonConfig(IPhonConfig.class, PhoneConfigRepository.class);
+	PhonConfig(IPhonConfig.class, PhoneConfigRepository.class),
+	SecurityQuestionRepository(ISecurityQuestionRepository.class, SecurityQuestionRepository.class),
+	MessagesRepository(IMessageRepository.class, MessageRepository.class),
+	DTownRepository(IDTownRepository.class, DTownRepository.class),
+    ImagePathRepo(IImagePathRepository.class, ImagePathRepository.class);
 	
 	@SuppressWarnings("rawtypes")
 	public final Class IRepo;

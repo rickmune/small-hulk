@@ -16,18 +16,18 @@ public class PhoneConfigRepository extends RepositoryBase implements IPhonConfig
 
 	@Override
 	public PhonConfig getConfig() throws Exception {
-		List<PhonConfig> configs = dataManager.publicDao(PhonConfig.class).queryForAll();
+		List<PhonConfig> configs = getDataManager().publicDao(PhonConfig.class).queryForAll();
 		if(configs != null && !configs.isEmpty()) return configs.get(0);
 		return null;
 	}
 	
 	@Override
 	public PhonConfig saveConfig(PhonConfig config) throws Exception {
-		List<PhonConfig> configs = dataManager.publicDao(PhonConfig.class).queryForAll();
+		List<PhonConfig> configs = getDataManager().publicDao(PhonConfig.class).queryForAll();
 		if(configs != null){
 			config.setId(configs.get(0).getId());
 		}
-		dataManager.save(config, PhonConfig.class);
+        getDataManager().save(config, PhonConfig.class);
 		return config;
 	}
 	
@@ -38,16 +38,16 @@ public class PhoneConfigRepository extends RepositoryBase implements IPhonConfig
 	
 	@Override
 	public void setDataManager(IDataManager dataManager) {
-		this.dataManager = dataManager;
+		setData(dataManager);
 	}
 
 	@Override
 	public void allowEdit() throws Exception {
-		List<PhonConfig> configs = dataManager.publicDao(PhonConfig.class).queryForAll();
+		List<PhonConfig> configs = getDataManager().publicDao(PhonConfig.class).queryForAll();
 		if(configs != null && !configs.isEmpty()) {
 			PhonConfig config = configs.get(0);
 			config.setEdit(true);
-			dataManager.save(config, PhonConfig.class);
+            getDataManager().save(config, PhonConfig.class);
 		}
 	}
 	

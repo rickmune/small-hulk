@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="achartengine-1.1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/achartengine-1.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/GraphView-3.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gson-2.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ormlite-android-4.30.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/ormlite-core-4.30.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/GraphView-3.1.1.jar!/" />
+    </SOURCES>
+  </library>
+</component>

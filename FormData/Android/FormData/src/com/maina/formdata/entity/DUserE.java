@@ -14,7 +14,8 @@ public class DUserE extends DBaseE {
 	
 	public DUserE(UUID id, String username, String password, String fullname,
 			UserType userTypeId, String email, String phoneNumber, UUID clientId,
-			UUID locationId, String clientName) {
+			UUID locationId, String clientName, boolean isPasswordChanged,
+			boolean isSecuritySet, int securityQuestionId, String securityAnswer) {
 		super(id);
 		Username = username;
 		Password = password;
@@ -25,6 +26,10 @@ public class DUserE extends DBaseE {
 		ClientId = clientId;
 		LocationId = locationId;
 		ClientName = clientName;
+		IsPasswordChanged = isPasswordChanged;
+		IsSecuritySet = isSecuritySet;
+		SecurityQuestionId = securityQuestionId;
+		SecurityAnswer = securityAnswer;
 	}
 	@DatabaseField
 	private String Username;
@@ -44,6 +49,14 @@ public class DUserE extends DBaseE {
 	private UUID LocationId;
 	@DatabaseField
 	private String ClientName;
+	@DatabaseField
+	private boolean IsPasswordChanged;
+	@DatabaseField
+	private boolean IsSecuritySet;
+	@DatabaseField
+	private int SecurityQuestionId;
+	@DatabaseField
+	private String SecurityAnswer;
 	
 	public String getUsername() {
 		return Username;
@@ -103,13 +116,49 @@ public class DUserE extends DBaseE {
 	public void setClientName(String clientName) {
 		ClientName = clientName;
 	}
+	
+	public boolean isIsPasswordChanged() {
+		return IsPasswordChanged;
+	}
+
+	public void setIsPasswordChanged(boolean isPasswordChanged) {
+		IsPasswordChanged = isPasswordChanged;
+	}
+
+	public boolean isIsSecuritySet() {
+		return IsSecuritySet;
+	}
+
+	public void setIsSecuritySet(boolean isSecuritySet) {
+		IsSecuritySet = isSecuritySet;
+	}
+
+	public int getSecurityQuestionId() {
+		return SecurityQuestionId;
+	}
+
+	public void setSecurityQuestionId(int securityQuestionId) {
+		SecurityQuestionId = securityQuestionId;
+	}
+
+	public String getSecurityAnswer() {
+		return SecurityAnswer;
+	}
+
+	public void setSecurityAnswer(String securityAnswer) {
+		SecurityAnswer = securityAnswer;
+	}
 
 	@Override
 	public String toString() {
 		return "DUserE [Username=" + Username + ", Password=" + Password
 				+ ", Fullname=" + Fullname + ", UserTypeId=" + UserTypeId
 				+ ", Email=" + Email + ", PhoneNumber=" + PhoneNumber
-				+ ", ClientId=" + ClientId + ", LocationId=" + LocationId + "]";
+				+ ", ClientId=" + ClientId + ", LocationId=" + LocationId
+				+ ", ClientName=" + ClientName + ", IsPasswordChanged="
+				+ IsPasswordChanged + ", IsSecuritySet=" + IsSecuritySet
+				+ ", SecurityQuestionId=" + SecurityQuestionId
+				+ ", SecurityAnswer=" + SecurityAnswer + "]";
 	}
 	
 }

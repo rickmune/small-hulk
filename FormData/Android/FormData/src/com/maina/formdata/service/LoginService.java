@@ -15,13 +15,17 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.maina.formdata.datamanager.IDataManager;
+import com.maina.formdata.dto.BasicResponse;
 import com.maina.formdata.dto.DBase;
+import com.maina.formdata.dto.DTown;
 import com.maina.formdata.dto.Dform;
 import com.maina.formdata.dto.DformItem;
 import com.maina.formdata.dto.DformItemAnswer;
 import com.maina.formdata.dto.DformItemRespondentType;
 import com.maina.formdata.dto.DformRespondentType;
+import com.maina.formdata.dto.QuestionL;
 import com.maina.formdata.dto.UserDto;
+import com.maina.formdata.entity.DTownE;
 import com.maina.formdata.entity.DUserE;
 import com.maina.formdata.entity.DformE;
 import com.maina.formdata.entity.DformItemAnswerE;
@@ -36,7 +40,9 @@ import com.maina.formdata.repository.IDFormItemRepository;
 import com.maina.formdata.repository.IDFormItemRespondentTypeRepository;
 import com.maina.formdata.repository.IDFormRepository;
 import com.maina.formdata.repository.IDFormRespondentTypeRepository;
+import com.maina.formdata.repository.IDTownRepository;
 import com.maina.formdata.repository.IDUserRepository;
+import com.maina.formdata.repository.ISecurityQuestionRepository;
 import com.maina.formdata.utils.CloudConstants;
 import com.maina.formdata.utils.CloudManager;
 import com.maina.formdata.utils.DformItemTypeserializer;
@@ -54,12 +60,16 @@ public class LoginService implements ILoginService {
 	IDFormItemRespondentTypeRepository dformItemRespondentTypeErepository;
 	IDUserRepository userRepository;
 	IDataManager dataManager;
+	ISecurityQuestionRepository securityQuestionRepository;
+	IDTownRepository townRepository;
 	
 	public LoginService(IDFormRepository formRepository, IHttpUtils httpUtils,
 			IDFormRespondentTypeRepository respondentTypeRepository,
 			IDFormItemRepository formItemRepository, IDFormItemAnswerRepository formItemAnswerRepository,
 			IDFormItemRespondentTypeRepository dformItemRespondentTypeErepository,
-			IDUserRepository userRepository, IDataManager dataManager) {
+			IDUserRepository userRepository, IDataManager dataManager,
+			ISecurityQuestionRepository securityQuestionRepository,
+			IDTownRepository townRepository) {
 		this.formRepository = formRepository;
 		this.httpUtils = httpUtils;
 		this.respondentTypeRepository = respondentTypeRepository;
@@ -68,6 +78,8 @@ public class LoginService implements ILoginService {
 		this.dformItemRespondentTypeErepository = dformItemRespondentTypeErepository;
 		this.userRepository = userRepository;
 		this.dataManager = dataManager;
+		this.securityQuestionRepository = securityQuestionRepository;
+		this.townRepository = townRepository;
 	}
 
 	@Override
@@ -75,7 +87,14 @@ public class LoginService implements ILoginService {
 		Log.d(Tag, "SyncForm() starteds params.length: "+params.length);
 		try {
 			if(params.length == 1){
-				return getFormIds(params[0]);
+				boolean y = false;
+				try {
+					y = getOtherLocation(userRepository.getUser().getLocationId().toString());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				y = getFormIds(params[0]);
+				return y;
 			}else{
 				return login(params[0], params[1]);
 			}
@@ -94,13 +113,16 @@ public class LoginService implements ILoginService {
 		String res = httpUtils.GetRequest(GenUtils.getUrl(dataManager)+"/api/client/user/login", params);
 		SyncEntity<UserDto> syncUser = deserialize(res, new TypeToken<SyncEntity<UserDto>>() {}.getType());
 		String msg = "No user returned Confirm UserName and Password";
+		if(syncUser == null){
+			CloudManager.putObject(CloudConstants.LOGINERROR.value, msg, false);
+			return false;
+		}
 		if(!syncUser.Status){
-			//TODO: get the message
 			CloudManager.putObject(CloudConstants.LOGINERROR.value, msg, false);
 			return false;
 		}
 		if(syncUser.getData() == null || syncUser.getData().size() <= 0){
-			CloudManager.putObject(CloudConstants.LOGINERROR.value, msg, false);
+			CloudManager.putObject(CloudConstants.LOGINERROR.value, syncUser.Info, false);
 			return false;
 		}
 		/*if(syncUser.getRecordCount() <= 0){
@@ -112,12 +134,38 @@ public class LoginService implements ILoginService {
 		UserType t = (user.getUserType() == 2 ? UserType.TDR : UserType.Admin);
 		DUserE dUserE = new DUserE(user.getId(), user.getUsername(), user.getPassword(), 
 				user.getFullname(), t, user.getEmail(), user.getPhoneNumber(), user.getClientId(),
-				user.getLocationId(), user.getClientName());
+				user.getLocationId(), user.getClientName(), user.isIsPasswordChanged(),
+				user.isIsSecuritySet(), user.getSecurityQuestionId(), user.getSecurityAnswer());
 		userRepository.save(dUserE);
+		boolean secQ = getSecurityQuestions();
+		boolean towns = getOtherLocation(user.getLocationId().toString());
+		Log.d(Tag, " after getOtherLocation and Security Question: " + (secQ && towns));
 		return getFormIds(user.getClientId().toString());
 	}
 	
+	private boolean getOtherLocation(String locationId)throws Exception{
+		Log.d(Tag, "getOtherLocation saved Towns");
+		Hashtable<String, String> params = new Hashtable<String, String>();
+		params.put("locationId", locationId);
+		String res = httpUtils.GetRequest(GenUtils.getUrl(dataManager)+"/api/client/locations/getLocations", params);
+		SyncEntity<DTown> towns = deserialize(res, new TypeToken<SyncEntity<DTown>>() {}.getType());
+		if(!towns.getStatus()){
+			return false;
+		}
+		List<DTown> dTowns = towns.getData();
+		int ts = 0;
+		for (DTown dTown : dTowns) {
+			townRepository.save(new DTownE(dTown.getId(), dTown.getName(), dTown.getParentId(), 
+					dTown.getDescription(), dTown.getCode(), dTown.getLocationStructureName(), 
+					dTown.getLocationStructureId()));
+			ts++;
+		}
+		Log.d(Tag, "getOtherLocation saved Towns: " + ts);
+		return true;
+	}
+	
 	private boolean getFormIds(String ClientId) throws Exception{
+		boolean y = false;		
 		Hashtable<String, String> params = new Hashtable<String, String>();
 		params.put("clientid", ClientId);
 		String res = httpUtils.GetRequest(GenUtils.getUrl(dataManager)+"/api/client/form/getformids", params);
@@ -126,7 +174,7 @@ public class LoginService implements ILoginService {
 			return false;
 		}
 		List<DBase> formIds = ids.getData();
-		boolean y = false;
+		
 		for(DBase id : formIds){
 			y = getFormById(id.getId());
 		}
@@ -139,12 +187,10 @@ public class LoginService implements ILoginService {
 		String res = httpUtils.GetRequest(GenUtils.getUrl(dataManager)+"/api/client/form/getform", params);
 		SyncEntity<Dform> form = deserialize(res, new TypeToken<SyncEntity<Dform>>() {}.getType());
 		if(!form.Status){
-			//TODO: get the message
 			return false;
 		}
 		Dform dform = form.getData().get(0);
 		if(dform == null){
-			//TODO: get the message
 			return false;
 		}
 		DformE dformE = new DformE(dform.getId(), dform.getName());
@@ -165,6 +211,12 @@ public class LoginService implements ILoginService {
 					item.isIsRequired(), dformE, item.getOrder(), item.getValidationText(),
 					item.getValidationRegex());
 			formItemRepository.save(dformItemE);
+            try {
+                formItemAnswerRepository.deleteByFormId(item.getId());
+            }catch (Exception e){
+                Log.d(Tag, "deleteByFormId Error");
+                e.printStackTrace();
+            }
 			List<DformItemAnswer> answers = item.getFormItemAnswer();
 			List<DformItemAnswerE> answerEs = new ArrayList<DformItemAnswerE>();
 			for(DformItemAnswer answer : answers){
@@ -179,6 +231,17 @@ public class LoginService implements ILoginService {
 			}
 			dformItemRespondentTypeErepository.saveBatch(itemRespondentTypeEs);
 		}
+		return true;
+	}
+	
+	private boolean getSecurityQuestions() throws Exception{
+		Log.d(Tag, "getSecurityQuestions");
+		Hashtable<String, String> params = new Hashtable<String, String>();
+		String res = httpUtils.GetRequest(GenUtils.getUrl(dataManager)+"/api/client/user/securityquestionlist", params);
+		ListQ listQ = deserialize(res, new TypeToken<ListQ>() {}.getType());
+		List<QuestionL> Questions  = listQ.Data;
+		if(Questions == null || Questions.size() < 1) return false;
+		securityQuestionRepository.saveBatch(Questions);
 		return true;
 	}
 	
@@ -212,5 +275,34 @@ public class LoginService implements ILoginService {
 	@SuppressWarnings("unused")
 	private String makreResponse(){
 		return "{\"Name\":\"Safaricom\",\"RespondentTypes\":[{\"Name\":\"M-PESA\",\"Code\":\"M\",\"Id\":\"9a8253a1-0402-429e-9ac3-9094429fa6a5\"},{\"Name\":\"Dealer\",\"Code\":\"D\",\"Id\":\"213fae70-c546-42bd-bcd2-c4885f874de6\"}],\"FormItems\":[{\"Order\":2,\"Label\":\"What is you Gender\",\"FormItemType\":2,\"FormItemRespondentTypes\":[{\"RespondentTypeId\":\"213fae70-c546-42bd-bcd2-c4885f874de6\",\"FormItemId\":\"9f2b67d3-db9f-4f05-b8d9-3b22f66765d9\",\"Id\":\"059a6182-9186-4ba5-ad1e-c90434c58f8d\"}],\"FormItemAnswer\":[{\"Text\":\"Female\",\"Value\":\"F\",\"Id\":\"62365bde-680b-43e9-bc96-81c2861d5fb8\"},{\"Text\":\"Male\",\"Value\":\"M\",\"Id\":\"02a639a1-98f8-4262-b485-d401518458d0\"}],\"IsRequired\":true,\"Id\":\"9f2b67d3-db9f-4f05-b8d9-3b22f66765d9\"},{\"Order\":3,\"Label\":\"Which of the following Product do you use?\",\"FormItemType\":3,\"FormItemRespondentTypes\":[{\"RespondentTypeId\":\"9a8253a1-0402-429e-9ac3-9094429fa6a5\",\"FormItemId\":\"92624c90-08d5-4544-811a-e3505d3eb60f\",\"Id\":\"335c75f4-48e9-48bd-b941-5fa3ddb4ac37\"}],\"FormItemAnswer\":[{\"Text\":\"A\",\"Value\":\"Aple\",\"Id\":\"7f9a67dc-00e6-4400-bfe6-19f9e20ed5d1\"},{\"Text\":\"Banana\",\"Value\":\"B\",\"Id\":\"43405fc3-b9b7-493b-bd78-a81500d98162\"},{\"Text\":\"Mango\",\"Value\":\"M\",\"Id\":\"1f94ce19-0509-4663-92de-af83306ff85b\"}],\"IsRequired\":true,\"Id\":\"92624c90-08d5-4544-811a-e3505d3eb60f\"},{\"Order\":1,\"Label\":\"What is you name?\",\"FormItemType\":1,\"FormItemRespondentTypes\":[{\"RespondentTypeId\":\"9a8253a1-0402-429e-9ac3-9094429fa6a5\",\"FormItemId\":\"0396aba1-7b06-4a1e-bb93-fb725024c6c3\",\"Id\":\"2429a54b-bea3-44ae-872b-37a510bb35e2\"}],\"FormItemAnswer\":[],\"IsRequired\":true,\"Id\":\"0396aba1-7b06-4a1e-bb93-fb725024c6c3\"}],\"Id\":\"2bfd38a8-fe58-4dc2-b5f6-139962f5ecbb\"}";
+	}
+	
+	class ListQ extends BasicResponse{
+		
+		public ListQ(){}
+		
+		public ListQ(List<QuestionL> data, int recordCount) {
+			Data = data;
+			RecordCount = recordCount;
+		}
+		private List<QuestionL> Data;
+		private int RecordCount;
+		
+		public List<QuestionL> getData() {
+			return Data;
+		}
+
+		public void setData(List<QuestionL> data) {
+			Data = data;
+		}
+
+		public int getRecordCount() {
+			return RecordCount;
+		}
+
+		public void setRecordCount(int recordCount) {
+			RecordCount = recordCount;
+		}
+		
 	}
 }

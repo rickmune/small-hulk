@@ -23,7 +23,7 @@ public class DFormRespondentTypeRepository extends RepositoryBase implements IDF
 
 	@Override
 	public void setDataManager(IDataManager dataManager) {
-		this.dataManager = dataManager;
+		setData(dataManager);
 	}
 
 	@Override

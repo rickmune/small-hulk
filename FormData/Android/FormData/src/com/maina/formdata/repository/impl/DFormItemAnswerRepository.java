@@ -27,7 +27,7 @@ public class DFormItemAnswerRepository extends RepositoryBase implements IDFormI
 
 	@Override
 	public void setDataManager(IDataManager dataManager) {
-		this.dataManager = dataManager;
+		setData(dataManager);
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class DFormItemAnswerRepository extends RepositoryBase implements IDFormI
 
 	public List<Pair<String, String>> getAnswerItems(UUID formItemId) throws Exception {
 		List<Pair<String, String>> pairs = new ArrayList<Pair<String,String>>();
-		List<DformItemAnswerE> list = (dataManager.publicDao(DformItemAnswerE.class).
-				queryForEq("dformItemE_id", formItemId));
+		List<DformItemAnswerE> list = getDataManager().publicDao(DformItemAnswerE.class).
+				queryForEq("dformItemE_id", formItemId);
 		SortedList sortedList = new SortedList();
 		for(DformItemAnswerE answerE : list){
 			sortedList.insertSorted(answerE);
@@ -49,6 +49,14 @@ public class DFormItemAnswerRepository extends RepositoryBase implements IDFormI
 		}
 		return pairs;
 	}
+
+    public void deleteByFormId(UUID formItemId) throws Exception{
+        List<DformItemAnswerE> list = (getDataManager().publicDao(DformItemAnswerE.class).
+                queryForEq("dformItemE_id", formItemId));
+        for(DformItemAnswerE answerE : list){
+            getDataManager().publicDao(DformItemAnswerE.class).deleteById(answerE.getId());
+        }
+    }
 	
 	class SortedList extends ArrayList<DformItemAnswerE>{
 		

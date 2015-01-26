@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component jdk="Android API 19 Platform" jdk_type="Android SDK">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="android-support-v7-appcompat.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/libs/android-support-v7-appcompat.jar!/"/>
+	</lib>
+	<levels>
+		<level name="achartengine-1.1.0" value="project"/>
+	</levels>
+</component>
